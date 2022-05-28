@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Bag.h" />
     <ClInclude Include="Console.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Game.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Skill.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Bag.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Game.cpp" />

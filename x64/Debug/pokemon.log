@@ -1,2 +1,9 @@
-﻿  Map.cpp
-  pokemon.vcxproj -> D:\C++\PokemonProject_cpp\x64\Debug\pokemon.exe
+﻿  Bag.cpp
+  Item.cpp
+  main.cpp
+D:\C++\PokemonProject_cpp\main.cpp(10,22): error C2660: 'Map::PrintMap': 함수는 1개의 인수를 사용하지 않습니다.
+D:\C++\PokemonProject_cpp\Map.h(13,7): message : 'Map::PrintMap' 선언을 참조하십시오.
+  Map.cpp
+  Player.cpp
+  Pokemon.cpp
+  코드를 생성하고 있습니다...

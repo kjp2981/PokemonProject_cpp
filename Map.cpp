@@ -1,7 +1,8 @@
 #include<iostream>
 #include<string.h>
 #include"Console.h"
-#include "Map.h"
+#include"Map.h"
+#include"Player.h"
 
 using namespace std;
 
@@ -36,13 +37,19 @@ void Map::SetMap(char map[MAX_X][MAX_Y]) {
 	strcpy_s(map[26], "333333333000000000000000000000");
 	strcpy_s(map[27], "333333333000000000000000000000");
 	strcpy_s(map[28], "333333333330000000000000000000");
-	strcpy_s(map[29], "333333333330000000000000000000");
+	strcpy_s(map[29], "333333333330000000000000000004");
 }
 
-void Map::PrintMap(char map[MAX_X][MAX_Y]) {
+void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {
 	for (int i = 0; i < 30; i++) {
 		for (int j = 0; j < 30; j++) {
-			if (map[i][j] == '0') {
+			if (playerPos->x == j && playerPos->y == i)
+			{
+				SetColor(15, 8);
+				cout << "£¦";
+				SetColor(15, 0);
+			}
+			else if (map[i][j] == '0') {
 				SetColor(15, 8);
 				cout << "  ";
 				SetColor(15, 0);

@@ -51,6 +51,9 @@
     <ClInclude Include="Console.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Bag.h">
+      <Filter>소스 파일\Item</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Game.cpp">
@@ -79,6 +82,9 @@
     </ClCompile>
     <ClCompile Include="Console.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Bag.cpp">
+      <Filter>소스 파일\Item</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

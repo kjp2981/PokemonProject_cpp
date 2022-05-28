@@ -1,5 +1,6 @@
 #include<iostream>
 #include"Map.h"
+#include<stack>
 
 using namespace std;
 
