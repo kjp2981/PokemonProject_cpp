@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\Creature">
       <UniqueIdentifier>{3c31ef4e-94ae-42b5-a933-5fa9e1c1824c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Map">
+      <UniqueIdentifier>{a1ffe2db-5b80-4f89-97c4-aaac49f894c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -40,6 +43,12 @@
       <Filter>소스 파일\Creature</Filter>
     </ClInclude>
     <ClInclude Include="Skill.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>소스 파일\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,6 +72,12 @@
       <Filter>소스 파일\Creature</Filter>
     </ClCompile>
     <ClCompile Include="Skill.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Console.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

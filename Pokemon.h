@@ -7,7 +7,6 @@
 #define DEFENCE rand() % 6;
 #define SPEED rand() % 6
 
-
 enum PokemonList // 그냥 이거 string으로 구별할 까? 그러자 ㅇㅇ
 {
 	P_Chimchar = 1, // 불꽃숭이
@@ -37,9 +36,12 @@ protected:
 	int attack;
 	int defence;
 	int speed;
-	Skill skiiList[4];
+	//Skill skiiList[4];
 public:
 	int GetId() { return id; }
+	Pokemon() {
+
+	}
 	Pokemon(int id, int type) {
 		this->id = id;
 		this->type = type;
