@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="소스 파일\Game">
-      <UniqueIdentifier>{d0065443-668a-4f3c-84d6-bc504fe7f99d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Item">
       <UniqueIdentifier>{5319429a-17b1-4fda-adde-6d5f1753639c}</UniqueIdentifier>
     </Filter>
@@ -27,12 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>소스 파일\Game</Filter>
-    </ClInclude>
-    <ClInclude Include="Field.h">
-      <Filter>소스 파일\Game</Filter>
-    </ClInclude>
     <ClInclude Include="Pokemon.h">
       <Filter>소스 파일\Creature</Filter>
     </ClInclude>
@@ -54,14 +45,11 @@
     <ClInclude Include="Bag.h">
       <Filter>소스 파일\Item</Filter>
     </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Game.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="Field.cpp">
-      <Filter>소스 파일\Game</Filter>
-    </ClCompile>
     <ClCompile Include="Pokemon.cpp">
       <Filter>소스 파일\Creature</Filter>
     </ClCompile>
@@ -85,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="Bag.cpp">
       <Filter>소스 파일\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

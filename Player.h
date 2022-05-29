@@ -1,6 +1,7 @@
 #pragma once
 #include"Pokemon.h"
 #include"Bag.h"
+#include"Manager.h"
 
 typedef struct pos {
 	int x;
@@ -8,15 +9,23 @@ typedef struct pos {
 } POS, *PPOS;
 
 class Player {
-private:
+public:
 	pos pos;
+private:
 	Pokemon pokemonList[6];
 	Bag* bag;
 private:
-	void MoveUp();
-	void MoveDown();
-	void MoveLeft();
-	void MoveRight();
+	void MoveUp(char map[MAX_X][MAX_Y]);
+	void MoveDown(char map[MAX_X][MAX_Y]);
+	void MoveLeft(char map[MAX_X][MAX_Y]);
+	void MoveRight(char map[MAX_X][MAX_Y]);
 public:
-	void MovePlayer();
+	Player() {
+		SetPlayerPos();
+	}
+	void MovePlayer(char map[MAX_X][MAX_Y]);
+	void SetPlayerPos() {
+		pos.x = 15;
+		pos.y = 15;
+	}
 };

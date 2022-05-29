@@ -42,9 +42,8 @@ public:
 	Pokemon() {
 
 	}
-	Pokemon(int id, int type) {
-		this->id = id;
-		this->type = type;
+	Pokemon(int id, int type) : id(id), type(type), hp(0), attack(0), defence(0), speed(0) {
+
 	}
 	~Pokemon() {
 
