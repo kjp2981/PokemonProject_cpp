@@ -1,6 +1,8 @@
 #include "Player.h"
 #include <Windows.h>
 #include"Manager.h"
+#include"Map.h"
+#include"Random.h"
 
 void Player::MoveUp(char map[MAX_X][MAX_Y])
 {
@@ -32,28 +34,45 @@ void Player::MoveLeft(char map[MAX_X][MAX_Y])
 void Player::MoveRight(char map[MAX_X][MAX_Y])
 {
 	if (pos.x < 29) {
-		if (map[pos.y][pos.x + 1] != '2') {
+		if (map[pos.y][pos.x + 1] == '2') {
+			pos.x += 2;
+		}
+		else {
 			++pos.x;
 		}
 	}
 }
 
-void Player::MovePlayer(char map[MAX_X][MAX_Y])
+void Player::MovePlayer(Map mapClass)
 {
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
-		MoveUp(map);
+		MoveUp(mapClass.map);
 		Sleep(50);
+		if (mapClass.CheckGrass(mapClass.map, &pos)) {
+			int random = Random();
+			if(random < 40)
+				isBattle = true;
+		}
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
-		MoveDown(map);
+		MoveDown(mapClass.map);
 		Sleep(50);
+		if (mapClass.CheckGrass(mapClass.map, &pos)) {
+			isBattle = true;
+		}
 	}
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
-		MoveLeft(map);
+		MoveLeft(mapClass.map);
 		Sleep(50);
+		if (mapClass.CheckGrass(mapClass.map, &pos)) {
+			isBattle = true;
+		}
 	}
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
-		MoveRight(map);
+		MoveRight(mapClass.map);
 		Sleep(50);
+		if (mapClass.CheckGrass(mapClass.map, &pos)) {
+			isBattle = true;
+		}
 	}
 }

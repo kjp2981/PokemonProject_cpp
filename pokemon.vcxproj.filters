@@ -48,6 +48,12 @@
     <ClInclude Include="Manager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Battle.h">
+      <Filter>소스 파일\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Pokemon.cpp">
@@ -75,6 +81,12 @@
       <Filter>소스 파일\Item</Filter>
     </ClCompile>
     <ClCompile Include="Manager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Battle.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

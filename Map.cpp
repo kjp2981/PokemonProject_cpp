@@ -1,11 +1,13 @@
 #include<iostream>
 #include"Console.h"
 #include"Map.h"
+#include"Pokemon.h"
+#include"Player.h"
 
 using namespace std;
 
 // 0: 길, 1, 돌 벽(〓), 2: 돌 벽{ ) }, 3, 풀(포켓몬 나오는곳), 4, 회복해주는 곳
-void Map::SetMap(char map[MAX_X][MAX_Y]) {
+void Map::SetMap() {
 	strcpy_s(map[0],  "400000000000000000003333333333");
 	strcpy_s(map[1],  "000000000000000000003333333333");
 	strcpy_s(map[2],  "000000000000000000003333333333");
@@ -41,7 +43,7 @@ void Map::SetMap(char map[MAX_X][MAX_Y]) {
 void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {
 	for (int i = 0; i < 30; i++) {
 		for (int j = 0; j < 30; j++) {
-			if (playerPos->x == j && playerPos->y == i) // 진짜
+			if (playerPos->x == j && playerPos->y == i)
 			{
 				SetColor(15, 8);
 				cout << "☆";
@@ -78,7 +80,7 @@ void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {
 }
 
 bool Map::CheckGrass(char map[MAX_X][MAX_Y], PPOS playerPos) {
-	if (map[playerPos->x][playerPos->y] == '3') {
+	if (map[playerPos->y][playerPos->x] == '3') {
 		return true;
 	}
 	return false;

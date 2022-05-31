@@ -1,21 +1,31 @@
 #include"Console.h"
 #include"Map.h"
+#include"Battle.h"
 
 using namespace std;
 
 int main() {
+	SetConsoleTitle(L"POKEMON GAME");
+
 	Map map;
 	Player player;
+	Battle battle;
 
-	map.SetMap(map.map);
+	player.SetFirstPokemon();
+
+	map.SetMap();
 
 	while (true)
 	{
 		Gotoxy(0, 0);
-		player.MovePlayer(map.map);
-		map.PrintMap(map.map, &player.pos);
-		if (map.CheckGrass(map.map, &player.pos)) {
-			// TODO : 랜덤한 확률로 포켓몬 출현
+		if (!player.isBattle) {
+			player.MovePlayer(map);
+			map.PrintMap(map.map, &player.pos); // MovePlayer함수 안으롤 옴기기
+		}
+		else {
+			// 배틀
+			//battle.PrintBattleScreen();
+			battle.Update();
 		}
 	}
 }
