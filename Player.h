@@ -17,6 +17,7 @@ public:
 private:
 	Pokemon* pokemonList[6];
 	Bag* bag;
+	int walkCnt;
 private:
 	void MoveUp(char map[MAX_X][MAX_Y]);
 	void MoveDown(char map[MAX_X][MAX_Y]);
@@ -25,6 +26,7 @@ private:
 public:
 	Player() {
 		SetPlayerPos();
+		walkCnt = 0;
 	}
 	void MovePlayer(Map mapClass);
 	void SetPlayerPos() {

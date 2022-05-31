@@ -48,31 +48,49 @@ void Player::MovePlayer(Map mapClass)
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		MoveUp(mapClass.map);
 		Sleep(50);
-		if (mapClass.CheckGrass(mapClass.map, &pos)) {
+		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
 			int random = Random();
-			if(random < 40)
+			if (random < 40) {
+				walkCnt = 0;
 				isBattle = true;
+			}
 		}
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
 		MoveDown(mapClass.map);
 		Sleep(50);
-		if (mapClass.CheckGrass(mapClass.map, &pos)) {
-			isBattle = true;
+		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
+			int random = Random();
+			if (random < 40) {
+				walkCnt = 0;
+				isBattle = true;
+			}
 		}
 	}
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
 		MoveLeft(mapClass.map);
 		Sleep(50);
-		if (mapClass.CheckGrass(mapClass.map, &pos)) {
-			isBattle = true;
+		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
+			int random = Random();
+			if (random < 40) {
+				walkCnt = 0;
+				isBattle = true;
+			}
 		}
 	}
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
 		MoveRight(mapClass.map);
 		Sleep(50);
-		if (mapClass.CheckGrass(mapClass.map, &pos)) {
-			isBattle = true;
+		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
+			int random = Random();
+			if (random < 40) {
+				walkCnt = 0;
+				isBattle = true;
+			}
 		}
 	}
 }
