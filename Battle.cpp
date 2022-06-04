@@ -8,8 +8,11 @@
 using namespace std;
 
 void Battle::Update(Player player) {
+	CreatePokemon();
 	PrintBattleScreen();
 	PrintPokemon(player);
+
+	_getch();
 }
 
 void Battle::CreatePokemon() {
@@ -74,14 +77,28 @@ void Battle::PrintBattleScreen() {
 }
 
 void Battle::PrintPokemon(Player player) {
-	Gotoxy(1, 7);
+	Gotoxy(2, 7);
 	_setmode(_fileno(stdout), _O_U8TEXT);
 	for (int i = 0; i < 7; i++) {
 		for (int j = 0; j < 14; j++) {
 			//if (player.ReturnPokemon()->backImage[i][j] != NULL)
 			wcout << player.ReturnPokemon()->backImage[i][j]; // 이상게 출략되면서 중단됨
 		}
-		cout << endl;
+		Gotoxy(2, 7 + i + 1);
+	}
+
+	Gotoxy(40, 2);
+	for (int i = 0; i < 7; i++) {
+		for (int j = 0; j < 14; j++) {
+			//if (player.ReturnPokemon()->backImage[i][j] != NULL)
+			wcout << wildPokemon->frontImage[i][j]; // 이상게 출략되면서 중단됨
+		}
+		Gotoxy(40, i + 3);
 	}
 	_setmode(_fileno(stdout), _O_TEXT);
+}
+
+Battle::~Battle()
+{
+	delete wildPokemon;
 }

@@ -9,4 +9,5 @@ public:
 	void CreatePokemon();
 	void PrintBattleScreen();
 	void PrintPokemon(Player player);
+	~Battle();
 };
