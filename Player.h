@@ -28,6 +28,7 @@ public:
 		SetPlayerPos();
 		walkCnt = 0;
 	}
+	Pokemon* ReturnPokemon();
 	void MovePlayer(Map mapClass);
 	void SetPlayerPos() {
 		pos.x = 0;

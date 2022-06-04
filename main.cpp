@@ -1,4 +1,4 @@
-#include"Console.h"
+ï»¿#include"Console.h"
 #include"Map.h"
 #include"Battle.h"
 
@@ -14,18 +14,18 @@ int main() {
 	player.SetFirstPokemon();
 
 	map.SetMap();
+	map.PrintMap(map.map, &player.pos);
 
 	while (true)
 	{
 		Gotoxy(0, 0);
 		if (!player.isBattle) {
 			player.MovePlayer(map);
-			map.PrintMap(map.map, &player.pos); // MovePlayerÇÔ¼ö ¾ÈÀ¸·Ñ ¿È±â±â
 		}
 		else {
-			// ¹èÆ²
+			// ë°°í‹€
 			//battle.PrintBattleScreen();
-			battle.Update();
+			battle.Update(player);
 		}
 	}
 }

@@ -4,6 +4,11 @@
 #include"Map.h"
 #include"Random.h"
 
+Pokemon* Player::ReturnPokemon()
+{
+	return pokemonList[0];
+}
+
 void Player::MoveUp(char map[MAX_X][MAX_Y])
 {
 	if (pos.y > 0) {
@@ -55,7 +60,11 @@ void Player::MovePlayer(Map mapClass)
 				walkCnt = 0;
 				isBattle = true;
 			}
+			else
+				mapClass.PrintMap(mapClass.map, &pos);
 		}
+		else
+			mapClass.PrintMap(mapClass.map, &pos);
 	}
 	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
 		MoveDown(mapClass.map);
@@ -67,7 +76,11 @@ void Player::MovePlayer(Map mapClass)
 				walkCnt = 0;
 				isBattle = true;
 			}
+			else
+				mapClass.PrintMap(mapClass.map, &pos);
 		}
+		else
+			mapClass.PrintMap(mapClass.map, &pos);
 	}
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
 		MoveLeft(mapClass.map);
@@ -79,7 +92,11 @@ void Player::MovePlayer(Map mapClass)
 				walkCnt = 0;
 				isBattle = true;
 			}
+			else
+				mapClass.PrintMap(mapClass.map, &pos);
 		}
+		else
+			mapClass.PrintMap(mapClass.map, &pos);
 	}
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
 		MoveRight(mapClass.map);
@@ -91,6 +108,10 @@ void Player::MovePlayer(Map mapClass)
 				walkCnt = 0;
 				isBattle = true;
 			}
+			else
+				mapClass.PrintMap(mapClass.map, &pos);
 		}
+		else
+			mapClass.PrintMap(mapClass.map, &pos);
 	}
 }

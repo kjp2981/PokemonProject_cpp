@@ -2,11 +2,14 @@
 #include"Pokemon.h"
 #include<random>
 #include"Random.h"
+#include"Player.h"
+#include"Console.h"
 
 using namespace std;
 
-void Battle::Update() {
+void Battle::Update(Player player) {
 	PrintBattleScreen();
+	PrintPokemon(player);
 }
 
 void Battle::CreatePokemon() {
@@ -40,19 +43,19 @@ void Battle::CreatePokemon() {
 void Battle::PrintBattleScreen() {
 	cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" << endl;
 	cout << "■                                                        ■" << endl;
+	cout << "■■■■■■■■■■■■■                                ■" << endl;
+	cout << "■                        ■                              ■" << endl;
+	cout << "■                          ■                            ■" << endl;
+	cout << "■■■■■■■■■■■■■■■■                          ■" << endl;
 	cout << "■                                                        ■" << endl;
 	cout << "■                                                        ■" << endl;
 	cout << "■                                                        ■" << endl;
 	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
-	cout << "■                                                        ■" << endl;
+	cout << "■                                ■■■■■■■■■■■■■" << endl; // 10
+	cout << "■                              ■                        ■" << endl;
+	cout << "■                            ■                          ■" << endl;
+	cout << "■                          ■■■■■■■■■■■■■■■■" << endl;
+	cout << "■                                                        ■" << endl; // 14
 	cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" << endl;
 	cout << "■                                                        ■" << endl;
 	cout << "■                                                        ■" << endl;
@@ -68,4 +71,17 @@ void Battle::PrintBattleScreen() {
 	cout << "■                                                        ■" << endl;
 	cout << "■                                                        ■" << endl;
 	cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" << endl;
+}
+
+void Battle::PrintPokemon(Player player) {
+	Gotoxy(1, 7);
+	_setmode(_fileno(stdout), _O_U8TEXT);
+	for (int i = 0; i < 7; i++) {
+		for (int j = 0; j < 14; j++) {
+			//if (player.ReturnPokemon()->backImage[i][j] != NULL)
+			wcout << player.ReturnPokemon()->backImage[i][j]; // 이상게 출략되면서 중단됨
+		}
+		cout << endl;
+	}
+	_setmode(_fileno(stdout), _O_TEXT);
 }
