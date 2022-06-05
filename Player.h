@@ -14,8 +14,8 @@ class Player {
 public:
 	pos pos;
 	bool isBattle;
-private:
 	Pokemon* pokemonList[6];
+private:
 	Bag* bag;
 	int walkCnt;
 private:
@@ -24,30 +24,10 @@ private:
 	void MoveLeft(char map[MAX_X][MAX_Y]);
 	void MoveRight(char map[MAX_X][MAX_Y]);
 public:
-	Player() {
-		SetPlayerPos();
-		walkCnt = 0;
-	}
-	Pokemon* ReturnPokemon();
+	Player();
+	~Player();
+	Pokemon* FirstPokemon();
 	void MovePlayer(Map mapClass);
-	void SetPlayerPos() {
-		pos.x = 0;
-		pos.y = 15;
-	}
-	void SetFirstPokemon() { // 어걸 점더 때깔 나게 나중에 고치기
-		switch (rand() % 3 + 1)
-		{
-		case P_Chimchar:
-			pokemonList[0] = new Chimchar();
-			break;
-		case P_Turtwig:
-			pokemonList[0] = new Chimchar();
-			break;
-		case P_Piplup:
-			pokemonList[0] = new Chimchar();
-			break;
-		default:
-			break;
-		}
-	}
+	void SetPlayerPos();
+	void SetFirstPokemon();
 };

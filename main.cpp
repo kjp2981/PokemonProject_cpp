@@ -6,6 +6,8 @@ using namespace std;
 
 int main() {
 	SetConsoleTitle(L"POKEMON GAME");
+	//system("mode con: cols=60 lines=29"); // 콘솔 창 사이즈 조절
+
 
 	Map map;
 	Player player;
