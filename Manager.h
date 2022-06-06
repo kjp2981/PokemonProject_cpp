@@ -7,3 +7,5 @@ class Manager
 {
 };
 
+void Clear();
+

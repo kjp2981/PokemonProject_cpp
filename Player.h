@@ -12,7 +12,7 @@ typedef struct pos {
 class Map;
 class Player {
 public:
-	pos pos;
+	POS pos;
 	bool isBattle;
 	Pokemon* pokemonList[6];
 private:

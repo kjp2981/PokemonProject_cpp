@@ -72,7 +72,8 @@ void Player::MovePlayer(Map mapClass)
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
-				system("cls");
+				//system("cls");
+				//Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);
@@ -89,7 +90,8 @@ void Player::MovePlayer(Map mapClass)
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
-				system("cls");
+				//system("cls");
+				//Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);
@@ -106,7 +108,8 @@ void Player::MovePlayer(Map mapClass)
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
-				system("cls");
+				//system("cls");
+				//Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);
@@ -123,7 +126,8 @@ void Player::MovePlayer(Map mapClass)
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
-				system("cls");
+				//system("cls");
+				//Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);

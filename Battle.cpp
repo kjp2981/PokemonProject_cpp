@@ -9,18 +9,15 @@
 using namespace std;
 
 void Battle::Update(Player player) {
-	CreatePokemon();
-	PrintBattleScreen();
-	PrintPokemon(player);
-	PrintPokemonHp(player);
-	PrintPokemonName(player);
-	PrintText(player);
+	CreatePokemon(player);
+	MoveCursor(player);
 
-	Gotoxy(0, 30);
-	system("pause");
+	/*Gotoxy(61, 0);
+	system("pause");*/
+	//_getch();
 }
 
-void Battle::CreatePokemon() {
+void Battle::CreatePokemon(Player player) {
 	if (wildPokemon == nullptr) {
 		int percent = Random();
 		if (percent < 1) { // 기라티나
@@ -47,6 +44,12 @@ void Battle::CreatePokemon() {
 		else { // 찌르꼬
 			wildPokemon = new Starly();
 		}
+		PrintBattleScreen();
+		PrintPokemon(player);
+		PrintPokemonHp(player);
+		PrintPokemonName(player);
+		PrintText(player);
+		PrintCursor();
 	}
 }
 
@@ -142,7 +145,7 @@ void Battle::PrintPokemonName(Player player)
 
 void Battle::PrintText(Player player)
 {
-	Gotoxy(3, 16);
+	Gotoxy(4, 16);
 	for (int i = 0; i < 6; i++) {
 		if (player.pokemonList[i] != NULL) {
 			cout << "⊙  ";
@@ -151,6 +154,183 @@ void Battle::PrintText(Player player)
 			cout << "○  ";
 		}
 	}
+
+	Gotoxy(6, 19);
+	cout << player.FirstPokemon()->GetName() << "은(는)";
+	Gotoxy(6, 20);
+	cout << "무엇을 할까?";
+
+	Gotoxy(34, 20);
+	cout << "배틀"; // 1
+	
+	Gotoxy(48, 20);
+	cout << "가방"; // 2
+
+	Gotoxy(34, 24);
+	cout << "포켓몬"; // 3
+
+	Gotoxy(48, 24);
+	cout << "도망"; // 4
+}
+
+void Battle::MoveCursor(Player player)
+{
+	if (GetAsyncKeyState(VK_UP) & 0x8000) {
+		switch (_pos.pos)
+		{
+		case ONE:
+			break;
+		case TWO:
+			break;
+		case THREE:
+			DeleteCursor();
+			_pos.pos = ONE;
+			PrintCursor();
+			break;
+		case FOUR:
+			DeleteCursor();
+			_pos.pos = TWO;
+			PrintCursor();
+			break;
+		default:
+			break;
+		}
+		/*PrintBattleScreen();
+		PrintPokemon(player);
+		PrintPokemonHp(player);
+		PrintPokemonName(player);
+		PrintText(player);*/
+	}
+	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+		switch (_pos.pos)
+		{
+		case ONE:
+			DeleteCursor();
+			_pos.pos = THREE;
+			PrintCursor();
+			break;
+		case TWO:
+			DeleteCursor();
+			_pos.pos = FOUR;
+			PrintCursor();
+			break;
+		case THREE:
+			break;
+		case FOUR:
+			break;
+		default:
+			break;
+		}
+		/*PrintBattleScreen();
+		PrintPokemon(player);
+		PrintPokemonHp(player);
+		PrintPokemonName(player);
+		PrintText(player);*/
+	}
+	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+		
+		switch (_pos.pos)
+		{
+		case ONE:
+			break;
+		case TWO:
+			DeleteCursor();
+			_pos.pos = ONE;
+			PrintCursor();
+			break;
+		case THREE:
+			break;
+		case FOUR:
+			DeleteCursor();
+			_pos.pos = THREE;
+			PrintCursor();
+			break;
+		default:
+			break;
+		}
+		/*PrintBattleScreen();
+		PrintPokemon(player);
+		PrintPokemonHp(player);
+		PrintPokemonName(player);
+		PrintText(player);*/
+	}
+	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+		switch (_pos.pos)
+		{
+		case ONE:
+			DeleteCursor();
+			_pos.pos = TWO;
+			PrintCursor();
+			break;
+		case TWO:
+			break;
+		case THREE:
+			DeleteCursor();
+			_pos.pos = FOUR;
+			PrintCursor();
+			break;
+		case FOUR:
+			break;
+		default:
+			break;
+		}
+		/*PrintBattleScreen();
+		PrintPokemon(player);
+		PrintPokemonHp(player);
+		PrintPokemonName(player);
+		PrintText(player);*/
+	}
+}
+
+void Battle::PrintCursor()
+{
+	switch (_pos.pos)
+	{
+	case ONE:
+		Gotoxy(30, 20);
+		break;
+	case TWO:
+		Gotoxy(44, 20);
+		break;
+	case THREE:
+		Gotoxy(30, 24);
+		break;
+	case FOUR:
+		Gotoxy(44, 24);
+		break;
+	default:
+		break;
+	}
+	_setmode(_fileno(stdout), _O_U8TEXT);
+	wcout << L"▶";
+	_setmode(_fileno(stdout), _O_TEXT);
+}
+
+void Battle::DeleteCursor()
+{
+	switch (_pos.pos)
+	{
+	case ONE:
+		Gotoxy(30, 20);
+		break;
+	case TWO:
+		Gotoxy(44, 20);
+		break;
+	case THREE:
+		Gotoxy(30, 24);
+		break;
+	case FOUR:
+		Gotoxy(44, 24);
+		break;
+	default:
+		break;
+	}
+	cout << "  ";
+}
+
+Battle::Battle()
+{
+	_pos.pos = 1;
 }
 
 Battle::~Battle()

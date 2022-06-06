@@ -1,6 +1,7 @@
 ﻿#include"Console.h"
 #include"Map.h"
 #include"Battle.h"
+#include"Manager.h"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ int main() {
 	while (true)
 	{
 		Gotoxy(0, 0);
-		if (!player.isBattle) {
+		if (player.isBattle == false) {
 			player.MovePlayer(map);
 		}
 		else {
