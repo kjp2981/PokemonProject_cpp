@@ -20,19 +20,23 @@ class Player;
 class Battle {
 private:
 	COURSORPOS _pos;
+	int input;
 public:
 	Pokemon* wildPokemon;
+	Player* player;
 public:
-	void Update(Player player);
-	void CreatePokemon(Player player);
+	void Update();
+	void CreatePokemon();
 	void PrintBattleScreen();
-	void PrintPokemon(Player player);
-	void PrintPokemonHp(Player player);
-	void PrintPokemonName(Player player);
-	void PrintText(Player player);
-	void MoveCursor(Player player);
+	void PrintPokemon();
+	void PrintPokemonHp();
+	void PrintPokemonName();
+	void PrintText();
+	void MoveCursor();
 	void PrintCursor();
 	void DeleteCursor();
+	void Input();
+	void SetPlayer(Player* player);
 	Battle();
 	~Battle();
 };

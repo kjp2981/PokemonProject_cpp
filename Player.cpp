@@ -66,14 +66,17 @@ void Player::MovePlayer(Map mapClass)
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		MoveUp(mapClass.map);
 		Sleep(50);
-		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos))
+			walkCnt++;
+		else
+			walkCnt = 0;
 		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
 			int random = Random();
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
 				//system("cls");
-				//Clear();
+				Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);
@@ -81,17 +84,20 @@ void Player::MovePlayer(Map mapClass)
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
 	}
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+	else if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
 		MoveDown(mapClass.map);
 		Sleep(50);
-		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos))
+			walkCnt++;
+		else
+			walkCnt = 0;
 		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
 			int random = Random();
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
 				//system("cls");
-				//Clear();
+				Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);
@@ -99,17 +105,20 @@ void Player::MovePlayer(Map mapClass)
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
 	}
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+	else if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
 		MoveLeft(mapClass.map);
 		Sleep(50);
-		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos))
+			walkCnt++;
+		else
+			walkCnt = 0;
 		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
 			int random = Random();
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
 				//system("cls");
-				//Clear();
+				Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);
@@ -117,17 +126,20 @@ void Player::MovePlayer(Map mapClass)
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
 	}
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+	else if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
 		MoveRight(mapClass.map);
 		Sleep(50);
-		walkCnt++;
+		if (mapClass.CheckGrass(mapClass.map, &pos))
+			walkCnt++;
+		else
+			walkCnt = 0;
 		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
 			int random = Random();
 			if (random < 40) {
 				walkCnt = 0;
 				isBattle = true;
 				//system("cls");
-				//Clear();
+				Clear();
 			}
 			else
 				mapClass.PrintMap(mapClass.map, &pos);

@@ -12,9 +12,10 @@ int main() {
 
 	Map map;
 	Player player;
-	Battle battle;
-
 	player.SetFirstPokemon();
+	Battle battle;
+	battle.SetPlayer(&player);
+
 
 	map.SetMap();
 	map.PrintMap(map.map, &player.pos);
@@ -28,7 +29,7 @@ int main() {
 		else {
 			// 배틀
 			//battle.PrintBattleScreen();
-			battle.Update(player);
+			battle.Update();
 		}
 	}
 }

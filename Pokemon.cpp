@@ -39,3 +39,15 @@ string Pokemon::GetName()
 {
 	return name;
 }
+
+void Pokemon::Damage(int amount)
+{
+	hp -= amount;
+	// 화면 갱신
+}
+
+void Pokemon::Heal(int amount)
+{
+	hp += amount;
+	// 화면 갱신
+}

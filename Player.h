@@ -15,8 +15,8 @@ public:
 	POS pos;
 	bool isBattle;
 	Pokemon* pokemonList[6];
-private:
 	Bag* bag;
+private:
 	int walkCnt;
 private:
 	void MoveUp(char map[MAX_X][MAX_Y]);
