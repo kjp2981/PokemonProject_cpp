@@ -6,6 +6,7 @@
 #include"Console.h"
 #include<math.h>
 #include"Map.h"
+#include<WindowsX.h>
 
 using namespace std;
 
@@ -148,7 +149,7 @@ void Battle::PrintPokemonName()
 
 void Battle::PrintText()
 {
-	Clear(28, 17, 58, 29); // 이상한데까지 짤린다.
+	Clear(32, 20, 50, 26);
 
 	Gotoxy(4, 16);
 	for (int i = 0; i < 6; i++) {
@@ -177,6 +178,7 @@ void Battle::PrintText()
 
 		Gotoxy(48, 24);
 		cout << "도망"; // 4
+		PrintCursor();
 	}
 	else if (input == 1) {
 		// TODO : 기술 리스트 출력
@@ -191,6 +193,7 @@ void Battle::PrintText()
 
 		Gotoxy(48, 24);
 		cout << player->FirstPokemon()->skiiList[3]->name;
+		PrintCursor();
 	}
 	else if (input == 2) {
 		// TODO : 아이템 리스트 출력
@@ -412,18 +415,45 @@ void Battle::Input()
 	}
 	else if (input == 1) { // 스킬 리스트
 		// TODO : 스킬 사용(Damage주기)
-		switch (_pos.pos)
-		{
-		case ONE:
-			break;
-		case TWO:
-			break;
-		case THREE:
-			break;
-		case FOUR:
-			break;
-		default:
-			break;
+		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
+			switch (_pos.pos)
+			{
+			case ONE:
+				wildPokemon->Damage(player->FirstPokemon()->skiiList[0]->damage);
+				if (wildPokemon->GetHP() <= 0) {
+					player->isBattle = false;
+					delete wildPokemon;
+					wildPokemon = nullptr;
+					input = 0;
+					// TODO : 돈 받기
+					Clear();
+					// 맵을 출력시키기
+				}
+				PrintPokemonHp();
+				input = 0;
+				PrintText();
+				break;
+			case TWO:
+				wildPokemon->Damage(player->FirstPokemon()->skiiList[1]->damage);
+				PrintPokemonHp();
+				input = 0;
+				PrintText();
+				break;
+			case THREE:
+				wildPokemon->Damage(player->FirstPokemon()->skiiList[2]->damage);
+				PrintPokemonHp();
+				input = 0;
+				PrintText();
+				break;
+			case FOUR:
+				wildPokemon->Damage(player->FirstPokemon()->skiiList[3]->damage);
+				PrintPokemonHp();
+				input = 0;
+				PrintText();
+				break;
+			default:
+				break;
+			}
 		}
 	}
 	else if (input == 2) { // 아이템 사용
@@ -461,6 +491,23 @@ void Battle::Input()
 void Battle::SetPlayer(Player* player)
 {
 	this->player = player;
+}
+
+void Battle::MouseClick()
+{
+	INPUT_RECORD rec;
+	DWORD dwRead;
+
+	HANDLE hCout = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE hCin = GetStdHandle(STD_INPUT_HANDLE);
+
+	if (ReadConsoleInput(hCin, &rec, 1, &dwRead)) {
+		if (rec.EventType == MOUSE_EVENT) {
+			if (rec.Event.MouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) {
+				// 클릭된 곳이 텍스트면 텍스트에 맞는 행동하기
+			}
+		}
+	}
 }
 
 Battle::Battle()

@@ -37,6 +37,7 @@ public:
 	void DeleteCursor();
 	void Input();
 	void SetPlayer(Player* player);
+	void MouseClick();
 	Battle();
 	~Battle();
 };

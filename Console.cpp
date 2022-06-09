@@ -1,4 +1,4 @@
-#include "Console.h"
+﻿#include "Console.h"
 
 void Gotoxy(int x, int y) {
 	HANDLE hOut;
