@@ -10,6 +10,7 @@ Player::Player() {
 
 	SetPlayerPos();
 	walkCnt = 0;
+	isBattle = false;
 }
 
 Player::~Player()

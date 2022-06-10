@@ -13,20 +13,23 @@ enum CursorPos
 
 typedef struct Cousorpos {
 	int pos;
-} COURSORPOS;
+} CORSORPOS;
 
 class Player;
+class Map;
 
 class Battle {
 private:
-	COURSORPOS _pos;
+	CORSORPOS _pos;
 	int input;
 public:
 	Pokemon* wildPokemon;
 	Player* player;
+	Map* map;
 public:
 	void Update();
 	void CreatePokemon();
+	void AllPrint();
 	void PrintBattleScreen();
 	void PrintPokemon();
 	void PrintPokemonHp();
@@ -36,8 +39,8 @@ public:
 	void PrintCursor();
 	void DeleteCursor();
 	void Input();
-	void SetPlayer(Player* player);
-	void MouseClick();
-	Battle();
+	//void SetPlayer(Player* player);
+	//void MouseClick();
+	Battle(Player* player, Map* map);
 	~Battle();
 };

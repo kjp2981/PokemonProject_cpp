@@ -24,13 +24,13 @@ void Bag::UseItem(int type)
 void Bag::AddItem(int type)
 {
 	if (type == I_Medicine) {
-		medicineCnt++;
-		if (medicineCnt > MAX_VALUE)
-			medicineCnt = MAX_VALUE;
+		++this->medicineCnt;
+		if (this->medicineCnt > MAX_VALUE)
+			this->medicineCnt = MAX_VALUE;
 	}
 	else if (type == I_Monsterball) {
-		monsterballCnt++;
-		if (monsterballCnt > MAX_VALUE)
-			monsterballCnt = MAX_VALUE;
+		++this->monsterballCnt;
+		if (this->monsterballCnt > MAX_VALUE)
+			this->monsterballCnt = MAX_VALUE;
 	}
 }

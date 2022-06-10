@@ -7,7 +7,7 @@ int Pokemon::GetId() {
 
 int Pokemon::GetHP()
 {
-	return hp;
+	return this->hp;
 }
 
 int Pokemon::GetAttack()
@@ -42,12 +42,13 @@ string Pokemon::GetName()
 
 void Pokemon::Damage(int amount)
 {
-	hp -= amount;
-	// 화면 갱신
+	// ((((레벨 * 2 / 5) + 2) * Attack * 위력 / 50) / Defence) * 타입 상성
+	int damage = (((2 / 5) + 2) * attack * amount / 50 / defence);
+	damage = damage > 0 ? damage : 1;
+	hp -= damage;
 }
 
 void Pokemon::Heal(int amount)
 {
 	hp += amount;
-	// 화면 갱신
 }

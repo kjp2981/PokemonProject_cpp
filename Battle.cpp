@@ -56,6 +56,17 @@ void Battle::CreatePokemon() {
 	}
 }
 
+void Battle::AllPrint()
+{
+	system("cls");
+	PrintBattleScreen();
+	PrintPokemon();
+	PrintPokemonHp();
+	PrintPokemonName();
+	PrintText();
+	PrintCursor();
+}
+
 void Battle::PrintBattleScreen() { // 세로는 0부터 시작, 가로는 1부터 시작 2씩 카운트 해야함
 	Gotoxy(0, 0);
 	cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" << endl;
@@ -114,28 +125,31 @@ void Battle::PrintPokemon() {
 
 void Battle::PrintPokemonHp()
 {
-	_setmode(_fileno(stdout), _O_U8TEXT);
 	SetColor(4, 0);
 	Gotoxy(4, 4);
-	int hp = HP_BAR * (wildPokemon->GetHP() / wildPokemon->GetMaxHP());
-	for (int i = 0; i < hp; i++) {
+	int hpBar = HP_BAR * (wildPokemon->GetHP() / wildPokemon->GetMaxHP());
+	_setmode(_fileno(stdout), _O_U8TEXT);
+	for (int i = 0; i < hpBar; i++) {
 		wcout << L"■";
 	}
-	for (int i = 0; i < HP_BAR - hp; i++) {
+	_setmode(_fileno(stdout), _O_TEXT);
+	for (int i = 0; i < HP_BAR - hpBar; i++) {
 		cout << "  ";
 	}
 	
-	hp = HP_BAR * (player->FirstPokemon()->GetHP() / player->FirstPokemon()->GetMaxHP());
+	hpBar = HP_BAR * (player->FirstPokemon()->GetHP() / player->FirstPokemon()->GetMaxHP());
 	Gotoxy(36, 12);
-	for (int i = 0; i < hp; i++) {
+	_setmode(_fileno(stdout), _O_U8TEXT);
+	for (int i = 0; i < hpBar; i++) {
 		wcout << L"■";
 	}
-	for (int i = 0; i < HP_BAR - hp; i++) {
+	_setmode(_fileno(stdout), _O_TEXT);
+	for (int i = 0; i < HP_BAR - hpBar; i++) {
 		cout << "  ";
 	}
 
 	SetColor(15, 0);
-	_setmode(_fileno(stdout), _O_TEXT);
+	
 }
 
 void Battle::PrintPokemonName()
@@ -149,7 +163,7 @@ void Battle::PrintPokemonName()
 
 void Battle::PrintText()
 {
-	Clear(32, 20, 50, 26);
+	//Clear(32, 19, 50, 26);
 
 	Gotoxy(4, 16);
 	for (int i = 0; i < 6; i++) {
@@ -415,10 +429,16 @@ void Battle::Input()
 	}
 	else if (input == 1) { // 스킬 리스트
 		// TODO : 스킬 사용(Damage주기)
+		Sleep(100);
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			switch (_pos.pos)
 			{
 			case ONE:
+				//Clear(6, 19, )k
+				//Gotoxy(6, 19);
+				cout << player->FirstPokemon()->GetName() << "은(는)";
+				Gotoxy(6, 20);
+				cout << "무엇을 할까?";
 				wildPokemon->Damage(player->FirstPokemon()->skiiList[0]->damage);
 				if (wildPokemon->GetHP() <= 0) {
 					player->isBattle = false;
@@ -428,8 +448,10 @@ void Battle::Input()
 					// TODO : 돈 받기
 					Clear();
 					// 맵을 출력시키기
+					break;
 				}
-				PrintPokemonHp();
+				system("cls");
+				AllPrint();
 				input = 0;
 				PrintText();
 				break;
@@ -488,33 +510,33 @@ void Battle::Input()
 	}
 }
 
-void Battle::SetPlayer(Player* player)
-{
-	this->player = player;
-}
+//void Battle::SetPlayer(Player* player)
+//{
+//	this->player = player;
+//}
 
-void Battle::MouseClick()
-{
-	INPUT_RECORD rec;
-	DWORD dwRead;
+//void Battle::MouseClick()
+//{
+//	INPUT_RECORD rec;
+//	DWORD dwRead;
+//
+//	HANDLE hCout = GetStdHandle(STD_OUTPUT_HANDLE);
+//	HANDLE hCin = GetStdHandle(STD_INPUT_HANDLE);
+//
+//	if (ReadConsoleInput(hCin, &rec, 1, &dwRead)) {
+//		if (rec.EventType == MOUSE_EVENT) {
+//			if (rec.Event.MouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) {
+//				// 클릭된 곳이 텍스트면 텍스트에 맞는 행동하기
+//			}
+//		}
+//	}
+//}
 
-	HANDLE hCout = GetStdHandle(STD_OUTPUT_HANDLE);
-	HANDLE hCin = GetStdHandle(STD_INPUT_HANDLE);
-
-	if (ReadConsoleInput(hCin, &rec, 1, &dwRead)) {
-		if (rec.EventType == MOUSE_EVENT) {
-			if (rec.Event.MouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) {
-				// 클릭된 곳이 텍스트면 텍스트에 맞는 행동하기
-			}
-		}
-	}
-}
-
-Battle::Battle()
+Battle::Battle(Player* player, Map* map) : player(player), map(map)
 {
 	wildPokemon = nullptr;
-	player = nullptr;
 	_pos.pos = 1;
+	input = 0;
 }
 
 Battle::~Battle()

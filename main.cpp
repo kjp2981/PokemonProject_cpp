@@ -6,19 +6,15 @@
 using namespace std;
 
 int main() {
-	SetConsoleTitle(L"POKEMON GAME");
-	//system("mode con: cols=60 lines=29"); // 콘솔 창 사이즈 조절
-
+	Init();
 
 	Map map;
 	Player player;
 	player.SetFirstPokemon();
-	Battle battle;
-	battle.SetPlayer(&player);
-
-
 	map.SetMap();
 	map.PrintMap(map.map, &player.pos);
+	Battle battle(&player, &map);
+	//battle.SetPlayer(&player);
 
 	while (true)
 	{
