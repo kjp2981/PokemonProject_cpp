@@ -13,4 +13,3 @@ public:
 	void UseItem(int type);
 	void AddItem(int type);
 };
-

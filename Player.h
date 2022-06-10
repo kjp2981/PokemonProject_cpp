@@ -30,4 +30,5 @@ public:
 	void MovePlayer(Map mapClass);
 	void SetPlayerPos();
 	void SetFirstPokemon();
+	void SwapPokemon(int fIdx, int sIdx);
 };

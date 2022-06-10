@@ -10,7 +10,6 @@ int main() {
 
 	Map map;
 	Player player;
-	player.SetFirstPokemon();
 	map.SetMap();
 	map.PrintMap(map.map, &player.pos);
 	Battle battle(&player, &map);

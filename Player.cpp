@@ -9,8 +9,16 @@ Player::Player() {
 		pokemonList[i] = NULL;
 
 	SetPlayerPos();
+	//SetFirstPokemon();
+	pokemonList[0] = new Piplup();
+	pokemonList[1] = new Chimchar();
+	pokemonList[2] = new Giratina();
+	pokemonList[3] = new Turtwig();
+	pokemonList[4] = new Pikachu();
+	pokemonList[5] = new Gible();
 	walkCnt = 0;
 	isBattle = false;
+	bag = new Bag();
 }
 
 Player::~Player()
@@ -170,4 +178,12 @@ void Player::SetFirstPokemon() {
 	default:
 		break;
 	}
+}
+
+void Player::SwapPokemon(int fIdx, int sIdx)
+{
+	Pokemon* temp;
+	temp = pokemonList[fIdx];
+	pokemonList[fIdx] = pokemonList[sIdx];
+	pokemonList[sIdx] = temp;
 }
