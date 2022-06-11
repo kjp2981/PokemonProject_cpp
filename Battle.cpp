@@ -21,10 +21,6 @@ void Battle::Update() {
 	//}
 	MoveCursor();
 	Input();
-
-	/*Gotoxy(61, 0);
-	system("pause");*/
-	//_getch();
 }
 
 void Battle::CreatePokemon() {
@@ -54,12 +50,7 @@ void Battle::CreatePokemon() {
 		else { // 찌르꼬
 			wildPokemon = new Starly();
 		}
-		PrintBattleScreen();
-		PrintPokemon();
-		PrintPokemonHp();
-		PrintPokemonName();
-		PrintText();
-		PrintCursor();
+		AllPrint();
 	}
 }
 
@@ -450,7 +441,124 @@ void Battle::MoveCursor()
 		}
 	}
 	else if (input == E_Pokemon) {
-		
+		if (GetAsyncKeyState(VK_UP) & 0x8000) {
+			switch (_pos.pos)
+			{
+			case ONE:
+				break;
+			case TWO:
+				break;
+			case THREE:
+				DeleteCursor();
+				_pos.pos = ONE;
+				PrintCursor();
+				break;
+			case FOUR:
+				DeleteCursor();
+				_pos.pos = TWO;
+				PrintCursor();
+				break;
+			case FIVE:
+				DeleteCursor();
+				_pos.pos = THREE;
+				PrintCursor();
+				break;
+			case SIX:
+				DeleteCursor();
+				_pos.pos = FOUR;
+				PrintCursor();
+				break;
+			default:
+				break;
+			}
+		}
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000) {
+			switch (_pos.pos)
+			{
+			case ONE:
+				DeleteCursor();
+				_pos.pos = THREE;
+				PrintCursor();
+				break;
+			case TWO:
+				DeleteCursor();
+				_pos.pos = FOUR;
+				PrintCursor();
+				break;
+			case THREE:
+				DeleteCursor();
+				_pos.pos = FIVE;
+				PrintCursor();
+				break;
+			case FOUR:
+				DeleteCursor();
+				_pos.pos = SIX;
+				PrintCursor();
+				break;
+			case FIVE:
+				break;
+			case SIX:
+				break;
+			default:
+				break;
+			}
+		}
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000) {
+			switch (_pos.pos)
+			{
+			case ONE:
+				break;
+			case TWO:
+				DeleteCursor();
+				_pos.pos = ONE;
+				PrintCursor();
+				break;
+			case THREE:
+				break;
+			case FOUR:
+				DeleteCursor();
+				_pos.pos = THREE;
+				PrintCursor();
+				break;
+			case FIVE:
+				break;
+			case SIX:
+				DeleteCursor();
+				_pos.pos = FIVE;
+				PrintCursor();
+				break;
+			default:
+				break;
+			}
+		}
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000) {
+			switch (_pos.pos)
+			{
+			case ONE:
+				DeleteCursor();
+				_pos.pos = TWO;
+				PrintCursor();
+				break;
+			case TWO:
+				break;
+			case THREE:
+				DeleteCursor();
+				_pos.pos = FOUR;
+				PrintCursor();
+				break;
+			case FOUR:
+				break;
+			case FIVE:
+				DeleteCursor();
+				_pos.pos = SIX;
+				PrintCursor();
+				break;
+			case SIX:
+				break;
+			default:
+				break;
+			}
+		}
 	}
 }
 
@@ -576,7 +684,7 @@ void Battle::SetTurn()
 
 void Battle::Input()
 {
-	if (input == 0) {
+	if (input == E_Choice) {
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			if (isInput) return;
 			switch (_pos.pos) {
@@ -590,12 +698,20 @@ void Battle::Input()
 				// TODO : 가방(아이템 리스트 출력하기)
 				//Clear();
 				input = 2;
+				DeleteCursor();
+				_pos.pos = ONE;
+				PrintCursor();
 				PrintText();
+				IgnoreInput();
 				break;
 			case THREE:
 				// TODO : 포켓몬 교체(포켓몬 리스트 출력하기)
 				input = 3;
+				DeleteCursor();
+				_pos.pos = ONE;
+				PrintCursor();
 				PrintText();
+				IgnoreInput();
 				break;
 			case FOUR:
 				// TODO : 도망치기
@@ -604,14 +720,15 @@ void Battle::Input()
 				wildPokemon = nullptr;
 				input = 0;
 				Clear();
-				// 맵을 출력시키기
+				map->PrintMap(map->map, &player->pos);
+				// 출력되긴하는데 바로 지어짐... 왜지...
 				break;
 			}
 		}
 	}
-	else if (input == 1) { // 스킬 리스트
+	else if (input == E_Skill) { // 스킬 리스트
 		// TODO : 스킬 사용(Damage주기)
-		Sleep(100);
+		//Sleep(100);
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			if (isInput) return;
 			switch (_pos.pos)
@@ -709,16 +826,65 @@ void Battle::Input()
 			}
 		}
 	}
-	else if (input == 2) { // 아이템 사용
+	else if (input == E_Item) { // 아이템 사용
 		if (isInput) return;
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			switch (_pos.pos)
 			{
-			case ONE:
+			case ONE: // 상처약
+				// TODO : 현재 포켓몬(배열의 0번쨰 포켓몬) 힐하기
+				player->bag->UseItem(I_Medicine);
+				player->FirstPokemon()->Heal(10);
+				Gotoxy(6, 19);
+				cout << player->FirstPokemon()->GetName() << "은(는)";
+				Gotoxy(6, 20);
+				cout << "상처약을 사용했다.";
+				input = 0;
+				Sleep(1000);
+				AllPrint();
 				break;
 			case TWO:
 				break;
-			case THREE:
+			case THREE: // 몬스터볼
+				// TODO : 몬스터볼 던지기
+				// TODO : 야생포켓몬의 hp에 따라 잡기
+				Gotoxy(6, 19);
+				cout << "몬스터볼을 사용했다.";
+				// TODO : 야생 포켓몬 사징을 몬스터 볼로 바꾸기
+				Sleep(500);
+				{
+					int percent = 100 * (wildPokemon->GetHP() / wildPokemon->GetMaxHP());
+					int rand = Random();
+
+					if (rand > percent) {
+						Gotoxy(6, 19);
+						cout << "신난다-!";
+						Gotoxy(6, 20);
+						cout << wildPokemon->GetName() << "를(을) 붙잡았다!";
+						// TODO : 내 포켓몬 배열 중 비어 있는 공간중 첫번째에 야생 포켓몬 넣기
+						delete wildPokemon;
+						wildPokemon = nullptr;
+						input = 0;
+						Sleep(1000);
+						player->isBattle = false;
+						delete wildPokemon;
+						wildPokemon = nullptr;
+						input = 0;
+						Clear();
+						// TODO : 맵 출력하기
+					}
+					else {
+						Gotoxy(6, 19);
+						cout << "아쉽다!";
+						Gotoxy(6, 20);
+						cout << "조그만 더하면";
+						Gotoxy(6, 21);
+						cout << "잡을 수 있었는데!";
+						input = 0;
+						Sleep(1000);
+						AllPrint();
+					}
+				}
 				break;
 			case FOUR:
 				break;
@@ -727,7 +893,7 @@ void Battle::Input()
 			}
 		}
 	}
-	else if (input == 3) { // 포켓몬 교체
+	else if (input == E_Pokemon) { // 포켓몬 교체
 		if (isInput) return;
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			switch (_pos.pos)
@@ -815,11 +981,6 @@ void Battle::IgnoreInput()
 	sIdx = -1;
 }
 
-//void Battle::SetPlayer(Player* player)
-//{
-//	this->player = player;
-//}
-
 //void Battle::MouseClick()
 //{
 //	INPUT_RECORD rec;
@@ -844,6 +1005,8 @@ Battle::Battle(Player* player, Map* map) : player(player), map(map)
 	input = 0;
 	isInput = false;
 	isTurn = false;
+	fIdx = -1;
+	sIdx = -1;
 }
 
 Battle::~Battle()

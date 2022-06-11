@@ -42,6 +42,7 @@ string Pokemon::GetName()
 
 void Pokemon::Damage(int amount)
 {
+	// 데미지 공식 수정 필요(너무 작음) 푀소 2배 올려야함
 	// ((((레벨 * 2 / 5) + 2) * Attack * 위력 / 50) / Defence) * 타입 상성
 	int damage = (((2 / 5) + 2) * attack * amount / 50 / defence);
 	damage = damage > 0 ? damage : 1;
@@ -51,4 +52,7 @@ void Pokemon::Damage(int amount)
 void Pokemon::Heal(int amount)
 {
 	hp += amount;
+	if (hp > MAX_HP) {
+		hp = MAX_HP;
+	}
 }

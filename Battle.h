@@ -54,7 +54,6 @@ public:
 	void SetTurn();
 	void Input();
 	void IgnoreInput();
-	//void SetPlayer(Player* player);
 	//void MouseClick();
 	Battle(Player* player, Map* map);
 	~Battle();
