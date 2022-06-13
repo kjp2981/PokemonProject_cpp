@@ -1,15 +1,17 @@
 #pragma once
 #include"Item.h"
 
-int const MAX_VALUE = 99;
-
+class Medicine;
+class Monsterball;
 class Bag {
-public:
-	int medicineCnt;
-	int monsterballCnt;
+private:
+	Medicine* medicine;
+	Monsterball* monsterball;
 public:
 	Bag();
 	~Bag();
 	void UseItem(int type);
 	void AddItem(int type);
+	int GetItemCount(int type);
+	bool isUseItem(int type);
 };

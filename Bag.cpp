@@ -1,36 +1,60 @@
 #include "Bag.h"
+#include"Item.h"
 
 Bag::Bag()
 {
-	medicineCnt = 5;
-	monsterballCnt = 10;
+	medicine = new Medicine(5);
+	monsterball = new Monsterball(10);
 }
 
 Bag::~Bag()
 {
-
+	if (medicine != nullptr)
+		delete medicine;
+	if (monsterball != nullptr)
+		delete monsterball;
 }
 
 void Bag::UseItem(int type)
 {
 	if (type == I_Medicine) {
-		medicineCnt--;
+		medicine->UseItem();
 	}
 	else if (type == I_Monsterball) {
-		monsterballCnt--;
+		monsterball->UseItem();
 	}
 }
 
 void Bag::AddItem(int type)
 {
 	if (type == I_Medicine) {
-		++this->medicineCnt;
-		if (this->medicineCnt > MAX_VALUE)
-			this->medicineCnt = MAX_VALUE;
+		medicine->AddItem();
 	}
 	else if (type == I_Monsterball) {
-		++this->monsterballCnt;
-		if (this->monsterballCnt > MAX_VALUE)
-			this->monsterballCnt = MAX_VALUE;
+		monsterball->AddItem();
 	}
+}
+
+int Bag::GetItemCount(int type)
+{
+	if (type == I_Medicine) {
+		return medicine->count;
+	}
+	else if (type == I_Monsterball) {
+		return monsterball->count;
+	}
+
+	return -1;
+}
+
+bool Bag::isUseItem(int type)
+{
+	if (type == I_Medicine) {
+		return medicine->IsUseItem();
+	}
+	else if (type == I_Monsterball) {
+		return monsterball->IsUseItem();
+	}
+
+	return false;
 }

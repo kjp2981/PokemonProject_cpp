@@ -182,6 +182,7 @@ void Player::SetFirstPokemon() {
 
 void Player::SwapPokemon(int fIdx, int sIdx)
 {
+	if (fIdx == sIdx) return;
 	Pokemon* temp;
 	temp = pokemonList[fIdx];
 	pokemonList[fIdx] = pokemonList[sIdx];

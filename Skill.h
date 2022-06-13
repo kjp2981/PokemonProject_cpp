@@ -11,63 +11,63 @@ public:
 	//int pp; // 추후 개발 예정
 };
 
-class Scratching : public Skill {
+class Scratch : public Skill {
 public:
-	Scratching() {
+	Scratch() {
 		name = "할퀴기";
 		damage = 40;
 		accuracyRate = 100;
 	}
 };
 
-class FlameBaptism : public Skill {
+class Ember : public Skill {
 public:
-	FlameBaptism() {
+	Ember() {
 		name = "불꽃세례";
 		damage = 40;
 		accuracyRate = 100;
 	}
 };
 
-class GrowPunch : public Skill {
+class PowerUpPunch : public Skill {
 public:
-	GrowPunch() {
+	PowerUpPunch() {
 		name = "그로우펀치";
 		damage = 40;
 		accuracyRate = 100;
 	}
 };
 
-class FlameCar : public Skill {
+class FlameWheel : public Skill {
 public:
-	FlameCar() {
+	FlameWheel() {
 		name = "화염자동차";
 		damage = 60;
 		accuracyRate = 100;
 	}
 };
 
-class Bumping: public Skill {
+class Tackle: public Skill {
 public:
-	Bumping() {
+	Tackle() {
 		name = "몸통박치기";
 		damage = 40;
 		accuracyRate = 100;
 	}
 };
 
-class LeafBlade : public Skill {
+class RazorLeaf : public Skill {
 public:
-	LeafBlade() {
+	RazorLeaf() {
 		name = "잎날가르기";
 		damage = 40;
 		accuracyRate = 95;
 	}
 };
 
-class Gnaw : public Skill {
+class Bite : public Skill {
 public:
-	Gnaw() {
+	Bite() {
 		name = "물기";
 		damage = 60;
 		accuracyRate = 100;
@@ -83,18 +83,18 @@ public:
 	}
 };
 
-class Scuffle : public Skill {
+class Pound : public Skill {
 public:
-	Scuffle() {
+	Pound() {
 		name = "막치기";
 		damage = 40;
 		accuracyRate = 100;
 	}
 };
 
-class WaterCannon : public Skill {
+class WaterGun : public Skill {
 public:
-	WaterCannon() {
+	WaterGun() {
 		name = "물대포";
 		damage = 40;
 		accuracyRate = 100;
