@@ -162,6 +162,7 @@
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="TypeEnum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
