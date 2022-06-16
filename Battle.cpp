@@ -25,6 +25,12 @@ void Battle::Update() {
 	}
 	else {
 		// TODO : 적의 차례
+		//Clear(30, 16, 58, 28);
+		system("cls");
+		PrintBattleScreen();
+		PrintPokemon();
+		PrintPokemonHp();
+		PrintPokemonName();
 		Gotoxy(6, 19);
 		cout << "야생 " << wildPokemon->GetName() << "은(는)";
 		Gotoxy(6, 20);
@@ -64,7 +70,8 @@ void Battle::CreatePokemon() {
 			wildPokemon = new Starly();
 		}
 		SetTurn();
-		AllPrint();
+		if(isTurn == true)
+			AllPrint();
 	}
 }
 
@@ -139,7 +146,7 @@ void Battle::PrintPokemonHp() // 버그 수정한 줄 알았으나 남아 있음
 {
 	SetColor(4, 0);
 	Gotoxy(4, 4);
-	float currentHp =  ceil((float)wildPokemon->GetHP() / (float)wildPokemon->GetMaxHP());
+	float currentHp = (float)wildPokemon->GetHP() / (float)wildPokemon->GetMaxHP();
 	float hpBar = HP_BAR * currentHp;
 	hpBar = ceil(hpBar);
 	_setmode(_fileno(stdout), _O_U8TEXT);
@@ -152,7 +159,7 @@ void Battle::PrintPokemonHp() // 버그 수정한 줄 알았으나 남아 있음
 		cout << "  ";
 	}
 	
-	currentHp = ceil((float)player->FirstPokemon()->GetHP() / (float)player->FirstPokemon()->GetMaxHP());
+	currentHp = (float)player->FirstPokemon()->GetHP() / (float)player->FirstPokemon()->GetMaxHP();
 	hpBar = HP_BAR * currentHp;
 	hpBar = ceil(hpBar);
 	Gotoxy(36, 12);
@@ -726,11 +733,13 @@ void Battle::EnemyAttack()
 			Sleep(1000);
 			// TODO : 다음 포켓몬이 있다면 교체
 			player->isBattle = false; // 일단 배틀 종료
-			Clear();
-			// 맵을 출력시키기
+			system("cls");
+			map->PrintMap(map->map, &player->pos);
+			return;
 		}
 	}
 	else {
+		Clear(4, 17, 30, 28);
 		Gotoxy(6, 19);
 		cout << "공격이";
 		Gotoxy(6, 20);
@@ -786,9 +795,8 @@ void Battle::Input()
 				delete wildPokemon;
 				wildPokemon = nullptr;
 				Sleep(1000);
-				Clear();
+				system("cls");
 				map->PrintMap(map->map, &player->pos);
-				// 출력되긴하는데 바로 지워짐... 왜지...
 				break;
 			}
 		}
@@ -811,6 +819,7 @@ void Battle::Input()
 					cout << player->FirstPokemon()->skiiList[0]->name << "을 사용했다.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[0]->damage, player->FirstPokemon()->skiiList[0]->type, player->FirstPokemon()->skiiList[0]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
+						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
@@ -821,12 +830,13 @@ void Battle::Input()
 						wildPokemon = nullptr;
 						input = 0;
 						// TODO : 돈 받기
-						Clear();
-						// 맵을 출력시키기
+						system("cls");
+						map->PrintMap(map->map, &player->pos);
 						break;
 					}
 				}
 				else {
+					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
 					cout << "공격이";
 					Gotoxy(6, 20);
@@ -834,7 +844,6 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
-				AllPrint();
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -850,6 +859,7 @@ void Battle::Input()
 					cout << player->FirstPokemon()->skiiList[1]->name << "을 사용했다.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[1]->damage, player->FirstPokemon()->skiiList[1]->type, player->FirstPokemon()->skiiList[1]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
+						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
@@ -860,12 +870,13 @@ void Battle::Input()
 						wildPokemon = nullptr;
 						input = 0;
 						// TODO : 돈 받기
-						Clear();
-						// 맵을 출력시키기
+						system("cls");
+						map->PrintMap(map->map, &player->pos);
 						break;
 					}
 				}
 				else {
+					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
 					cout << "공격이";
 					Gotoxy(6, 20);
@@ -873,7 +884,6 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
-				AllPrint();
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -889,6 +899,7 @@ void Battle::Input()
 					cout << player->FirstPokemon()->skiiList[2]->name << "을 사용했다.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[2]->damage, player->FirstPokemon()->skiiList[2]->type, player->FirstPokemon()->skiiList[2]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
+						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
@@ -899,12 +910,13 @@ void Battle::Input()
 						wildPokemon = nullptr;
 						input = 0;
 						// TODO : 돈 받기
-						Clear();
-						// 맵을 출력시키기
+						system("cls");
+						map->PrintMap(map->map, &player->pos);
 						break;
 					}
 				}
 				else {
+					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
 					cout << "공격이";
 					Gotoxy(6, 20);
@@ -912,7 +924,6 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
-				AllPrint();
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -928,6 +939,7 @@ void Battle::Input()
 					cout << player->FirstPokemon()->skiiList[3]->name << "을 사용했다.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[3]->damage, player->FirstPokemon()->skiiList[3]->type, player->FirstPokemon()->skiiList[3]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
+						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
@@ -938,12 +950,13 @@ void Battle::Input()
 						wildPokemon = nullptr;
 						input = 0;
 						// TODO : 돈 받기
-						Clear();
-						// 맵을 출력시키기
+						system("cls");
+						map->PrintMap(map->map, &player->pos);
 						break;
 					}
 				}
 				else {
+					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
 					cout << "공격이";
 					Gotoxy(6, 20);
@@ -951,7 +964,6 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
-				AllPrint();
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -1054,84 +1066,102 @@ void Battle::Input()
 			case ONE:
 				if (fIdx == -1) {
 					fIdx = ONE - 1;
-					input = 3;
+					input = E_Pokemon;
 					IgnoreInput();
 				}
 				else if (fIdx != -1 && sIdx == -1) {
 					sIdx = ONE - 1;
 					player->SwapPokemon(fIdx, sIdx);
 					fIdx = sIdx = -1;
-					input = 0;
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
 					AllPrint();
 				}
 				break;
 			case TWO:
 				if (fIdx == -1) {
 					fIdx = TWO - 1;
-					input = 3;
+					input = E_Pokemon;
 					IgnoreInput();
 				}
 				else if (fIdx != -1 && sIdx == -1) {
 					sIdx = TWO - 1;
 					player->SwapPokemon(fIdx, sIdx);
 					fIdx = sIdx = -1;
-					input = 0;
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
 					AllPrint();
 				}
 				break;
 			case THREE:
 				if (fIdx == -1) {
 					fIdx = THREE - 1;
-					input = 3;
+					input = E_Pokemon;
 					IgnoreInput();
 				}
 				else if (fIdx != -1 && sIdx == -1) {
 					sIdx = THREE - 1;
 					player->SwapPokemon(fIdx, sIdx);
 					fIdx = sIdx = -1;
-					input = 0;
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
 					AllPrint();
 				}
 				break;
 			case FOUR:
 				if (fIdx == -1) {
 					fIdx = FOUR - 1;
-					input = 3;
+					input = E_Pokemon;
 					IgnoreInput();
 				}
 				else if (fIdx != -1 && sIdx == -1) {
 					sIdx = FOUR - 1;
 					player->SwapPokemon(fIdx, sIdx);
 					fIdx = sIdx = -1;
-					input = 0;
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
 					AllPrint();
 				}
 				break;
 			case FIVE:
 				if (fIdx == -1) {
-					fIdx = ONE - 1;
-					input = 3;
+					fIdx = FIVE - 1;
+					input = E_Pokemon;
 					IgnoreInput();
 				}
 				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = ONE - 1;
+					sIdx = FIVE - 1;
 					player->SwapPokemon(fIdx, sIdx);
 					fIdx = sIdx = -1;
-					input = 0;
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
 					AllPrint();
 				}
 				break;
 			case SIX:
 				if (fIdx == -1) {
-					fIdx = ONE - 1;
-					input = 3;
+					fIdx = SIX - 1;
+					input = E_Pokemon;
 					IgnoreInput();
 				}
 				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = ONE - 1;
+					sIdx = SIX - 1;
 					player->SwapPokemon(fIdx, sIdx);
 					fIdx = sIdx = -1;
-					input = 0;
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
 					AllPrint();
 				}
 				break;
