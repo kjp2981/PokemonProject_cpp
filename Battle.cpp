@@ -1077,7 +1077,6 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
-					AllPrint();
 				}
 				break;
 			case TWO:
@@ -1094,7 +1093,6 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
-					AllPrint();
 				}
 				break;
 			case THREE:
@@ -1111,7 +1109,6 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
-					AllPrint();
 				}
 				break;
 			case FOUR:
@@ -1128,7 +1125,6 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
-					AllPrint();
 				}
 				break;
 			case FIVE:
@@ -1145,7 +1141,6 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
-					AllPrint();
 				}
 				break;
 			case SIX:
@@ -1162,7 +1157,6 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
-					AllPrint();
 				}
 				break;
 			default:
