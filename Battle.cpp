@@ -43,6 +43,7 @@ void Battle::Update() {
 }
 
 void Battle::CreatePokemon() {
+	// TODO : 그 배틀 들어가는 애니 추가?
 	if (wildPokemon == nullptr) {
 		int percent = Random();
 		if (percent < 1) { // 기라티나
@@ -731,8 +732,13 @@ void Battle::EnemyAttack()
 			Gotoxy(6, 20);
 			cout << "쓰러졌다!";
 			Sleep(1000);
-			// TODO : 다음 포켓몬이 있다면 교체
-			player->isBattle = false; // 일단 배틀 종료
+			if (player->pokemonList[1] == NULL) {
+				player->isBattle = false;
+			}
+			else if (player->pokemonList[1] != NULL) {
+				player->SwapPokemon(0, 1);
+			}
+			//player->isBattle = false; // 일단 배틀 종료
 			system("cls");
 			map->PrintMap(map->map, &player->pos);
 			return;
@@ -824,6 +830,7 @@ void Battle::Input()
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
+						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
@@ -864,6 +871,7 @@ void Battle::Input()
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
+						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
@@ -904,6 +912,7 @@ void Battle::Input()
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
+						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
@@ -944,6 +953,7 @@ void Battle::Input()
 						cout << "야생" << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
+						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
@@ -980,8 +990,8 @@ void Battle::Input()
 			{
 			case ONE: // 상처약
 				// TODO : 현재 포켓몬(배열의 0번쨰 포켓몬) 힐하기
-				if (player->bag->isUseItem(I_Medicine)) {
-					player->bag->UseItem(I_Medicine);
+				if (player->bag->IsUseItem(I_Medicine, 1)) {
+					player->bag->UseItem(I_Medicine, 1);
 					player->FirstPokemon()->Heal(10);
 					Clear(2, 17, 26, 28);
 					Gotoxy(6, 19);
@@ -1009,7 +1019,8 @@ void Battle::Input()
 			case THREE: // 몬스터볼
 				// TODO : 몬스터볼 던지기
 				// TODO : 야생포켓몬의 hp에 따라 잡기
-				player->bag->UseItem(I_Monsterball);
+				if (player->bag->IsUseItem(I_Monsterball, 1)) {
+				player->bag->UseItem(I_Monsterball, 1);
 				Clear(2, 17, 26, 28);
 				Gotoxy(6, 19);
 				cout << "몬스터볼을 사용했다.";
@@ -1050,6 +1061,7 @@ void Battle::Input()
 					}
 					isTurn = !isTurn;
 				}
+				}
 				break;
 			case FOUR:
 				break;
@@ -1059,12 +1071,16 @@ void Battle::Input()
 		}
 	}
 	else if (input == E_Pokemon) { // 포켓몬 교체
+		// 현재 : 교체할 포켓몬 두마리를 선택해서 교체하는 방식
+		// 두번쨰 방식 : 한마리를 선책하면 현재 포켓몬과 그 포켓몬을 교체하는 방식
+		
+		// 피가 0인 포켓몬은 교체 못하게
 		if (isInput) return;
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			switch (_pos.pos)
 			{
 			case ONE:
-				if (fIdx == -1) {
+				if (fIdx == -1) { 
 					fIdx = ONE - 1;
 					input = E_Pokemon;
 					IgnoreInput();
@@ -1077,6 +1093,7 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+					//AllPrint();
 				}
 				break;
 			case TWO:
@@ -1093,6 +1110,7 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+					//AllPrint();
 				}
 				break;
 			case THREE:
@@ -1109,6 +1127,7 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+					//AllPrint();
 				}
 				break;
 			case FOUR:
@@ -1125,6 +1144,7 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+					//AllPrint();
 				}
 				break;
 			case FIVE:
@@ -1141,6 +1161,7 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+					//AllPrint();
 				}
 				break;
 			case SIX:
@@ -1157,6 +1178,7 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+					//AllPrint(); 
 				}
 				break;
 			default:

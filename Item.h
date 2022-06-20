@@ -5,7 +5,8 @@ int const MAX_VALUE = 99;
 enum ItemType
 {
 	I_Medicine,
-	I_Monsterball
+	I_Monsterball,
+	I_Gold
 };
 
 class Item {
@@ -15,9 +16,9 @@ public:
 	Item(int count) : count(count) {
 
 	}
-	virtual void UseItem() = 0;
-	virtual void AddItem() = 0;
-	bool IsUseItem();
+	virtual void UseItem(int amount) = 0;
+	virtual void AddItem(int amount) = 0;
+	bool IsUseItem(int amount);
 };
 
 class Medicine : public Item {
@@ -25,12 +26,12 @@ public:
 	Medicine(int count) : Item(count) {
 
 	}
-	void UseItem() {
-		if(IsUseItem())
-			--count;
+	void UseItem(int amount) {
+		if (IsUseItem(amount))
+			count -= amount;
 	}
-	void AddItem() {
-		++count;
+	void AddItem(int amount) {
+		count += amount;
 		if (count > MAX_VALUE)
 			count = MAX_VALUE;
 	}
@@ -41,12 +42,28 @@ public:
 	Monsterball(int count) : Item(count) {
 
 	}
-	void UseItem() {
-		if (IsUseItem())
-			--count;
+	void UseItem(int amount) {
+		if (IsUseItem(amount))
+			count -= amount;
 	}
-	void AddItem() {
-		++count;
+	void AddItem(int amount) {
+		count += amount;
+		if (count > MAX_VALUE)
+			count = MAX_VALUE;
+	}
+};
+
+class Gold : public Item {
+public:
+	Gold(int count) : Item(count) {
+
+	}
+	void UseItem(int amount) {
+		if (IsUseItem(amount))
+			count -= amount;
+	}
+	void AddItem(int amount) {
+		count += amount;
 		if (count > MAX_VALUE)
 			count = MAX_VALUE;
 	}

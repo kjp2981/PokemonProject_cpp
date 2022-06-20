@@ -1,5 +1,5 @@
 #pragma once
-#include"Pokemon.h"
+#include"Pokemon.h" cb b gbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
 
 const int HP_BAR = 10;
 

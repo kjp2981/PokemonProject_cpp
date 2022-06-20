@@ -1,8 +1,6 @@
 #pragma once
-#include"Pokemon.h"
 #include"Bag.h"
 #include"Manager.h"
-//#include"Map.h"
 
 typedef struct pos {
 	int x;
@@ -10,6 +8,7 @@ typedef struct pos {
 } POS, *PPOS;
 
 class Map;
+class Pokemon;
 class Player {
 public:
 	POS pos;
@@ -31,4 +30,5 @@ public:
 	void SetPlayerPos();
 	void SetFirstPokemon();
 	void SwapPokemon(int fIdx, int sIdx);
+	void AllPokemonHeal();
 };

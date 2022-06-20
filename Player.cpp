@@ -188,3 +188,10 @@ void Player::SwapPokemon(int fIdx, int sIdx)
 	pokemonList[fIdx] = pokemonList[sIdx];
 	pokemonList[sIdx] = temp;
 }
+
+void Player::AllPokemonHeal()
+{
+	for (int i = 0; i < 6; i++) {
+		pokemonList[i]->Heal(pokemonList[i]->GetMaxHP());
+	}
+}

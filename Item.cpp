@@ -1,6 +1,6 @@
 #include "Item.h"
 
-bool Item::IsUseItem()
+bool Item::IsUseItem(int amount)
 {
-	return count > 0;
+	return count > amount;
 }
