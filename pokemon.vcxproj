@@ -148,7 +148,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="Random.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Skill.h" />
+    <ClInclude Include="SoundManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bag.cpp" />
@@ -162,7 +164,19 @@
     <ClCompile Include="Pokemon.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="TypeEnum.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="pokemon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Giratina Battle.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Item Get.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Lake.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Opening.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Trainer Battle.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Wild Pokemon Battle.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

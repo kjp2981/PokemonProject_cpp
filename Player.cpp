@@ -87,8 +87,21 @@ void Player::MovePlayer(Map mapClass)
 				//system("cls");
 				Clear();
 			}
-			else
+			else {
+				random = Random();
+				if (random < 30) {
+					// TODO : 아이템 출현
+					random = Random();
+					if (random < 50) {
+						// 몬스터 볼
+					}
+					else {
+						// 상처약
+					}
+				}
 				mapClass.PrintMap(mapClass.map, &pos);
+				// TODO : 머리 웨이 느낌표 같이 뭐가 이펙트 주고 텍스트 뛰우기
+			}
 		}
 		else
 			mapClass.PrintMap(mapClass.map, &pos);

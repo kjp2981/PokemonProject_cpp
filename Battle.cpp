@@ -15,10 +15,9 @@ void Battle::Update() {
 	if (isTurn) {
 		MoveCursor();
 		Input();
-		if (GetAsyncKeyState(VK_BACK)) {
+		if (GetAsyncKeyState(VK_BACK) || GetAsyncKeyState(VK_ESCAPE)) {
 			if (input != 0) {
 				input = 0;
-				fIdx = sIdx = -1;
 				AllPrint();
 			}
 		}
@@ -38,12 +37,9 @@ void Battle::Update() {
 		Sleep(1000);
 		EnemyAttack();
 	}
-	/*MoveCursor();
-	Input();*/
 }
 
 void Battle::CreatePokemon() {
-	// TODO : 그 배틀 들어가는 애니 추가?
 	if (wildPokemon == nullptr) {
 		int percent = Random();
 		if (percent < 1) { // 기라티나
@@ -70,10 +66,50 @@ void Battle::CreatePokemon() {
 		else { // 찌르꼬
 			wildPokemon = new Starly();
 		}
+		PrintBattleStartAnim();
 		SetTurn();
 		if(isTurn == true)
 			AllPrint();
 	}
+}
+
+void Battle::PrintBattleStartAnim()
+{
+	for (int k = 0; k < 2; k++) {
+		Gotoxy(0, 0);
+		SetColor(0, 15);
+		for (int i = 0; i < 30; i++) {
+			for (int j = 0; j < 30; j++) {
+				cout << "  ";
+			}
+			cout << endl;
+		}
+		Sleep(20);
+		Gotoxy(0, 0);
+		SetColor(15, 0);
+		for (int i = 0; i < 30; i++) {
+			for (int j = 0; j < 30; j++) {
+				cout << "  ";
+			}
+			cout << endl;
+		}
+		Sleep(20);
+	}
+
+	SetColor(0, 15);
+	for (int i = 0; i < 30; i++) {
+		for (int j = 0; j < 30; j += 2) {
+			Gotoxy(i * 2, j);
+			cout << "  ";
+		}
+		for (int j = 1; j < 30; j += 2) {
+			Gotoxy(58 - i * 2, j);
+			cout << "  ";
+		}
+		Sleep(20);
+	}
+	SetColor(15, 0);
+	//Sleep(3000);
 }
 
 void Battle::AllPrint()
@@ -127,7 +163,7 @@ void Battle::PrintPokemon() {
 	for (int i = 0; i < 7; i++) { // 플레이어의 포켓몬 출력
 		for (int j = 0; j < 14; j++) {
 			if (player->FirstPokemon()->backImage[i][j] != '0')
-				wcout << player->FirstPokemon()->backImage[i][j]; // 이상게 출략되면서 중단됨
+				wcout << player->FirstPokemon()->backImage[i][j];
 		}
 		Gotoxy(5, 7 + i + 1);
 	}
@@ -135,15 +171,15 @@ void Battle::PrintPokemon() {
 	Gotoxy(40, 2);
 	for (int i = 0; i < 7; i++) { // 야생 포켓몬 출력
 		for (int j = 0; j < 14; j++) {
-			//if (player.ReturnPokemon()->backImage[i][j] != NULL)
-			wcout << wildPokemon->frontImage[i][j]; // 이상게 출략되면서 중단됨
+			if (wildPokemon->frontImage[i][j] != '0')
+				wcout << wildPokemon->frontImage[i][j];
 		}
 		Gotoxy(40, i + 3);
 	}
 	_setmode(_fileno(stdout), _O_TEXT);
 }
 
-void Battle::PrintPokemonHp() // 버그 수정한 줄 알았으나 남아 있음
+void Battle::PrintPokemonHp()
 {
 	SetColor(4, 0);
 	Gotoxy(4, 4);
@@ -157,14 +193,14 @@ void Battle::PrintPokemonHp() // 버그 수정한 줄 알았으나 남아 있음
 	}
 	//_setmode(_fileno(stdout), _O_TEXT);
 	for (int i = 0; i < HP_BAR - hpBar; i++) {
-		cout << "  ";
+		wcout << L"  ";
 	}
 	
 	currentHp = (float)player->FirstPokemon()->GetHP() / (float)player->FirstPokemon()->GetMaxHP();
 	hpBar = HP_BAR * currentHp;
 	hpBar = ceil(hpBar);
 	Gotoxy(36, 12);
-	_setmode(_fileno(stdout), _O_U8TEXT);
+	//_setmode(_fileno(stdout), _O_U8TEXT);
 	for (int i = 0; i < hpBar; i++) {
 		wcout << L"■";
 //		cout << "■";
@@ -172,7 +208,7 @@ void Battle::PrintPokemonHp() // 버그 수정한 줄 알았으나 남아 있음
 	}
 	//_setmode(_fileno(stdout), _O_TEXT);
 	for (int i = 0; i < HP_BAR - hpBar; i++) {
-		cout << "  ";
+		wcout << L"  ";
 	}
 
 	_setmode(_fileno(stdout), _O_TEXT);
@@ -733,14 +769,23 @@ void Battle::EnemyAttack()
 			cout << "쓰러졌다!";
 			Sleep(1000);
 			if (player->pokemonList[1] == NULL) {
+				delete wildPokemon;
+				wildPokemon = nullptr;
 				player->isBattle = false;
+				system("cls");
+				map->PrintMap(map->map, &player->pos);
 			}
 			else if (player->pokemonList[1] != NULL) {
-				player->SwapPokemon(0, 1);
+				int pokemonIdx = 1;
+				for (int i = 1; i < 6; i++) {
+					if (player->pokemonList[i]->GetHP() > 0) {
+						pokemonIdx = i;
+						break;
+					}
+				}
+				player->SwapPokemon(0, pokemonIdx); // 여기 수정
+
 			}
-			//player->isBattle = false; // 일단 배틀 종료
-			system("cls");
-			map->PrintMap(map->map, &player->pos);
 			return;
 		}
 	}
@@ -827,7 +872,7 @@ void Battle::Input()
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "야생" << wildPokemon->GetName() << "은(는)";
+						cout << "야생 " << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
@@ -836,7 +881,6 @@ void Battle::Input()
 						delete wildPokemon;
 						wildPokemon = nullptr;
 						input = 0;
-						// TODO : 돈 받기
 						system("cls");
 						map->PrintMap(map->map, &player->pos);
 						break;
@@ -851,6 +895,7 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
+				_pos.pos = ONE;
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -868,7 +913,7 @@ void Battle::Input()
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "야생" << wildPokemon->GetName() << "은(는)";
+						cout << "야생 " << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
@@ -877,7 +922,6 @@ void Battle::Input()
 						delete wildPokemon;
 						wildPokemon = nullptr;
 						input = 0;
-						// TODO : 돈 받기
 						system("cls");
 						map->PrintMap(map->map, &player->pos);
 						break;
@@ -892,6 +936,7 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
+				_pos.pos = ONE;
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -909,7 +954,7 @@ void Battle::Input()
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "야생" << wildPokemon->GetName() << "은(는)";
+						cout << "야생 " << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
@@ -918,7 +963,6 @@ void Battle::Input()
 						delete wildPokemon;
 						wildPokemon = nullptr;
 						input = 0;
-						// TODO : 돈 받기
 						system("cls");
 						map->PrintMap(map->map, &player->pos);
 						break;
@@ -933,6 +977,7 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
+				_pos.pos = ONE;
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -950,7 +995,7 @@ void Battle::Input()
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "야생" << wildPokemon->GetName() << "은(는)";
+						cout << "야생 " << wildPokemon->GetName() << "은(는)";
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
@@ -959,7 +1004,6 @@ void Battle::Input()
 						delete wildPokemon;
 						wildPokemon = nullptr;
 						input = 0;
-						// TODO : 돈 받기
 						system("cls");
 						map->PrintMap(map->map, &player->pos);
 						break;
@@ -974,6 +1018,7 @@ void Battle::Input()
 				}
 				Sleep(1000);
 				::system("cls");
+				_pos.pos = ONE;
 				input = 0;
 				isTurn = !isTurn;
 			}
@@ -1044,8 +1089,8 @@ void Battle::Input()
 						delete wildPokemon;
 						wildPokemon = nullptr;
 						input = 0;
-						Clear();
-						// TODO : 맵 출력하기
+						system("cls");
+						map->PrintMap(map->map, &player->pos);
 					}
 					else {
 						Clear(2, 17, 26, 28);
@@ -1080,106 +1125,46 @@ void Battle::Input()
 			switch (_pos.pos)
 			{
 			case ONE:
-				if (fIdx == -1) { 
-					fIdx = ONE - 1;
-					input = E_Pokemon;
-					IgnoreInput();
-				}
-				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = ONE - 1;
-					player->SwapPokemon(fIdx, sIdx);
-					fIdx = sIdx = -1;
-					input = E_Choice;
-					_pos.pos = ONE;
-					isTurn = !isTurn;
-					IgnoreInput();
-					//AllPrint();
-				}
+				player->SwapPokemon(0, ONE - 1);
+				input = E_Choice;
+				_pos.pos = ONE;
+				isTurn = !isTurn;
+				IgnoreInput();
 				break;
 			case TWO:
-				if (fIdx == -1) {
-					fIdx = TWO - 1;
-					input = E_Pokemon;
-					IgnoreInput();
-				}
-				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = TWO - 1;
-					player->SwapPokemon(fIdx, sIdx);
-					fIdx = sIdx = -1;
-					input = E_Choice;
-					_pos.pos = ONE;
-					isTurn = !isTurn;
-					IgnoreInput();
-					//AllPrint();
-				}
+				player->SwapPokemon(0, TWO - 1);
+				input = E_Choice;
+				_pos.pos = ONE;
+				isTurn = !isTurn;
+				IgnoreInput();
 				break;
 			case THREE:
-				if (fIdx == -1) {
-					fIdx = THREE - 1;
-					input = E_Pokemon;
-					IgnoreInput();
-				}
-				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = THREE - 1;
-					player->SwapPokemon(fIdx, sIdx);
-					fIdx = sIdx = -1;
-					input = E_Choice;
-					_pos.pos = ONE;
-					isTurn = !isTurn;
-					IgnoreInput();
-					//AllPrint();
-				}
+				player->SwapPokemon(0, THREE - 1);
+				input = E_Choice;
+				_pos.pos = ONE;
+				isTurn = !isTurn;
+				IgnoreInput();
 				break;
 			case FOUR:
-				if (fIdx == -1) {
-					fIdx = FOUR - 1;
-					input = E_Pokemon;
-					IgnoreInput();
-				}
-				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = FOUR - 1;
-					player->SwapPokemon(fIdx, sIdx);
-					fIdx = sIdx = -1;
-					input = E_Choice;
-					_pos.pos = ONE;
-					isTurn = !isTurn;
-					IgnoreInput();
-					//AllPrint();
-				}
+				player->SwapPokemon(0, FOUR - 1);
+				input = E_Choice;
+				_pos.pos = ONE;
+				isTurn = !isTurn;
+				IgnoreInput();
 				break;
 			case FIVE:
-				if (fIdx == -1) {
-					fIdx = FIVE - 1;
-					input = E_Pokemon;
-					IgnoreInput();
-				}
-				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = FIVE - 1;
-					player->SwapPokemon(fIdx, sIdx);
-					fIdx = sIdx = -1;
-					input = E_Choice;
-					_pos.pos = ONE;
-					isTurn = !isTurn;
-					IgnoreInput();
-					//AllPrint();
-				}
+				player->SwapPokemon(0, FIVE - 1);
+				input = E_Choice;
+				_pos.pos = ONE;
+				isTurn = !isTurn;
+				IgnoreInput();
 				break;
 			case SIX:
-				if (fIdx == -1) {
-					fIdx = SIX - 1;
-					input = E_Pokemon;
-					IgnoreInput();
-				}
-				else if (fIdx != -1 && sIdx == -1) {
-					sIdx = SIX - 1;
-					player->SwapPokemon(fIdx, sIdx);
-					fIdx = sIdx = -1;
-					input = E_Choice;
-					_pos.pos = ONE;
-					isTurn = !isTurn;
-					IgnoreInput();
-					//AllPrint(); 
-				}
+				player->SwapPokemon(0, SIX - 1);
+				input = E_Choice;
+				_pos.pos = ONE;
+				isTurn = !isTurn;
+				IgnoreInput();
 				break;
 			default:
 				break;
@@ -1219,8 +1204,6 @@ Battle::Battle(Player* player, Map* map) : player(player), map(map)
 	input = 0;
 	isInput = false;
 	isTurn = false;
-	fIdx = -1;
-	sIdx = -1;
 }
 
 Battle::~Battle()

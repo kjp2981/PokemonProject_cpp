@@ -25,6 +25,9 @@
     <Filter Include="소스 파일\Enum">
       <UniqueIdentifier>{911f2650-0427-4997-8766-fc2d4dfb06c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\System">
+      <UniqueIdentifier>{41013148-3b93-405a-b647-3f9d4821d2d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pokemon.h">
@@ -36,25 +39,31 @@
     <ClInclude Include="Player.h">
       <Filter>소스 파일\Creature</Filter>
     </ClInclude>
-    <ClInclude Include="Skill.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>소스 파일\Map</Filter>
     </ClInclude>
-    <ClInclude Include="Console.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Bag.h">
       <Filter>소스 파일\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Manager.h">
-      <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Battle.h">
       <Filter>소스 파일\Map</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
+      <Filter>소스 파일\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Manager.h">
+      <Filter>소스 파일\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Console.h">
+      <Filter>소스 파일\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Skill.h">
+      <Filter>소스 파일\Creature</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.h">
+      <Filter>소스 파일\System</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -71,29 +80,45 @@
     <ClCompile Include="Player.cpp">
       <Filter>소스 파일\Creature</Filter>
     </ClCompile>
-    <ClCompile Include="Skill.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>소스 파일\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Console.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Bag.cpp">
       <Filter>소스 파일\Item</Filter>
     </ClCompile>
-    <ClCompile Include="Manager.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Battle.cpp">
       <Filter>소스 파일\Map</Filter>
-    </ClCompile>
-    <ClCompile Include="Random.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TypeEnum.h">
       <Filter>소스 파일\Enum</Filter>
     </ClCompile>
+    <ClCompile Include="Console.cpp">
+      <Filter>소스 파일\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Manager.cpp">
+      <Filter>소스 파일\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>소스 파일\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Skill.cpp">
+      <Filter>소스 파일\Creature</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>소스 파일\System</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="pokemon.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Wild Pokemon Battle.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Trainer Battle.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Lake.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Opening.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Giratina Battle.mp3" />
+    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Item Get.mp3" />
   </ItemGroup>
 </Project>

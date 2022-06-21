@@ -37,7 +37,7 @@ void Map::SetMap() {
 	strcpy_s(map[26], "333333333000000000000000000000");
 	strcpy_s(map[27], "333333333000000000000000000000");
 	strcpy_s(map[28], "333333333330000000000000000000");
-	strcpy_s(map[29], "333333333330000000000000000004");
+	strcpy_s(map[29], "333333333330000000000000000000");
 }
 
 void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {

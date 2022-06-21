@@ -31,11 +31,11 @@ void Clear(int startX, int startY, int endX, int endY) // 일정 범뷔 삭제
 void Init()
 {
 	SetConsoleTitle(L"POKEMON GAME");
-	//system("mode con: cols=60 lines=29"); // 콘솔 창 사이즈 조절
+	system("mode con: cols=120 lines=31"); // 콘솔 창 사이즈 조절
 
-	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE); // 콘솔 핸들 가져오기
+	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO consoleCursor;
-	consoleCursor.bVisible = 0;
+	consoleCursor.bVisible = false;
 	consoleCursor.dwSize = 1;
 	SetConsoleCursorInfo(consoleHandle, &consoleCursor);
 }
@@ -74,7 +74,7 @@ void PrintTitleScreen()
 	cout << "■                                                        ■" << endl;
 	cout << "■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■" << endl;
 
-	_setmode(_fileno(stdout), _O_U8TEXT);
+	/*_setmode(_fileno(stdout), _O_U8TEXT);
 	wcout << L"█████╗  ██████╗ ██╗  ██╗███████╗███╗   ███╗ ██████╗ ███╗   ██╗" << endl;
 	wcout << L"██╔══██╗██╔═══██╗██║ ██╔╝██╔════╝████╗ ████║██╔═══██╗████╗  ██║" << endl;
 	wcout << L"██████╔╝██║   ██║█████╔╝ █████╗  ██╔████╔██║██║   ██║██╔██╗ ██║" << endl;
@@ -89,28 +89,25 @@ void PrintTitleScreen()
 	wcout << L"██║  ███╗██║██████╔╝███████║   ██║   ██║██╔██╗ ██║███████║" << endl;
 	wcout << L"██║   ██║██║██╔══██╗██╔══██║   ██║   ██║██║╚██╗██║██╔══██║" << endl;
 	wcout << L"╚██████╔╝██║██║  ██║██║  ██║   ██║   ██║██║ ╚████║██║  ██║" << endl;
-	wcout << L"╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝" << endl;
+	wcout << L"╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝" << endl;*/
 
-	wcout << L"██████╗ ██╗██████╗  █████╗ ████████╗██╗███╗   ██╗ █████╗" << endl;
-	wcout << L"██╔════╝ ██║██╔══██╗██╔══██╗╚══██╔══╝██║████╗  ██║██╔══██╗" << endl;
-	wcout << L"██║  ███╗██║██████╔╝███████║   ██║   ██║██╔██╗ ██║███████║" << endl;
-	wcout << L"██║   ██║██║██╔══██╗██╔══██║   ██║   ██║██║╚██╗██║██╔══██║" << endl;
-	wcout << L"╚██████╔╝██║██║  ██║██║  ██║   ██║   ██║██║ ╚████║██║  ██║" << endl;
-	wcout << L"╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝" << endl;
-	/*	__________          __
-		\______   \  ____  |  | __  ____    _____    ____    ____
-		| ___/ /  _ \ |  |/ /_ / __ \ / \ / _ \ / \
-		|    |    (<_>) | < \  ___/ |  Y Y  \(<_>)|   |  \
-		| ____ | \____/ |__ | _ \ \___  > | __ | _|  / \____/ |___|  /
-		\ / \ / \ / \ /
-		  ________.__                   __.__
-		 / _____/ |__ | _______ _____   _/  |_ | __ | ____  _____
-		/ \  ___ |  |\_  __ \\__  \  \   __\|  | /    \ \__  \
-		\    \_\  \|  | |  | \/ / __ \_ |  |  |  ||   |  \ / __ \_
-		 \______  /|__| |__ | (____  / |__|  |__ || ___|  /(____ /
-			\ / \ / \ / \ /*/
-	// pokemon giratina text
-
+	_setmode(_fileno(stdout), _O_U8TEXT);
+	Gotoxy(15, 5);
+	wcout << L"█▀█ █▀█ █▄▀ █▀▀ █▀▄▀█ █▀█ █▄░█";
+	Gotoxy(15, 6);
+	wcout << L"█▀▀ █▄█ █░█ ██▄ █░▀░█ █▄█ █░▀█";
+	Gotoxy(16, 8);
+	wcout << L"█▀▀ █ █▀█ ▄▀█ ▀█▀ █ █▄░█ ▄▀█";
+	Gotoxy(16, 9);
+	wcout << L"█▄█ █ █▀▄ █▀█ ░█░ █ █░▀█ █▀█";
 
 	_setmode(_fileno(stdout), _O_TEXT);
+	// 게임의 목표 적기
+	Gotoxy(15, 19);
+	cout << "전설을 포켓몬 기라티나를 잡아라!";
+	// 도움말 적기
+	Gotoxy(10, 21);
+	cout << "이동 : →↑←↓, 상호작용 : Space or Enter";
+	Gotoxy(15, 23); // 위치 더 아래쪽 으로 옴기기
+	cout << "아무 키나 눌러주세요.";
 }

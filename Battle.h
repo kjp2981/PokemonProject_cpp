@@ -1,5 +1,5 @@
 #pragma once
-#include"Pokemon.h" cb b gbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+#include"Pokemon.h"
 
 const int HP_BAR = 10;
 
@@ -33,8 +33,6 @@ private:
 	int input;
 	bool isInput;
 	bool isTurn; // 내턴인지 상대천인지 구별하는 불값 변수, 내턴이면 True
-	int fIdx; // 포켓몬 스왑 함수에 쓸 변수
-	int sIdx; // 포켓몬 스왑 함수에 쓸 변수
 public:
 	Pokemon* wildPokemon;
 	Player* player;
@@ -42,6 +40,7 @@ public:
 public:
 	void Update();
 	void CreatePokemon();
+	void PrintBattleStartAnim();
 	void AllPrint();
 	void PrintBattleScreen();
 	void PrintPokemon();

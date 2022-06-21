@@ -2,8 +2,6 @@
 #include <string>
 #include"TypeEnum.h"
 
-using namespace std;
-
 //enum SkillType {
 //	Fire = 1, // ºÒ
 //	Grass, // Ç®
@@ -21,7 +19,7 @@ using namespace std;
 
 class Skill {
 public:
-	string name;
+	std::string name;
 	int damage;
 	int accuracyRate;
 	int type;
