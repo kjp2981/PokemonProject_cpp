@@ -9,13 +9,14 @@ Player::Player() {
 		pokemonList[i] = NULL;
 
 	SetPlayerPos();
-	//SetFirstPokemon();
-	pokemonList[0] = new Piplup();
+	SetFirstPokemon();
+	/*pokemonList[0] = new Piplup();
 	pokemonList[1] = new Chimchar();
 	pokemonList[2] = new Giratina();
 	pokemonList[3] = new Turtwig();
 	pokemonList[4] = new Pikachu();
-	pokemonList[5] = new Gible();
+	pokemonList[5] = new Gible();*/
+	pokemonList[1] = new Giratina();
 	walkCnt = 0;
 	isBattle = false;
 	bag = new Bag();
@@ -205,6 +206,25 @@ void Player::SwapPokemon(int fIdx, int sIdx)
 void Player::AllPokemonHeal()
 {
 	for (int i = 0; i < 6; i++) {
-		pokemonList[i]->Heal(pokemonList[i]->GetMaxHP());
+		if(pokemonList[i] != NULL)
+			pokemonList[i]->Heal(pokemonList[i]->GetMaxHP());
 	}
+}
+
+bool Player::IsPokemonEmpty()
+{
+	for (int i = 0; i < 6; i++) {
+		if (pokemonList[i] == NULL)
+			return true;
+	}
+	return false;
+}
+
+int Player::EmptyPokemonIndex()
+{
+	for (int i = 0; i < 6; i++) {
+		if (pokemonList[i] == NULL)
+			return i;
+	}
+	return -1;
 }

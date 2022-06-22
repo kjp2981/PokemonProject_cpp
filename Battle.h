@@ -33,6 +33,7 @@ private:
 	int input;
 	bool isInput;
 	bool isTurn; // 내턴인지 상대천인지 구별하는 불값 변수, 내턴이면 True
+	wchar_t monsterballImage[5][11];
 public:
 	Pokemon* wildPokemon;
 	Player* player;

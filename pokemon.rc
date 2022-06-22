@@ -50,17 +50,7 @@ END
 // mp3
 //
 
-IDR_MP31                mp3                     "C:\\Users\\USER\\Downloads\\Pokemon Platinum - Wild Pokemon Battle.mp3"
-
-IDR_MP32                mp3                     "C:\\Users\\USER\\Downloads\\Pokemon Platinum - Trainer Battle.mp3"
-
-IDR_MP33                mp3                     "C:\\Users\\USER\\Downloads\\Pokemon Platinum - Lake.mp3"
-
-IDR_MP34                mp3                     "C:\\Users\\USER\\Downloads\\Pokemon Platinum - Opening.mp3"
-
-IDR_MP35                mp3                     "C:\\Users\\USER\\Downloads\\Pokemon Platinum - Giratina Battle.mp3"
-
-IDR_MP36                mp3                     "C:\\Users\\USER\\Downloads\\Pokemon Platinum - Item Get.mp3"
+IDR_MP33                mp3                     "Pokemon_Platinum_Opening.mp3"
 
 #endif    // 한국어(대한민국) resources
 /////////////////////////////////////////////////////////////////////////////

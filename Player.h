@@ -31,4 +31,6 @@ public:
 	void SetFirstPokemon();
 	void SwapPokemon(int fIdx, int sIdx);
 	void AllPokemonHeal();
+	bool IsPokemonEmpty();
+	int EmptyPokemonIndex();
 };

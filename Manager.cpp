@@ -31,7 +31,7 @@ void Clear(int startX, int startY, int endX, int endY) // 일정 범뷔 삭제
 void Init()
 {
 	SetConsoleTitle(L"POKEMON GAME");
-	system("mode con: cols=120 lines=31"); // 콘솔 창 사이즈 조절
+	system("mode con lines=31 cols=120"); // 콘솔 창 사이즈 조절
 
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO consoleCursor;
@@ -104,7 +104,7 @@ void PrintTitleScreen()
 	_setmode(_fileno(stdout), _O_TEXT);
 	// 게임의 목표 적기
 	Gotoxy(15, 19);
-	cout << "전설을 포켓몬 기라티나를 잡아라!";
+	cout << "전설의 포켓몬 기라티나를 잡아라!";
 	// 도움말 적기
 	Gotoxy(10, 21);
 	cout << "이동 : →↑←↓, 상호작용 : Space or Enter";

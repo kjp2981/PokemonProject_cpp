@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include"Console.h"
 #include"Map.h"
 #include"Pokemon.h"
@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// 0: ±æ, 1, µ¹ º®(¡ë), 2: µ¹ º®{ ) }, 3, Ç®(Æ÷ÄÏ¸ó ³ª¿À´Â°÷), 4, È¸º¹ÇØÁÖ´Â °÷
+// 0: ê¸¸, 1, ëŒ ë²½(ã€“), 2: ëŒ ë²½{ ) }, 3, í’€(í¬ì¼“ëª¬ ë‚˜ì˜¤ëŠ”ê³³), 4, íšŒë³µí•´ì£¼ëŠ” ê³³
 void Map::SetMap() {
 	strcpy_s(map[0],  "400000000000000000003333333333");
 	strcpy_s(map[1],  "000000000000000000003333333333");
@@ -46,7 +46,7 @@ void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {
 			if (playerPos->x == j && playerPos->y == i)
 			{
 				SetColor(15, 8);
-				cout << "¡Ù";
+				cout << "â˜†";
 				SetColor(15, 0);
 			}
 			else if (map[i][j] == '0') {
@@ -56,7 +56,7 @@ void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {
 			}
 			else if (map[i][j] == '1') {
 				SetColor(6, 8);
-				cout << "¡ë";
+				cout << "ã€“";
 				SetColor(15, 0);
 			}
 			else if (map[i][j] == '2') {
@@ -66,12 +66,13 @@ void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {
 			}
 			else if (map[i][j] == '3') {
 				SetColor(2, 8);
-				cout << "¡Ø";
+				cout << "â€»";
 				SetColor(15, 0);
 			}
 			else if (map[i][j] == '4') {
 				SetColor(15, 8);
-				cout << "¡×";
+				//cout << "Â§";
+				cout << "PC";
 				SetColor(15, 0);
 			}
 		}

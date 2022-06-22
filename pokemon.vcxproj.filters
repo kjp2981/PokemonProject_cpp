@@ -114,11 +114,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Wild Pokemon Battle.mp3" />
-    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Trainer Battle.mp3" />
-    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Lake.mp3" />
-    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Opening.mp3" />
-    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Giratina Battle.mp3" />
-    <Media Include="C:\Users\USER\Downloads\Pokemon Platinum - Item Get.mp3" />
+    <Media Include="Pokemon_Platinum_Opening.mp3" />
   </ItemGroup>
 </Project>

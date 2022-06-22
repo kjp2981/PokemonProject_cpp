@@ -1,4 +1,4 @@
-#include"Battle.h"
+ï»¿#include"Battle.h"
 #include"Pokemon.h"
 #include<random>
 #include"Random.h"
@@ -23,7 +23,7 @@ void Battle::Update() {
 		}
 	}
 	else {
-		// TODO : ÀûÀÇ Â÷·Ê
+		// TODO : ì ì˜ ì°¨ë¡€
 		//Clear(30, 16, 58, 28);
 		system("cls");
 		PrintBattleScreen();
@@ -31,9 +31,9 @@ void Battle::Update() {
 		PrintPokemonHp();
 		PrintPokemonName();
 		Gotoxy(6, 19);
-		cout << "¾ß»ı " << wildPokemon->GetName() << "Àº(´Â)";
+		cout << "ì•¼ìƒ " << wildPokemon->GetName() << "ì€(ëŠ”)";
 		Gotoxy(6, 20);
-		cout << "¹«¾ùÀ» ÇÒ±î?";
+		cout << "ë¬´ì—‡ì„ í• ê¹Œ?";
 		Sleep(1000);
 		EnemyAttack();
 	}
@@ -42,28 +42,28 @@ void Battle::Update() {
 void Battle::CreatePokemon() {
 	if (wildPokemon == nullptr) {
 		int percent = Random();
-		if (percent < 1) { // ±â¶óÆ¼³ª
+		if (percent < 1) { // ê¸°ë¼í‹°ë‚˜
 			wildPokemon = new Giratina();
 		}
 		else if (percent < 10) {
 			percent = Random();
-			if (percent < 33) { // ¸ğºÎ±â
+			if (percent < 33) { // ëª¨ë¶€ê¸°
 				wildPokemon = new Turtwig();
 			}
-			else if (percent < 66) { // ÆØµµ¸®
+			else if (percent < 66) { // íŒ½ë„ë¦¬
 				wildPokemon = new Piplup();
 			}
-			else { // ºÒ²É¼şÀÌ
+			else { // ë¶ˆê½ƒìˆ­ì´
 				wildPokemon = new Chimchar();
 			}
 		}
-		else if (percent < 30) { // ÇÇÄ«Ãò
+		else if (percent < 30) { // í”¼ì¹´ì¸„
 			wildPokemon = new Pikachu();
 		}
-		else if (percent < 60) { // µö»ó¾îµ¿
+		else if (percent < 60) { // ë”¥ìƒì–´ë™
 			wildPokemon = new Gible();
 		}
-		else { // Âî¸£²¿
+		else { // ì°Œë¥´ê¼¬
 			wildPokemon = new Starly();
 		}
 		PrintBattleStartAnim();
@@ -123,44 +123,44 @@ void Battle::AllPrint()
 	PrintCursor();
 }
 
-void Battle::PrintBattleScreen() { // ¼¼·Î´Â 0ºÎÅÍ ½ÃÀÛ, °¡·Î´Â 1ºÎÅÍ ½ÃÀÛ 2¾¿ Ä«¿îÆ® ÇØ¾ßÇÔ
+void Battle::PrintBattleScreen() { // ì„¸ë¡œëŠ” 0ë¶€í„° ì‹œì‘, ê°€ë¡œëŠ” 1ë¶€í„° ì‹œì‘ 2ì”© ì¹´ìš´íŠ¸ í•´ì•¼í•¨
 	Gotoxy(0, 0);
-	cout << "¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á                                ¡á" << endl;
-	cout << "¡á                        ¡á                              ¡á" << endl;
-	cout << "¡á                          ¡á                            ¡á" << endl;
-	cout << "¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á                          ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á" << endl; // 10
-	cout << "¡á                              ¡á                        ¡á" << endl;
-	cout << "¡á                            ¡á                          ¡á" << endl;
-	cout << "¡á                          ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl; // 14
-	cout << "¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á                                                        ¡á" << endl;
-	cout << "¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á" << endl;
+	cout << "â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â– â– â– â– â– â– â– â– â– â– â– â– â–                                 â– " << endl;
+	cout << "â–                         â–                               â– " << endl;
+	cout << "â–                           â–                             â– " << endl;
+	cout << "â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–                           â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                 â– â– â– â– â– â– â– â– â– â– â– â– â– " << endl; // 10
+	cout << "â–                               â–                         â– " << endl;
+	cout << "â–                             â–                           â– " << endl;
+	cout << "â–                           â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– " << endl;
+	cout << "â–                                                         â– " << endl; // 14
+	cout << "â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â–                                                         â– " << endl;
+	cout << "â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– " << endl;
 }
 
 void Battle::PrintPokemon() {
 	Gotoxy(5, 7);
 	_setmode(_fileno(stdout), _O_U8TEXT);
-	for (int i = 0; i < 7; i++) { // ÇÃ·¹ÀÌ¾îÀÇ Æ÷ÄÏ¸ó Ãâ·Â
+	for (int i = 0; i < 7; i++) { // í”Œë ˆì´ì–´ì˜ í¬ì¼“ëª¬ ì¶œë ¥
 		for (int j = 0; j < 14; j++) {
 			if (player->FirstPokemon()->backImage[i][j] != '0')
 				wcout << player->FirstPokemon()->backImage[i][j];
@@ -169,7 +169,7 @@ void Battle::PrintPokemon() {
 	}
 
 	Gotoxy(40, 2);
-	for (int i = 0; i < 7; i++) { // ¾ß»ı Æ÷ÄÏ¸ó Ãâ·Â
+	for (int i = 0; i < 7; i++) { // ì•¼ìƒ í¬ì¼“ëª¬ ì¶œë ¥
 		for (int j = 0; j < 14; j++) {
 			if (wildPokemon->frontImage[i][j] != '0')
 				wcout << wildPokemon->frontImage[i][j];
@@ -188,8 +188,8 @@ void Battle::PrintPokemonHp()
 	hpBar = ceil(hpBar);
 	_setmode(_fileno(stdout), _O_U8TEXT);
 	for (int i = 0; i < hpBar; i++) {
-		wcout << L"¡á";
-		//cout << "¡á";
+		wcout << L"â– ";
+		//cout << "â– ";
 	}
 	//_setmode(_fileno(stdout), _O_TEXT);
 	for (int i = 0; i < HP_BAR - hpBar; i++) {
@@ -202,8 +202,8 @@ void Battle::PrintPokemonHp()
 	Gotoxy(36, 12);
 	//_setmode(_fileno(stdout), _O_U8TEXT);
 	for (int i = 0; i < hpBar; i++) {
-		wcout << L"¡á";
-//		cout << "¡á";
+		wcout << L"â– ";
+//		cout << "â– ";
 
 	}
 	//_setmode(_fileno(stdout), _O_TEXT);
@@ -230,36 +230,36 @@ void Battle::PrintText()
 	Gotoxy(4, 16);
 	for (int i = 0; i < 6; i++) {
 		if (player->pokemonList[i] != NULL) {
-			cout << "¢Á  ";
+			cout << "âŠ™  ";
 		}
 		else {
-			cout << "¡Û  ";
+			cout << "â—‹  ";
 		}
 	}
 
 	Clear(2, 16, 58, 28);
 
 	Gotoxy(6, 19);
-	cout << player->FirstPokemon()->GetName() << "Àº(´Â)";
+	cout << player->FirstPokemon()->GetName() << "ì€(ëŠ”)";
 	Gotoxy(6, 20);
-	cout << "¹«¾ùÀ» ÇÒ±î?";
+	cout << "ë¬´ì—‡ì„ í• ê¹Œ?";
 
 	if (input == E_Choice) {
 		Gotoxy(36, 18);
-		cout << "¹èÆ²"; // 1
+		cout << "ë°°í‹€"; // 1
 
 		Gotoxy(48, 18);
-		cout << "°¡¹æ"; // 2
+		cout << "ê°€ë°©"; // 2
 
 		Gotoxy(36, 22);
-		cout << "Æ÷ÄÏ¸ó"; // 3
-		//cout << "Á¡°Ë Áß!"; // 3
+		cout << "í¬ì¼“ëª¬"; // 3
+		//cout << "ì ê²€ ì¤‘!"; // 3
 
 		Gotoxy(48, 22);
-		cout << "µµ¸Á"; // 4
+		cout << "ë„ë§"; // 4
 	}
 	else if (input == E_Skill) {
-		// TODO : ±â¼ú ¸®½ºÆ® Ãâ·Â
+		// TODO : ê¸°ìˆ  ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 		Gotoxy(36, 18);
 		cout << player->FirstPokemon()->skiiList[0]->name;
 
@@ -273,32 +273,38 @@ void Battle::PrintText()
 		cout << player->FirstPokemon()->skiiList[3]->name;
 	}
 	else if (input == E_Item) {
-		// TODO : ¾ÆÀÌÅÛ ¸®½ºÆ® Ãâ·Â
+		// TODO : ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 		Gotoxy(36, 18);
-		cout << "»óÃ³¾à x " << player->bag->GetItemCount(I_Medicine);
+		cout << "ìƒì²˜ì•½ x " << player->bag->GetItemCount(I_Medicine);
 
 		Gotoxy(36, 22);
-		cout << "¸ó½ºÅÍ º¼ x " << player->bag->GetItemCount(I_Monsterball);
+		cout << "ëª¬ìŠ¤í„° ë³¼ x " << player->bag->GetItemCount(I_Monsterball);
 	}
 	else if (input == E_Pokemon) {
-		// TODO : Æ÷ÄÏ¸ó ¸®½ºÆ® Ãâ·Â
+		// TODO : í¬ì¼“ëª¬ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 		Gotoxy(36, 18);
-		cout << player->pokemonList[0]->GetName();
+		if (player->pokemonList[0] != NULL)
+			cout << player->pokemonList[0]->GetName();
 
 		Gotoxy(48, 18);
-		cout << player->pokemonList[1]->GetName();
+		if (player->pokemonList[1] != NULL)
+			cout << player->pokemonList[1]->GetName();
 
 		Gotoxy(36, 22);
-		cout << player->pokemonList[2]->GetName();
+		if (player->pokemonList[2] != NULL)
+			cout << player->pokemonList[2]->GetName();
 
 		Gotoxy(48, 22);
-		cout << player->pokemonList[3]->GetName();
+		if (player->pokemonList[3] != NULL)
+			cout << player->pokemonList[3]->GetName();
 
 		Gotoxy(36, 26);
-		cout << player->pokemonList[4]->GetName();
+		if (player->pokemonList[4] != NULL)
+			cout << player->pokemonList[4]->GetName();
 
 		Gotoxy(48, 26);
-		cout << player->pokemonList[5]->GetName();
+		if (player->pokemonList[5] != NULL)
+			cout << player->pokemonList[5]->GetName();
 	}
 	PrintCursor();
 }
@@ -518,28 +524,36 @@ void Battle::MoveCursor()
 			case TWO:
 				break;
 			case THREE:
-				DeleteCursor();
-				_pos.pos = ONE;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[ONE - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = ONE;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case FOUR:
-				DeleteCursor();
-				_pos.pos = TWO;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[TWO - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = TWO;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case FIVE:
-				DeleteCursor();
-				_pos.pos = THREE;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[THREE - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = THREE;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case SIX:
-				DeleteCursor();
-				_pos.pos = FOUR;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[SIX - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = FOUR;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			default:
 				break;
@@ -549,28 +563,36 @@ void Battle::MoveCursor()
 			switch (_pos.pos)
 			{
 			case ONE:
-				DeleteCursor();
-				_pos.pos = THREE;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[THREE - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = THREE;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case TWO:
-				DeleteCursor();
-				_pos.pos = FOUR;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[FOUR - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = FOUR;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case THREE:
-				DeleteCursor();
-				_pos.pos = FIVE;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[FIVE - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = FIVE;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case FOUR:
-				DeleteCursor();
-				_pos.pos = SIX;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[SIX - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = SIX;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case FIVE:
 				break;
@@ -586,26 +608,32 @@ void Battle::MoveCursor()
 			case ONE:
 				break;
 			case TWO:
-				DeleteCursor();
-				_pos.pos = ONE;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[ONE - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = ONE;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case THREE:
 				break;
 			case FOUR:
-				DeleteCursor();
-				_pos.pos = THREE;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[THREE - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = THREE;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case FIVE:
 				break;
 			case SIX:
-				DeleteCursor();
-				_pos.pos = FIVE;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[SIX - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = FIVE;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			default:
 				break;
@@ -615,26 +643,32 @@ void Battle::MoveCursor()
 			switch (_pos.pos)
 			{
 			case ONE:
-				DeleteCursor();
-				_pos.pos = TWO;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[TWO - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = TWO;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case TWO:
 				break;
 			case THREE:
-				DeleteCursor();
-				_pos.pos = FOUR;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[FOUR - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = FOUR;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case FOUR:
 				break;
 			case FIVE:
-				DeleteCursor();
-				_pos.pos = SIX;
-				PrintCursor();
-				IgnoreInput();
+				if (player->pokemonList[SIX - 1] != NULL) {
+					DeleteCursor();
+					_pos.pos = SIX;
+					PrintCursor();
+					IgnoreInput();
+				}
 				break;
 			case SIX:
 				break;
@@ -726,7 +760,7 @@ void Battle::PrintCursor()
 		}
 	}
 	_setmode(_fileno(stdout), _O_U8TEXT);
-	wcout << L"¢º";
+	wcout << L"â–¶";
 	_setmode(_fileno(stdout), _O_TEXT);
 }
 
@@ -770,17 +804,17 @@ void Battle::EnemyAttack()
 	int random = Random();
 	if (random < rate) {
 		Gotoxy(6, 19);
-		cout << "¾ß»ı " << wildPokemon->GetName() << "Àº(´Â)";
+		cout << "ì•¼ìƒ " << wildPokemon->GetName() << "ì€(ëŠ”)";
 		Gotoxy(6, 20);
-		cout << wildPokemon->skiiList[randomSkill]->name << "À» »ç¿ëÇß´Ù.";
+		cout << wildPokemon->skiiList[randomSkill]->name << "ì„ ì‚¬ìš©í–ˆë‹¤.";
 		player->FirstPokemon()->Damage(wildPokemon->skiiList[randomSkill]->damage, wildPokemon->skiiList[randomSkill]->type, wildPokemon->skiiList[randomSkill]->type == wildPokemon->GetType());
 		if (player->FirstPokemon()->GetHP() <= 0) {
-			// ¿ù·¡ ÀÖ´ø ÅØ½ºÆ® Áö¿ì±â
+			// ì›”ë˜ ìˆë˜ í…ìŠ¤íŠ¸ ì§€ìš°ê¸°
 			Clear(4, 17, 30, 28);
 			Gotoxy(6, 19);
-			cout << player->FirstPokemon()->GetName() << "Àº(´Â)";
+			cout << player->FirstPokemon()->GetName() << "ì€(ëŠ”)";
 			Gotoxy(6, 20);
-			cout << "¾²·¯Á³´Ù!";
+			cout << "ì“°ëŸ¬ì¡Œë‹¤!";
 			Sleep(1000);
 			if (player->pokemonList[1] == NULL) {
 				delete wildPokemon;
@@ -797,7 +831,7 @@ void Battle::EnemyAttack()
 						break;
 					}
 				}
-				player->SwapPokemon(0, pokemonIdx); // ¿©±â ¼öÁ¤
+				player->SwapPokemon(0, pokemonIdx); // ì—¬ê¸° ìˆ˜ì •
 
 			}
 			return;
@@ -806,9 +840,9 @@ void Battle::EnemyAttack()
 	else {
 		Clear(4, 17, 30, 28);
 		Gotoxy(6, 19);
-		cout << "°ø°İÀÌ";
+		cout << "ê³µê²©ì´";
 		Gotoxy(6, 20);
-		cout << "ºø³ª°¬´Ù.";
+		cout << "ë¹—ë‚˜ê°”ë‹¤.";
 	}
 	isTurn = !isTurn;
 	Sleep(1000);
@@ -824,13 +858,13 @@ void Battle::Input()
 			if (isInput) return;
 			switch (_pos.pos) {
 			case ONE:
-				// TODO : ¹èÆ²ÇÏ±â
+				// TODO : ë°°í‹€í•˜ê¸°
 				input = 1;
 				PrintText();
 				IgnoreInput();
 				break;
 			case TWO:
-				// TODO : °¡¹æ(¾ÆÀÌÅÛ ¸®½ºÆ® Ãâ·ÂÇÏ±â)
+				// TODO : ê°€ë°©(ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥í•˜ê¸°)
 				//Clear();
 				input = 2;
 				DeleteCursor();
@@ -840,7 +874,7 @@ void Battle::Input()
 				IgnoreInput();
 				break;
 			case THREE:
-				// TODO : Æ÷ÄÏ¸ó ±³Ã¼(Æ÷ÄÏ¸ó ¸®½ºÆ® Ãâ·ÂÇÏ±â)
+				// TODO : í¬ì¼“ëª¬ êµì²´(í¬ì¼“ëª¬ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥í•˜ê¸°)
 				input = 3;
 				DeleteCursor();
 				_pos.pos = ONE;
@@ -849,14 +883,14 @@ void Battle::Input()
 				IgnoreInput();
 				break;
 			case FOUR:
-				// TODO : µµ¸ÁÄ¡±â
+				// TODO : ë„ë§ì¹˜ê¸°
 				player->isBattle = false;
 				
 				input = 0;
 				Gotoxy(6, 19);
-				cout << "¾ß»ı " << wildPokemon->GetName() << "¿¡°Ô¼­";
+				cout << "ì•¼ìƒ " << wildPokemon->GetName() << "ì—ê²Œì„œ";
 				Gotoxy(6, 20);
-				cout << "¹«»çÈ÷ µµ¸ÁÃÆ´Ù.";
+				cout << "ë¬´ì‚¬íˆ ë„ë§ì³¤ë‹¤.";
 				delete wildPokemon;
 				wildPokemon = nullptr;
 				Sleep(1000);
@@ -866,8 +900,8 @@ void Battle::Input()
 			}
 		}
 	}
-	else if (input == E_Skill) { // ½ºÅ³ ¸®½ºÆ®
-		// TODO : ½ºÅ³ »ç¿ë(DamageÁÖ±â)
+	else if (input == E_Skill) { // ìŠ¤í‚¬ ë¦¬ìŠ¤íŠ¸
+		// TODO : ìŠ¤í‚¬ ì‚¬ìš©(Damageì£¼ê¸°)
 		//Sleep(100);
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			if (isInput) return;
@@ -879,16 +913,16 @@ void Battle::Input()
 				int random = Random();
 				if (random < rate) {
 					Gotoxy(6, 19);
-					cout << player->FirstPokemon()->GetName() << "Àº(´Â)";
+					cout << player->FirstPokemon()->GetName() << "ì€(ëŠ”)";
 					Gotoxy(6, 20);
-					cout << player->FirstPokemon()->skiiList[0]->name << "À» »ç¿ëÇß´Ù.";
+					cout << player->FirstPokemon()->skiiList[0]->name << "ì„ ì‚¬ìš©í–ˆë‹¤.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[0]->damage, player->FirstPokemon()->skiiList[0]->type, player->FirstPokemon()->skiiList[0]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "¾ß»ı " << wildPokemon->GetName() << "Àº(´Â)";
+						cout << "ì•¼ìƒ " << wildPokemon->GetName() << "ì€(ëŠ”)";
 						Gotoxy(6, 20);
-						cout << "¾²·¯Á³´Ù!";
+						cout << "ì“°ëŸ¬ì¡Œë‹¤!";
 						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
@@ -903,9 +937,9 @@ void Battle::Input()
 				else {
 					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
-					cout << "°ø°İÀÌ";
+					cout << "ê³µê²©ì´";
 					Gotoxy(6, 20);
-					cout << "ºø³ª°¬´Ù.";
+					cout << "ë¹—ë‚˜ê°”ë‹¤.";
 				}
 				Sleep(1000);
 				::system("cls");
@@ -920,16 +954,16 @@ void Battle::Input()
 				int random = Random();
 				if (random < rate) {
 					Gotoxy(6, 19);
-					cout << player->FirstPokemon()->GetName() << "Àº(´Â)";
+					cout << player->FirstPokemon()->GetName() << "ì€(ëŠ”)";
 					Gotoxy(6, 20);
-					cout << player->FirstPokemon()->skiiList[1]->name << "À» »ç¿ëÇß´Ù.";
+					cout << player->FirstPokemon()->skiiList[1]->name << "ì„ ì‚¬ìš©í–ˆë‹¤.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[1]->damage, player->FirstPokemon()->skiiList[1]->type, player->FirstPokemon()->skiiList[1]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "¾ß»ı " << wildPokemon->GetName() << "Àº(´Â)";
+						cout << "ì•¼ìƒ " << wildPokemon->GetName() << "ì€(ëŠ”)";
 						Gotoxy(6, 20);
-						cout << "¾²·¯Á³´Ù!";
+						cout << "ì“°ëŸ¬ì¡Œë‹¤!";
 						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
@@ -944,9 +978,9 @@ void Battle::Input()
 				else {
 					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
-					cout << "°ø°İÀÌ";
+					cout << "ê³µê²©ì´";
 					Gotoxy(6, 20);
-					cout << "ºø³ª°¬´Ù.";
+					cout << "ë¹—ë‚˜ê°”ë‹¤.";
 				}
 				Sleep(1000);
 				::system("cls");
@@ -961,16 +995,16 @@ void Battle::Input()
 				int random = Random();
 				if (random < rate) {
 					Gotoxy(6, 19);
-					cout << player->FirstPokemon()->GetName() << "Àº(´Â)";
+					cout << player->FirstPokemon()->GetName() << "ì€(ëŠ”)";
 					Gotoxy(6, 20);
-					cout << player->FirstPokemon()->skiiList[2]->name << "À» »ç¿ëÇß´Ù.";
+					cout << player->FirstPokemon()->skiiList[2]->name << "ì„ ì‚¬ìš©í–ˆë‹¤.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[2]->damage, player->FirstPokemon()->skiiList[2]->type, player->FirstPokemon()->skiiList[2]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "¾ß»ı " << wildPokemon->GetName() << "Àº(´Â)";
+						cout << "ì•¼ìƒ " << wildPokemon->GetName() << "ì€(ëŠ”)";
 						Gotoxy(6, 20);
-						cout << "¾²·¯Á³´Ù!";
+						cout << "ì“°ëŸ¬ì¡Œë‹¤!";
 						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
@@ -985,9 +1019,9 @@ void Battle::Input()
 				else {
 					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
-					cout << "°ø°İÀÌ";
+					cout << "ê³µê²©ì´";
 					Gotoxy(6, 20);
-					cout << "ºø³ª°¬´Ù.";
+					cout << "ë¹—ë‚˜ê°”ë‹¤.";
 				}
 				Sleep(1000);
 				::system("cls");
@@ -1002,16 +1036,16 @@ void Battle::Input()
 				int random = Random();
 				if (random < rate) {
 					Gotoxy(6, 19);
-					cout << player->FirstPokemon()->GetName() << "Àº(´Â)";
+					cout << player->FirstPokemon()->GetName() << "ì€(ëŠ”)";
 					Gotoxy(6, 20);
-					cout << player->FirstPokemon()->skiiList[3]->name << "À» »ç¿ëÇß´Ù.";
+					cout << player->FirstPokemon()->skiiList[3]->name << "ì„ ì‚¬ìš©í–ˆë‹¤.";
 					wildPokemon->Damage(player->FirstPokemon()->skiiList[3]->damage, player->FirstPokemon()->skiiList[3]->type, player->FirstPokemon()->skiiList[3]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
-						cout << "¾ß»ı " << wildPokemon->GetName() << "Àº(´Â)";
+						cout << "ì•¼ìƒ " << wildPokemon->GetName() << "ì€(ëŠ”)";
 						Gotoxy(6, 20);
-						cout << "¾²·¯Á³´Ù!";
+						cout << "ì“°ëŸ¬ì¡Œë‹¤!";
 						player->bag->AddItem(I_Gold, 1000);
 						Sleep(1000);
 						player->isBattle = false;
@@ -1026,9 +1060,9 @@ void Battle::Input()
 				else {
 					Clear(4, 17, 30, 28);
 					Gotoxy(6, 19);
-					cout << "°ø°İÀÌ";
+					cout << "ê³µê²©ì´";
 					Gotoxy(6, 20);
-					cout << "ºø³ª°¬´Ù.";
+					cout << "ë¹—ë‚˜ê°”ë‹¤.";
 				}
 				Sleep(1000);
 				::system("cls");
@@ -1042,48 +1076,56 @@ void Battle::Input()
 			}
 		}
 	}
-	else if (input == E_Item) { // ¾ÆÀÌÅÛ »ç¿ë
+	else if (input == E_Item) { // ì•„ì´í…œ ì‚¬ìš©
 		if (isInput) return;
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			switch (_pos.pos)
 			{
-			case ONE: // »óÃ³¾à
-				// TODO : ÇöÀç Æ÷ÄÏ¸ó(¹è¿­ÀÇ 0¹ø¤Š Æ÷ÄÏ¸ó) ÈúÇÏ±â
+			case ONE: // ìƒì²˜ì•½
+				// TODO : í˜„ì¬ í¬ì¼“ëª¬(ë°°ì—´ì˜ 0ë²ˆì¨° í¬ì¼“ëª¬) íí•˜ê¸°
 				if (player->bag->IsUseItem(I_Medicine, 1)) {
 					player->bag->UseItem(I_Medicine, 1);
 					player->FirstPokemon()->Heal(10);
 					Clear(2, 17, 26, 28);
 					Gotoxy(6, 19);
-					cout << player->FirstPokemon()->GetName() << "Àº(´Â)";
+					cout << player->FirstPokemon()->GetName() << "ì€(ëŠ”)";
 					Gotoxy(6, 20);
-					cout << "»óÃ³¾àÀ» »ç¿ëÇß´Ù.";
+					cout << "ìƒì²˜ì•½ì„ ì‚¬ìš©í–ˆë‹¤.";
 					input = 0;
 					Sleep(1000);
-					AllPrint();
 					isTurn = !isTurn;
 				}
 				else {
 					Clear(2, 17, 26, 28);
 					Gotoxy(6, 19);
-					cout << "»óÃ³¾àÀÌ";
+					cout << "ìƒì²˜ì•½ì´";
 					Gotoxy(6, 20);
-					cout << "¾ø½À´Ï´Ù.";
+					cout << "ì—†ìŠµë‹ˆë‹¤.";
 					Sleep(1000);
-					AllPrint();
 					isTurn = !isTurn;
 				}
 				break;
 			case TWO:
 				break;
-			case THREE: // ¸ó½ºÅÍº¼
-				// TODO : ¸ó½ºÅÍº¼ ´øÁö±â
-				// TODO : ¾ß»ıÆ÷ÄÏ¸óÀÇ hp¿¡ µû¶ó Àâ±â
+			case THREE: // ëª¬ìŠ¤í„°ë³¼
+				// TODO : ëª¬ìŠ¤í„°ë³¼ ë˜ì§€ê¸°
+				// TODO : ì•¼ìƒí¬ì¼“ëª¬ì˜ hpì— ë”°ë¼ ì¡ê¸°
 				if (player->bag->IsUseItem(I_Monsterball, 1)) {
 				player->bag->UseItem(I_Monsterball, 1);
 				Clear(2, 17, 26, 28);
 				Gotoxy(6, 19);
-				cout << "¸ó½ºÅÍº¼À» »ç¿ëÇß´Ù.";
-				// TODO : ¾ß»ı Æ÷ÄÏ¸ó »çÂ¡À» ¸ó½ºÅÍ º¼·Î ¹Ù²Ù±â
+				cout << "ëª¬ìŠ¤í„°ë³¼ì„ ì‚¬ìš©í–ˆë‹¤.";
+				Clear(40, 1, 56, 8);
+				Gotoxy(40, 2);
+				_setmode(_fileno(stdout), _O_U8TEXT);
+				for (int i = 0; i < 5; i++) { // ì•¼ìƒ í¬ì¼“ëª¬ ì¶œë ¥
+					for (int j = 0; j < 11; j++) {
+						if (monsterballImage[i][j] != '0')
+							wcout << monsterballImage[i][j];
+					}
+					Gotoxy(40, i + 3);
+				}
+				_setmode(_fileno(stdout), _O_TEXT);
 				Sleep(500);
 				{
 					int percent = 100 * ((float)wildPokemon->GetHP() / (float)wildPokemon->GetMaxHP());
@@ -1091,12 +1133,20 @@ void Battle::Input()
 					if (rand > percent) {
 						Clear(2, 17, 26, 28);
 						Gotoxy(6, 19);
-						cout << "½Å³­´Ù-!";
+						cout << "ì‹ ë‚œë‹¤-!";
 						Gotoxy(6, 20);
-						cout << wildPokemon->GetName() << "¸¦(À») ºÙÀâ¾Ò´Ù!";
-						// TODO : ³» Æ÷ÄÏ¸ó ¹è¿­ Áß ºñ¾î ÀÖ´Â °ø°£Áß Ã¹¹øÂ°¿¡ ¾ß»ı Æ÷ÄÏ¸ó ³Ö±â
-						delete wildPokemon;
-						wildPokemon = nullptr;
+						cout << wildPokemon->GetName() << "ë¥¼(ì„) ë¶™ì¡ì•˜ë‹¤!";
+						if (player->IsPokemonEmpty()) {
+							player->pokemonList[player->EmptyPokemonIndex()] = wildPokemon;
+						}
+						else {
+							// í¬ì¼“ëª¬ì´ ëª¨ë‘ ì°¨ìˆë‹¤ë©´ í¬ì¼“ëª¬ ë¦¬ìŠ¤íŠ¸ë¥¼ ë„ìš°ê³  í•œë§ˆë¦¬ë¥¼ ë²„ë¦´ì§€ or ì ì€ í¬ì¼“ëª¬ì„ í¬ê¸°í• ì§€ ì„ íƒí•˜ê²Œí•˜ê¸°
+							Clear(2, 17, 26, 28);
+							Gotoxy(6, 19);
+							cout << wildPokemon->GetName() << "ì€(ëŠ”) ëˆ„êµ°ê°€ì˜ PC";
+							Gotoxy(6, 20);
+							cout << "ë°•ìŠ¤1ë¡œ ì „ì†¡ë˜ì—ˆë‹¤!";
+						}
 						input = 0;
 						Sleep(1000);
 						player->isBattle = false;
@@ -1107,16 +1157,26 @@ void Battle::Input()
 						map->PrintMap(map->map, &player->pos);
 					}
 					else {
+						Clear(40, 1, 56, 8);
+						Gotoxy(40, 2);
+						_setmode(_fileno(stdout), _O_U8TEXT);
+						for (int i = 0; i < 7; i++) { // ì•¼ìƒ í¬ì¼“ëª¬ ì¶œë ¥
+							for (int j = 0; j < 14; j++) {
+								if (wildPokemon->frontImage[i][j] != '0')
+									wcout << wildPokemon->frontImage[i][j];
+							}
+							Gotoxy(40, i + 3);
+						}
+						_setmode(_fileno(stdout), _O_TEXT);
 						Clear(2, 17, 26, 28);
 						Gotoxy(6, 19);
-						cout << "¾Æ½±´Ù!";
+						cout << "ì•„ì‰½ë‹¤!";
 						Gotoxy(6, 20);
-						cout << "Á¶±×¸¸ ´õÇÏ¸é";
+						cout << "ì¡°ê¸ˆë§Œ ë”í•˜ë©´";
 						Gotoxy(6, 21);
-						cout << "ÀâÀ» ¼ö ÀÖ¾ú´Âµ¥!";
+						cout << "ì¡ì„ ìˆ˜ ìˆì—ˆëŠ”ë°!";
 						input = 0;
 						Sleep(1000);
-						AllPrint();
 					}
 					isTurn = !isTurn;
 				}
@@ -1129,23 +1189,21 @@ void Battle::Input()
 			}
 		}
 	}
-	else if (input == E_Pokemon) { // Æ÷ÄÏ¸ó ±³Ã¼
-		// ÇöÀç : ±³Ã¼ÇÒ Æ÷ÄÏ¸ó µÎ¸¶¸®¸¦ ¼±ÅÃÇØ¼­ ±³Ã¼ÇÏ´Â ¹æ½Ä
-		// µÎ¹ø¤Š ¹æ½Ä : ÇÑ¸¶¸®¸¦ ¼±Ã¥ÇÏ¸é ÇöÀç Æ÷ÄÏ¸ó°ú ±× Æ÷ÄÏ¸óÀ» ±³Ã¼ÇÏ´Â ¹æ½Ä
-		
-		// ÇÇ°¡ 0ÀÎ Æ÷ÄÏ¸óÀº ±³Ã¼ ¸øÇÏ°Ô
+	else if (input == E_Pokemon) { // í¬ì¼“ëª¬ êµì²´
+		// í˜„ì¬ : êµì²´í•  í¬ì¼“ëª¬ ë‘ë§ˆë¦¬ë¥¼ ì„ íƒí•´ì„œ êµì²´í•˜ëŠ” ë°©ì‹
+		// ë‘ë²ˆì¨° ë°©ì‹ : í•œë§ˆë¦¬ë¥¼ ì„ ì±…í•˜ë©´ í˜„ì¬ í¬ì¼“ëª¬ê³¼ ê·¸ í¬ì¼“ëª¬ì„ êµì²´í•˜ëŠ” ë°©ì‹
 		if (isInput) return;
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			switch (_pos.pos)
 			{
 			case ONE:
-				if (player->pokemonList[ONE - 1]->GetHP() > 0) {
+				/*if (player->pokemonList[ONE - 1]->GetHP() > 0) {
 					player->SwapPokemon(0, ONE - 1);
 					input = E_Choice;
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
-				}
+				}*/
 				break;
 			case TWO:
 				if (player->pokemonList[TWO - 1]->GetHP() > 0) {
@@ -1217,7 +1275,7 @@ void Battle::IgnoreInput()
 //	if (ReadConsoleInput(hCin, &rec, 1, &dwRead)) {
 //		if (rec.EventType == MOUSE_EVENT) {
 //			if (rec.Event.MouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) {
-//				// Å¬¸¯µÈ °÷ÀÌ ÅØ½ºÆ®¸é ÅØ½ºÆ®¿¡ ¸Â´Â Çàµ¿ÇÏ±â
+//				// í´ë¦­ëœ ê³³ì´ í…ìŠ¤íŠ¸ë©´ í…ìŠ¤íŠ¸ì— ë§ëŠ” í–‰ë™í•˜ê¸°
 //			}
 //		}
 //	}
@@ -1230,6 +1288,12 @@ Battle::Battle(Player* player, Map* map) : player(player), map(map)
 	input = 0;
 	isInput = false;
 	isTurn = false;
+
+	wcscpy_s(monsterballImage[0], L"â €â¢€â ¶â â¢‰â ‰â¡±â ¶â¡€â €");
+	wcscpy_s(monsterballImage[1], L"â¡¸â ‡â  â¢ˆâ €â¢‚â â  â ¹â£‡");
+	wcscpy_s(monsterballImage[2], L"â£Ÿâ¡ â¢â£¢â¡ˆâ „â¢¨â â£±â£¿");
+	wcscpy_s(monsterballImage[3], L"â¢¹â¡Ÿâ£â €â¢¸â£·â£¶â¡¿â¢»â¡");
+	wcscpy_s(monsterballImage[4], L"â €â €â ¶â¢â£‰â£€â¡°â ¦â â €");
 }
 
 Battle::~Battle()

@@ -44,7 +44,6 @@ string Pokemon::GetName()
 
 void Pokemon::Damage(int amount, int type, bool isEqual)
 {
-	// 데미지 공식 수정 필요(너무 작음) 푀소 2배 올려야함
 	// ((((레벨 * 2 / 5) + 2) * Attack * 위력 / 50) / Defence) * 타입 상성
 	float typeCom = TypeCompatibility(type);
 	int damage = ceil((float)(((1 * 2 / 5) + 2) * attack * amount / 50 / defence)
