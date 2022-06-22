@@ -521,21 +521,25 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = ONE;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case FOUR:
 				DeleteCursor();
 				_pos.pos = TWO;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case FIVE:
 				DeleteCursor();
 				_pos.pos = THREE;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case SIX:
 				DeleteCursor();
 				_pos.pos = FOUR;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			default:
 				break;
@@ -548,21 +552,25 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = THREE;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case TWO:
 				DeleteCursor();
 				_pos.pos = FOUR;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case THREE:
 				DeleteCursor();
 				_pos.pos = FIVE;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case FOUR:
 				DeleteCursor();
 				_pos.pos = SIX;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case FIVE:
 				break;
@@ -581,6 +589,7 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = ONE;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case THREE:
 				break;
@@ -588,6 +597,7 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = THREE;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case FIVE:
 				break;
@@ -595,6 +605,7 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = FIVE;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			default:
 				break;
@@ -607,6 +618,7 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = TWO;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case TWO:
 				break;
@@ -614,6 +626,7 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = FOUR;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case FOUR:
 				break;
@@ -621,6 +634,7 @@ void Battle::MoveCursor()
 				DeleteCursor();
 				_pos.pos = SIX;
 				PrintCursor();
+				IgnoreInput();
 				break;
 			case SIX:
 				break;
@@ -1125,46 +1139,58 @@ void Battle::Input()
 			switch (_pos.pos)
 			{
 			case ONE:
-				player->SwapPokemon(0, ONE - 1);
-				input = E_Choice;
-				_pos.pos = ONE;
-				isTurn = !isTurn;
-				IgnoreInput();
+				if (player->pokemonList[ONE - 1]->GetHP() > 0) {
+					player->SwapPokemon(0, ONE - 1);
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
+				}
 				break;
 			case TWO:
-				player->SwapPokemon(0, TWO - 1);
-				input = E_Choice;
-				_pos.pos = ONE;
-				isTurn = !isTurn;
-				IgnoreInput();
+				if (player->pokemonList[TWO - 1]->GetHP() > 0) {
+					player->SwapPokemon(0, TWO - 1);
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
+				}
 				break;
 			case THREE:
-				player->SwapPokemon(0, THREE - 1);
-				input = E_Choice;
-				_pos.pos = ONE;
-				isTurn = !isTurn;
-				IgnoreInput();
+				if (player->pokemonList[THREE - 1]->GetHP() > 0) {
+					player->SwapPokemon(0, THREE - 1);
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
+				}
 				break;
 			case FOUR:
-				player->SwapPokemon(0, FOUR - 1);
-				input = E_Choice;
-				_pos.pos = ONE;
-				isTurn = !isTurn;
-				IgnoreInput();
+				if (player->pokemonList[FOUR - 1]->GetHP() > 0) {
+					player->SwapPokemon(0, FOUR - 1);
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
+				}
 				break;
 			case FIVE:
-				player->SwapPokemon(0, FIVE - 1);
-				input = E_Choice;
-				_pos.pos = ONE;
-				isTurn = !isTurn;
-				IgnoreInput();
+				if (player->pokemonList[FIVE - 1]->GetHP() > 0) {
+					player->SwapPokemon(0, FIVE - 1);
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
+				}
 				break;
 			case SIX:
-				player->SwapPokemon(0, SIX - 1);
-				input = E_Choice;
-				_pos.pos = ONE;
-				isTurn = !isTurn;
-				IgnoreInput();
+				if (player->pokemonList[SIX - 1]->GetHP() > 0) {
+					player->SwapPokemon(0, SIX - 1);
+					input = E_Choice;
+					_pos.pos = ONE;
+					isTurn = !isTurn;
+					IgnoreInput();
+				}
 				break;
 			default:
 				break;
@@ -1176,7 +1202,7 @@ void Battle::Input()
 void Battle::IgnoreInput()
 {
 	isInput = true;
-	Sleep(500);
+	Sleep(300);
 	isInput = false;
 }
 
