@@ -6,6 +6,7 @@
 #include<fcntl.h>
 #include<string.h>
 #include<stdio.h>
+#include"resource.h"
 
 using namespace std;
 

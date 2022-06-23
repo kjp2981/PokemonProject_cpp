@@ -55,7 +55,6 @@ public:
 	void EnemyAttack();
 	void Input();
 	void IgnoreInput();
-	//void MouseClick();
 	Battle(Player* player, Map* map);
 	~Battle();
 };

@@ -31,7 +31,7 @@ void Clear(int startX, int startY, int endX, int endY) // 일정 범뷔 삭제
 void Init()
 {
 	SetConsoleTitle(L"POKEMON GAME");
-	system("mode con lines=31 cols=120"); // 콘솔 창 사이즈 조절
+	system("mode con lines=31 cols=122"); // 콘솔 창 사이즈 조절
 
 	HWND console = GetConsoleWindow();
 	// 윈도우 리사이즈 불가하게 끔.

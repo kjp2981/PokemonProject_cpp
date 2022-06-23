@@ -1,6 +1,7 @@
 #pragma once
 #include"Bag.h"
 #include"Manager.h"
+//#include <vector>
 
 typedef struct pos {
 	int x;
@@ -13,7 +14,11 @@ class Player {
 public:
 	POS pos;
 	bool isBattle;
+	bool isGiratina; // 기라티나 배틀인지 아닌지
+	bool isMove;
 	Pokemon* pokemonList[6];
+	//vector<Pokemon*> pokemonList;
+	
 	Bag* bag;
 private:
 	int walkCnt;

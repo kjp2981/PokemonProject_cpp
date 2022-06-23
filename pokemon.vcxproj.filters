@@ -63,6 +63,9 @@
     <ClInclude Include="SoundManager.h">
       <Filter>소스 파일\System</Filter>
     </ClInclude>
+    <ClInclude Include="EndingScene.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
@@ -114,8 +117,9 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Sound\Pokemon Platinum - Opening.wav">
-      <Filter>리소스 파일</Filter>
-    </Media>
+    <Media Include="Sound\Pokemon Platinum - Giratina Battle.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Lake.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Opening.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Wild Pokemon Battle.mp3" />
   </ItemGroup>
 </Project>

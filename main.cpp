@@ -14,11 +14,12 @@ int main() {
 	//system("pause");
 	_getch();
 	system("cls");
-	//PlayingBgm(Lake);
+	PlayingBgm(Lake);
 
 	Map map;
 	Player player;
 	map.SetMap();
+	map.map[0][15] = '5';
 	map.PrintMap(map.map, &player.pos);
 	Battle battle(&player, &map);
 
@@ -31,15 +32,18 @@ int main() {
 			if (GetAsyncKeyState(VK_SPACE) || GetAsyncKeyState(VK_RETURN)) {
 				if (map.map[player.pos.y][player.pos.x] == '4') {
 					player.AllPokemonHeal();
-					Gotoxy(player.pos.x, player.pos.y + 1);
+					Gotoxy(player.pos.x * 2, player.pos.y + 1);
 					cout << "포켓몬이 모두 건강해졌습니다.";
 				}
 				else if (map.map[player.pos.y][player.pos.x] == '5') {
 					// TODO : 기라티나 출현
 					// 1. 가라티나 포효
 					// 2. 기라티나 출현
-					Gotoxy(player.pos.x, player.pos.y + 1);
-					cout << "크아앙!!!";
+					Gotoxy(26, 14);
+					cout << "크아아아!";
+					player.isGiratina = true;
+					player.isBattle = true;
+					Sleep(1000);
 				}
 			}
 		}

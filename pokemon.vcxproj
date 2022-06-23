@@ -143,6 +143,7 @@
     <ClInclude Include="Bag.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="Console.h" />
+    <ClInclude Include="EndingScene.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Map.h" />
@@ -172,7 +173,10 @@
     <ResourceCompile Include="pokemon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Sound\Pokemon Platinum - Opening.wav" />
+    <Media Include="Sound\Pokemon Platinum - Giratina Battle.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Lake.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Opening.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Wild Pokemon Battle.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -7,6 +7,8 @@
 #include<math.h>
 #include"Map.h"
 #include<WindowsX.h>
+#include"EndingScene.h"
+#include "SoundManager.h"
 
 using namespace std;
 
@@ -15,6 +17,9 @@ void Battle::Update() {
 	if (isTurn) {
 		MoveCursor();
 		Input();
+		if (GetAsyncKeyState(VK_CONTROL)) {
+			wildPokemon->Damage(9999, Fire, false);
+		}
 		if (GetAsyncKeyState(VK_BACK) || GetAsyncKeyState(VK_ESCAPE)) {
 			if (input != 0) {
 				input = 0;
@@ -41,30 +46,37 @@ void Battle::Update() {
 
 void Battle::CreatePokemon() {
 	if (wildPokemon == nullptr) {
-		int percent = Random();
-		//if (percent < 1) { // 기라티나
-		//	wildPokemon = new Giratina();
-		//}
-		if (percent < 10) {
-			percent = Random();
-			if (percent < 33) { // 모부기
-				wildPokemon = new Turtwig();
-			}
-			else if (percent < 66) { // 팽도리
-				wildPokemon = new Piplup();
-			}
-			else { // 불꽃숭이
-				wildPokemon = new Chimchar();
-			}
+		if (player->isGiratina == true) {
+			PlayingBgm(GiratinaBattle);
+			wildPokemon = new Giratina();
 		}
-		else if (percent < 30) { // 피카츄
-			wildPokemon = new Pikachu();
-		}
-		else if (percent < 60) { // 딥상어동
-			wildPokemon = new Gible();
-		}
-		else { // 찌르꼬
-			wildPokemon = new Starly();
+		else {
+			PlayingBgm(WildPokemonBattle);
+			int percent = Random();
+			//if (percent < 1) { // 기라티나
+			//	wildPokemon = new Giratina();
+			//}
+			if (percent < 10) {
+				percent = Random();
+				if (percent < 33) { // 모부기
+					wildPokemon = new Turtwig();
+				}
+				else if (percent < 66) { // 팽도리
+					wildPokemon = new Piplup();
+				}
+				else { // 불꽃숭이
+					wildPokemon = new Chimchar();
+				}
+			}
+			else if (percent < 30) { // 피카츄
+				wildPokemon = new Pikachu();
+			}
+			else if (percent < 60) { // 딥상어동
+				wildPokemon = new Gible();
+			}
+			else { // 찌르꼬
+				wildPokemon = new Starly();
+			}
 		}
 		PrintBattleStartAnim();
 		SetTurn();
@@ -820,19 +832,43 @@ void Battle::EnemyAttack()
 				delete wildPokemon;
 				wildPokemon = nullptr;
 				player->isBattle = false;
-				system("cls");
+				Clear(4, 17, 30, 28);
+				Gotoxy(6, 19);
+				cout << "포켓몬이 모두 쓰러졌다.";
+				Gotoxy(6, 20);
+				cout << "눈 앞이 깜깜해졌다.";
+				Sleep(1000);
+				::system("cls");
+				player->SetPlayerPos();
 				map->PrintMap(map->map, &player->pos);
+				PlayingBgm(Lake);
 			}
 			else if (player->pokemonList[1] != NULL) {
 				int pokemonIdx = 1;
 				for (int i = 1; i < 6; i++) {
-					if (player->pokemonList[i]->GetHP() > 0) {
-						pokemonIdx = i;
-						break;
+					if (player->pokemonList[i] != NULL) {
+						if (player->pokemonList[i]->GetHP() > 0) {
+							pokemonIdx = i;
+							break;
+						}
 					}
 				}
 				player->SwapPokemon(0, pokemonIdx); // 여기 수정
-
+			}
+			else {
+				delete wildPokemon;
+				wildPokemon = nullptr;
+				player->isBattle = false;
+				Clear(4, 17, 30, 28);
+				Gotoxy(6, 19);
+				cout << "포켓몬이 모두 쓰러졌다.";
+				Gotoxy(6, 20);
+				cout << "눈 앞이 깜깜해졌다.";
+				Sleep(1000);
+				::system("cls");
+				player->SetPlayerPos();
+				map->PrintMap(map->map, &player->pos);
+				PlayingBgm(Lake);
 			}
 			return;
 		}
@@ -896,6 +932,7 @@ void Battle::Input()
 				Sleep(1000);
 				system("cls");
 				map->PrintMap(map->map, &player->pos);
+				PlayingBgm(Lake);
 				break;
 			}
 		}
@@ -928,9 +965,23 @@ void Battle::Input()
 						player->isBattle = false;
 						delete wildPokemon;
 						wildPokemon = nullptr;
-						input = 0;
-						system("cls");
-						map->PrintMap(map->map, &player->pos);
+						if (player->isGiratina == true) {
+							player->isGiratina = false;
+							PrintEndingTitle();
+							IgnoreInput();
+							_getch(); // 프린트 후 바로 지워짐... 왜지?
+							input = 0;
+							player->SetPlayerPos();
+							/*system("cls");
+							map->PrintMap(map->map, &player->pos);*/
+						}
+						else {
+							player->isGiratina = false;
+							input = 0;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -969,9 +1020,22 @@ void Battle::Input()
 						player->isBattle = false;
 						delete wildPokemon;
 						wildPokemon = nullptr;
-						input = 0;
-						system("cls");
-						map->PrintMap(map->map, &player->pos);
+						if (player->isGiratina == true) {
+							player->isGiratina = false;
+							PrintEndingTitle();
+							IgnoreInput();
+							_getch();
+							input = 0;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						else {
+							player->isGiratina = false;
+							input = 0;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -1010,9 +1074,22 @@ void Battle::Input()
 						player->isBattle = false;
 						delete wildPokemon;
 						wildPokemon = nullptr;
-						input = 0;
-						system("cls");
-						map->PrintMap(map->map, &player->pos);
+						if (player->isGiratina == true) {
+							player->isGiratina = false;
+							PrintEndingTitle();
+							IgnoreInput();
+							_getch();
+							input = 0;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						else {
+							player->isGiratina = false;
+							input = 0;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -1051,9 +1128,22 @@ void Battle::Input()
 						player->isBattle = false;
 						delete wildPokemon;
 						wildPokemon = nullptr;
-						input = 0;
-						system("cls");
-						map->PrintMap(map->map, &player->pos);
+						if (player->isGiratina == true) {
+							player->isGiratina = false;
+							PrintEndingTitle();
+							IgnoreInput();
+							_getch();
+							input = 0;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						else {
+							player->isGiratina = false;
+							input = 0;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -1137,7 +1227,36 @@ void Battle::Input()
 						Gotoxy(6, 20);
 						cout << wildPokemon->GetName() << "를(을) 붙잡았다!";
 						if (player->IsPokemonEmpty()) {
-							player->pokemonList[player->EmptyPokemonIndex()] = wildPokemon;
+							Pokemon* pokemon = wildPokemon;
+							switch (wildPokemon->GetId())
+							{
+							case P_Chimchar:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Chimchar(pokemon);
+								break;
+							case P_Turtwig:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Turtwig(pokemon);
+								break;
+							case P_Piplup:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Piplup(pokemon);
+								break;
+							case P_Pikachu:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Pikachu(pokemon);
+								break;
+							case P_Gible:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Gible(pokemon);
+								break;
+							case P_Starly:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Starly(pokemon);
+								break;
+							case P_Giratina:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Giratina(pokemon);
+								break;
+							case P_Metapod:
+								player->pokemonList[player->EmptyPokemonIndex()] = new Metapod(pokemon);
+								break;
+							default:
+								break;
+							}
 						}
 						else {
 							// 포켓몬이 모두 차있다면 포켓몬 리스트를 띄우고 한마리를 버릴지 or 잠은 포켓몬을 포기할지 선택하게하기
@@ -1148,13 +1267,25 @@ void Battle::Input()
 							cout << "박스1로 전송되었다!";
 						}
 						input = 0;
-						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
 						wildPokemon = nullptr;
-						input = 0;
-						system("cls");
-						map->PrintMap(map->map, &player->pos);
+						Sleep(1000);
+						if (player->isGiratina == true) {
+							// 엔딩 씬 출력
+							player->isGiratina = false;
+							PrintEndingTitle();
+							IgnoreInput();
+							input = 0;
+							_getch();
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
+						else {
+							player->isGiratina = false;
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
+						}
 					}
 					else {
 						Clear(40, 1, 56, 8);
@@ -1264,25 +1395,10 @@ void Battle::IgnoreInput()
 	isInput = false;
 }
 
-//void Battle::MouseClick()
-//{
-//	INPUT_RECORD rec;
-//	DWORD dwRead;
-//
-//	HANDLE hCout = GetStdHandle(STD_OUTPUT_HANDLE);
-//	HANDLE hCin = GetStdHandle(STD_INPUT_HANDLE);
-//
-//	if (ReadConsoleInput(hCin, &rec, 1, &dwRead)) {
-//		if (rec.EventType == MOUSE_EVENT) {
-//			if (rec.Event.MouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) {
-//				// 클릭된 곳이 텍스트면 텍스트에 맞는 행동하기
-//			}
-//		}
-//	}
-//}
-
 Battle::Battle(Player* player, Map* map) : player(player), map(map)
 {
+	SetEndingTitle();
+
 	wildPokemon = nullptr;
 	_pos.pos = 1;
 	input = 0;

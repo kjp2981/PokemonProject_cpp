@@ -3,6 +3,7 @@
 #include"Manager.h"
 #include"Map.h"
 #include"Random.h"
+#include "Console.h"
 
 Player::Player() {
 	for (int i = 0; i < 6; i++)
@@ -19,6 +20,8 @@ Player::Player() {
 	pokemonList[1] = new Giratina();
 	walkCnt = 0;
 	isBattle = false;
+	isGiratina = false;
+	isMove = true;
 	bag = new Bag();
 }
 
@@ -73,6 +76,8 @@ void Player::MoveRight(char map[MAX_X][MAX_Y])
 
 void Player::MovePlayer(Map mapClass)
 {
+	if (isMove == false) return;
+
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		MoveUp(mapClass.map);
 		Sleep(50);
@@ -82,8 +87,9 @@ void Player::MovePlayer(Map mapClass)
 			walkCnt = 0;
 		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
 			int random = Random();
-			if (random < 40) {
+			if (random < 0) {
 				walkCnt = 0;
+				isGiratina = false;
 				isBattle = true;
 				//system("cls");
 				Clear();
@@ -92,16 +98,25 @@ void Player::MovePlayer(Map mapClass)
 				random = Random();
 				if (random < 30) {
 					// TODO : 아이템 출현
+					isMove = false;
 					random = Random();
 					if (random < 50) {
 						// 몬스터 볼
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "몬스터볼을 발견했다!";
+						bag->AddItem(I_Monsterball, 1);
 					}
 					else {
 						// 상처약
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "상처약을 발견했다!";
+						bag->AddItem(I_Medicine, 1);
 					}
+					Sleep(1000);
+					isMove = true;
 				}
-				mapClass.PrintMap(mapClass.map, &pos);
-				// TODO : 머리 웨이 느낌표 같이 뭐가 이펙트 주고 텍스트 뛰우기
 			}
 		}
 		else
@@ -118,12 +133,33 @@ void Player::MovePlayer(Map mapClass)
 			int random = Random();
 			if (random < 40) {
 				walkCnt = 0;
+				isGiratina = false;
 				isBattle = true;
 				//system("cls");
 				Clear();
 			}
-			else
-				mapClass.PrintMap(mapClass.map, &pos);
+			else {
+				random = Random();
+				if (random < 30) {
+					// TODO : 아이템 출현
+					Sleep(1000);
+					random = Random();
+					if (random < 50) {
+						// 몬스터 볼
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "몬스터볼을 발견했다!";
+						bag->AddItem(I_Monsterball, 1);
+					}
+					else {
+						// 상처약
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "상처약을 발견했다!";
+						bag->AddItem(I_Medicine, 1);
+					}
+				}
+			}
 		}
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
@@ -139,12 +175,33 @@ void Player::MovePlayer(Map mapClass)
 			int random = Random();
 			if (random < 40) {
 				walkCnt = 0;
+				isGiratina = false;
 				isBattle = true;
 				//system("cls");
 				Clear();
 			}
-			else
-				mapClass.PrintMap(mapClass.map, &pos);
+			else {
+				random = Random();
+				if (random < 30) {
+					// TODO : 아이템 출현
+					Sleep(1000);
+					random = Random();
+					if (random < 50) {
+						// 몬스터 볼
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "몬스터볼을 발견했다!";
+						bag->AddItem(I_Monsterball, 1);
+					}
+					else {
+						// 상처약
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "상처약을 발견했다!";
+						bag->AddItem(I_Medicine, 1);
+					}
+				}
+			}
 		}
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
@@ -160,12 +217,32 @@ void Player::MovePlayer(Map mapClass)
 			int random = Random();
 			if (random < 40) {
 				walkCnt = 0;
+				isGiratina = false;
 				isBattle = true;
 				//system("cls");
 				Clear();
 			}
-			else
-				mapClass.PrintMap(mapClass.map, &pos);
+			else {
+				random = Random();
+				if (random < 30) {
+					// TODO : 아이템 출현
+					random = Random();
+					if (random < 50) {
+						// 몬스터 볼
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "몬스터볼을 발견했다!";
+						bag->AddItem(I_Monsterball, 1);
+					}
+					else {
+						// 상처약
+						mapClass.PrintMap(mapClass.map, &pos);
+						Gotoxy(26, 14);
+						cout << "상처약을 발견했다!";
+						bag->AddItem(I_Medicine, 1);
+					}
+				}
+			}
 		}
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
