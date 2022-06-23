@@ -47,20 +47,10 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// mp3
+// WAVE
 //
 
-IDR_MP31                mp3                     "Sound\\Pokemon Platinum - Giratina Battle.mp3"
-
-IDR_MP32                mp3                     "Sound\\Pokemon Platinum - Item Get.mp3"
-
-IDR_MP33                mp3                     "Sound\\Pokemon Platinum - Lake.mp3"
-
-IDR_MP34                mp3                     "Sound\\Pokemon Platinum - Opening.mp3"
-
-IDR_MP35                mp3                     "Sound\\Pokemon Platinum - Trainer Battle.mp3"
-
-IDR_MP36                mp3                     "Sound\\Pokemon Platinum - Wild Pokemon Battle.mp3"
+IDR_WAVE1               WAVE                    "Sound\\Pokemon Platinum - Opening.wav"
 
 #endif    // 한국어(대한민국) resources
 /////////////////////////////////////////////////////////////////////////////

@@ -27,37 +27,37 @@ void PlayingBgm(int type)
 	switch (type)
 	{
 	case Opening:
-		openBgm.lpstrElementName = L"Sound/Pokemon Platinum - Opening.mp3";
+		openBgm.lpstrElementName = L"Sound/Pokemon Platinum - Opening.wav";
 		//openBgm.lpstrElementName = L"Pokemon_Platinum_Opening.mp3";
-		openBgm.lpstrDeviceType = L"mpegvideo";
+		openBgm.lpstrDeviceType = L"waveaudio";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm);
 		bgmDwID = openBgm.wDeviceID;
 		mciSendCommand(bgmDwID, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
 		break;
 	case WildPokemonBattle:
 		openBgm1.lpstrElementName = L"Sound/Pokemon Platinum - Wild Pokemon Battle.mp3";
-		openBgm1.lpstrDeviceType = L"mpegvideo";
+		openBgm1.lpstrDeviceType = L"waveaudio";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm1);
 		bgmDwID1 = openBgm1.wDeviceID;
 		mciSendCommand(bgmDwID1, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
 		break;
 	case GiratinaBattle:
 		openBgm2.lpstrElementName = L"Sound/Pokemon Platinum - Giratina Battle.mp3";
-		openBgm2.lpstrDeviceType = L"mpegvideo";
+		openBgm2.lpstrDeviceType = L"waveaudio";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm2);
 		bgmDwID2 = openBgm2.wDeviceID;
 		mciSendCommand(bgmDwID2, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
 		break;
 	case TrainerBattle:
 		openBgm3.lpstrElementName = L"Sound/Pokemon Platinum - Trainer Battle.mp3";
-		openBgm3.lpstrDeviceType = L"mpegvideo";
+		openBgm3.lpstrDeviceType = L"waveaudio";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm3);
 		bgmDwID3 = openBgm3.wDeviceID;
 		mciSendCommand(bgmDwID3, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
 		break;
 	case Lake:
 		openBgm4.lpstrElementName = L"Sound/Pokemon Platinum - Lake.mp3";
-		openBgm4.lpstrDeviceType = L"mpegvideo";
+		openBgm4.lpstrDeviceType = L"waveaudio";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm4);
 		bgmDwID4 = openBgm4.wDeviceID;
 		mciSendCommand(bgmDwID4, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);

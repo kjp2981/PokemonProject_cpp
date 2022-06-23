@@ -39,7 +39,7 @@ int main() {
 					// 1. 가라티나 포효
 					// 2. 기라티나 출현
 					Gotoxy(player.pos.x, player.pos.y + 1);
-					cout << ""
+					cout << "크아앙!!!";
 				}
 			}
 		}
