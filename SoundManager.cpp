@@ -24,15 +24,11 @@ UINT bgmDwID4;
 
 void PlayingBgm(int type)
 {
-	if (bgmDwID != 0) {
-		mciSendCommand(bgmDwID, MCI_PAUSE, MCI_NOTIFY, (DWORD)(LPVOID)&openBgm);
-		mciSendCommand(bgmDwID, MCI_SEEK, MCI_SEEK_TO_START, NULL);
-	}
 	switch (type)
 	{
 	case Opening:
-//		openBgm.lpstrElementName = L"Pokemon Platinum - Opening.mp3";
-		openBgm.lpstrElementName = L"Pokemon_Platinum_Opening.mp3";
+		openBgm.lpstrElementName = L"Sound/Pokemon Platinum - Opening.mp3";
+		//openBgm.lpstrElementName = L"Pokemon_Platinum_Opening.mp3";
 		openBgm.lpstrDeviceType = L"mpegvideo";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm);
 		bgmDwID = openBgm.wDeviceID;

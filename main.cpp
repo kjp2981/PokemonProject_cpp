@@ -14,7 +14,7 @@ int main() {
 	//system("pause");
 	_getch();
 	system("cls");
-	PlayingBgm(Lake);
+	//PlayingBgm(Lake);
 
 	Map map;
 	Player player;
@@ -33,6 +33,13 @@ int main() {
 					player.AllPokemonHeal();
 					Gotoxy(player.pos.x, player.pos.y + 1);
 					cout << "포켓몬이 모두 건강해졌습니다.";
+				}
+				else if (map.map[player.pos.y][player.pos.x] == '5') {
+					// TODO : 기라티나 출현
+					// 1. 가라티나 포효
+					// 2. 기라티나 출현
+					Gotoxy(player.pos.x, player.pos.y + 1);
+					cout << ""
 				}
 			}
 		}

@@ -42,10 +42,10 @@ void Battle::Update() {
 void Battle::CreatePokemon() {
 	if (wildPokemon == nullptr) {
 		int percent = Random();
-		if (percent < 1) { // 기라티나
-			wildPokemon = new Giratina();
-		}
-		else if (percent < 10) {
+		//if (percent < 1) { // 기라티나
+		//	wildPokemon = new Giratina();
+		//}
+		if (percent < 10) {
 			percent = Random();
 			if (percent < 33) { // 모부기
 				wildPokemon = new Turtwig();

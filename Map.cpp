@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// 0: 길, 1, 돌 벽(〓), 2: 돌 벽{ ) }, 3, 풀(포켓몬 나오는곳), 4, 회복해주는 곳
+// 0: 길, 1, 돌 벽(〓), 2: 돌 벽{ ) }, 3: 풀(포켓몬 나오는곳), 4: 회복해주는 곳, 5:기라티나 출현 장소(1번째 줄, 15번째)(일정 시간이 지나면 나타나게)
 void Map::SetMap() {
 	strcpy_s(map[0],  "400000000000000000003333333333");
 	strcpy_s(map[1],  "000000000000000000003333333333");
@@ -71,8 +71,12 @@ void Map::PrintMap(char map[MAX_X][MAX_Y], PPOS playerPos) {
 			}
 			else if (map[i][j] == '4') {
 				SetColor(15, 8);
-				//cout << "§";
 				cout << "PC";
+				SetColor(15, 0);
+			}
+			else if (map[i][j] == '5') {
+				SetColor(15, 8);
+				cout << "◆";
 				SetColor(15, 0);
 			}
 		}

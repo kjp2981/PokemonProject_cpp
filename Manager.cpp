@@ -33,6 +33,10 @@ void Init()
 	SetConsoleTitle(L"POKEMON GAME");
 	system("mode con lines=31 cols=120"); // 콘솔 창 사이즈 조절
 
+	HWND console = GetConsoleWindow();
+	// 윈도우 리사이즈 불가하게 끔.
+	SetWindowLong(console, GWL_STYLE, GetWindowLong(console, GWL_STYLE) & ~WS_MAXIMIZEBOX & ~WS_SIZEBOX);
+	
 	HANDLE consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO consoleCursor;
 	consoleCursor.bVisible = false;

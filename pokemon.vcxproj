@@ -172,7 +172,12 @@
     <ResourceCompile Include="pokemon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Media Include="Pokemon_Platinum_Opening.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Giratina Battle.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Item Get.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Lake.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Opening.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Trainer Battle.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Wild Pokemon Battle.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
