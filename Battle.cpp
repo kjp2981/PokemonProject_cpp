@@ -968,12 +968,12 @@ void Battle::Input()
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
-							IgnoreInput();
-							_getch(); // 프린트 후 바로 지워짐... 왜지?
+							Gotoxy(0, 30);
+							system("pause");
 							input = 0;
 							player->SetPlayerPos();
-							/*system("cls");
-							map->PrintMap(map->map, &player->pos);*/
+							system("cls");
+							map->PrintMap(map->map, &player->pos);
 						}
 						else {
 							player->isGiratina = false;
@@ -1023,8 +1023,8 @@ void Battle::Input()
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
-							IgnoreInput();
-							_getch();
+							Gotoxy(0, 30);
+							system("pause");
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
@@ -1077,8 +1077,8 @@ void Battle::Input()
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
-							IgnoreInput();
-							_getch();
+							Gotoxy(0, 30);
+							system("pause");
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
@@ -1131,8 +1131,8 @@ void Battle::Input()
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
-							IgnoreInput();
-							_getch();
+							Gotoxy(0, 30);
+							system("pause");
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
@@ -1275,9 +1275,9 @@ void Battle::Input()
 							// 엔딩 씬 출력
 							player->isGiratina = false;
 							PrintEndingTitle();
-							IgnoreInput();
+							Gotoxy(0, 30);
+							system("pause");
 							input = 0;
-							_getch();
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
 						}

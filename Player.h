@@ -15,7 +15,6 @@ public:
 	POS pos;
 	bool isBattle;
 	bool isGiratina; // 기라티나 배틀인지 아닌지
-	bool isMove;
 	Pokemon* pokemonList[6];
 	//vector<Pokemon*> pokemonList;
 	
@@ -37,5 +36,6 @@ public:
 	void SwapPokemon(int fIdx, int sIdx);
 	void AllPokemonHeal();
 	bool IsPokemonEmpty();
+	bool IsPokemonFull();
 	int EmptyPokemonIndex();
 };

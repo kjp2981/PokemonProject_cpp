@@ -58,6 +58,12 @@ IDR_MP33                MP3                     "Sound\\Pokemon Platinum - Openi
 
 IDR_MP34                MP3                     "Sound\\Pokemon Platinum - Wild Pokemon Battle.mp3"
 
+IDR_MP35                MP3                     "Sound\\Pokemon Platinum - Item Get.mp3"
+
+IDR_MP36                MP3                     "Sound\\Pokemon Platinum - Recovery.mp3"
+
+IDR_MP37                MP3                     "Sound\\Pokemon Platinum - Ending.mp3"
+
 #endif    // 한국어(대한민국) resources
 /////////////////////////////////////////////////////////////////////////////
 

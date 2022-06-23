@@ -9,12 +9,12 @@ using namespace std;
 int main() {
 	Init();
 	PrintTitleScreen();
-	PlayingBgm(Opening);
+	//PlayingBgm(Opening);
 
 	//system("pause");
 	_getch();
 	system("cls");
-	PlayingBgm(Lake);
+	//PlayingBgm(Lake);
 
 	Map map;
 	Player player;
@@ -25,6 +25,9 @@ int main() {
 
 	while (true)
 	{
+		if (player.IsPokemonFull()) {
+			map.map[0][15] = '5';
+		}
 		Gotoxy(0, 0);
 		if (player.isBattle == false) {
 			player.MovePlayer(map);
@@ -32,6 +35,7 @@ int main() {
 			if (GetAsyncKeyState(VK_SPACE) || GetAsyncKeyState(VK_RETURN)) {
 				if (map.map[player.pos.y][player.pos.x] == '4') {
 					player.AllPokemonHeal();
+					PlayingEffect(Recorvery);
 					Gotoxy(player.pos.x * 2, player.pos.y + 1);
 					cout << "포켓몬이 모두 건강해졌습니다.";
 				}

@@ -10,14 +10,22 @@ MCI_OPEN_PARMS openBgm1;
 MCI_OPEN_PARMS openBgm2;
 MCI_OPEN_PARMS openBgm3;
 MCI_OPEN_PARMS openBgm4;
+MCI_OPEN_PARMS openBgm5;
 MCI_PLAY_PARMS playBgm;
+
+MCI_OPEN_PARMS openEffect;
+MCI_OPEN_PARMS openEffect1;
+MCI_PLAY_PARMS playEffect;
 
 UINT bgmDwID;
 UINT bgmDwID1;
 UINT bgmDwID2;
 UINT bgmDwID3;
 UINT bgmDwID4;
+UINT bgmDwID5;
 
+UINT effectDwID;
+UINT effectDwID1;
 
 void PlayingBgm(int type)
 {
@@ -31,6 +39,8 @@ void PlayingBgm(int type)
 	mciSendCommand(bgmDwID3, MCI_SEEK, MCI_SEEK_TO_START, NULL);
 	mciSendCommand(bgmDwID4, MCI_PAUSE, MCI_NOTIFY, (DWORD)(LPVOID)&playBgm);
 	mciSendCommand(bgmDwID4, MCI_SEEK, MCI_SEEK_TO_START, NULL);
+	mciSendCommand(bgmDwID5, MCI_PAUSE, MCI_NOTIFY, (DWORD)(LPVOID)&playBgm);
+	mciSendCommand(bgmDwID5, MCI_SEEK, MCI_SEEK_TO_START, NULL);
 
 	switch (type)
 	{
@@ -69,9 +79,42 @@ void PlayingBgm(int type)
 		bgmDwID4 = openBgm4.wDeviceID;
 		mciSendCommand(bgmDwID4, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
 		break;
+	case Ending:
+		openBgm5.lpstrElementName = L"Sound/Pokemon Platinum - Lake.mp3";
+		openBgm5.lpstrDeviceType = L"mpegvideo";
+		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm5);
+		bgmDwID5 = openBgm4.wDeviceID;
+		mciSendCommand(bgmDwID5, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
+		break;
 	default:
 		break;
 	}
 	
 
 }
+
+void PlayingEffect(int type)
+{
+	switch (type)
+	{
+	case ItemGet:
+		mciSendCommand(effectDwID, MCI_SEEK, MCI_SEEK_TO_START, (DWORD)(LPVOID)&playEffect);
+		openEffect.lpstrElementName = L"Sound/Pokemon Platinum - Item Get.mp3";
+		openEffect.lpstrDeviceType = L"mpegvideo";
+		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openEffect);
+		effectDwID = openEffect.wDeviceID;
+		mciSendCommand(effectDwID, MCI_PLAY, MCI_NOTIFY, (DWORD)(LPVOID)&playEffect);
+		break;
+	case Recorvery:
+		mciSendCommand(effectDwID1, MCI_SEEK, MCI_SEEK_TO_START, (DWORD)(LPVOID)&playEffect);
+		openEffect1.lpstrElementName = L"Sound/Pokemon Platinum - Recovery.mp3";
+		openEffect1.lpstrDeviceType = L"mpegvideo";
+		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openEffect1);
+		effectDwID1 = openEffect.wDeviceID;
+		mciSendCommand(effectDwID1, MCI_PLAY, MCI_NOTIFY, (DWORD)(LPVOID)&playEffect);
+		break;
+	default:
+		break;
+	}
+}
+

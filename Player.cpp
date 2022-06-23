@@ -21,7 +21,6 @@ Player::Player() {
 	walkCnt = 0;
 	isBattle = false;
 	isGiratina = false;
-	isMove = true;
 	bag = new Bag();
 }
 
@@ -76,8 +75,6 @@ void Player::MoveRight(char map[MAX_X][MAX_Y])
 
 void Player::MovePlayer(Map mapClass)
 {
-	if (isMove == false) return;
-
 	if (GetAsyncKeyState(VK_UP) & 0x8000) {
 		MoveUp(mapClass.map);
 		Sleep(50);
@@ -98,7 +95,6 @@ void Player::MovePlayer(Map mapClass)
 				random = Random();
 				if (random < 30) {
 					// TODO : 아이템 출현
-					isMove = false;
 					random = Random();
 					if (random < 50) {
 						// 몬스터 볼
@@ -114,8 +110,6 @@ void Player::MovePlayer(Map mapClass)
 						cout << "상처약을 발견했다!";
 						bag->AddItem(I_Medicine, 1);
 					}
-					Sleep(1000);
-					isMove = true;
 				}
 			}
 		}
@@ -142,7 +136,6 @@ void Player::MovePlayer(Map mapClass)
 				random = Random();
 				if (random < 30) {
 					// TODO : 아이템 출현
-					Sleep(1000);
 					random = Random();
 					if (random < 50) {
 						// 몬스터 볼
@@ -184,7 +177,6 @@ void Player::MovePlayer(Map mapClass)
 				random = Random();
 				if (random < 30) {
 					// TODO : 아이템 출현
-					Sleep(1000);
 					random = Random();
 					if (random < 50) {
 						// 몬스터 볼
@@ -295,6 +287,16 @@ bool Player::IsPokemonEmpty()
 			return true;
 	}
 	return false;
+}
+
+bool Player::IsPokemonFull()
+{
+	for (int i = 0; i < 6; i++) {
+		if (pokemonList[i] == NULL)
+			return false;
+	}
+
+	return true;
 }
 
 int Player::EmptyPokemonIndex()
