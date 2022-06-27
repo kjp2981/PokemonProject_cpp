@@ -124,5 +124,7 @@
     <Media Include="Sound\Pokemon Platinum - Item Get.mp3" />
     <Media Include="Sound\Pokemon Platinum - Recovery.mp3" />
     <Media Include="Sound\Pokemon Platinum - Ending.mp3" />
+    <Media Include="Sound\Pokemon_Cries_-_487_Giratina.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Victory Against Wild Pokemon.mp3" />
   </ItemGroup>
 </Project>

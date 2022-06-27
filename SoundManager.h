@@ -15,7 +15,9 @@ enum BgmType
 
 enum EffectType {
 	ItemGet,
-	Recorvery
+	Recorvery,
+	GiratinaCries,
+	Victory
 };
 
 extern MCI_OPEN_PARMS openBgm;
@@ -29,6 +31,8 @@ extern MCI_PLAY_PARMS playBgm;
 
 extern MCI_OPEN_PARMS openEffect;
 extern MCI_OPEN_PARMS openEffect1;
+extern MCI_OPEN_PARMS openEffect2;
+extern MCI_OPEN_PARMS openEffect3;
 extern MCI_PLAY_PARMS playEffect;
 
 extern UINT bgmDwID;
@@ -40,6 +44,8 @@ extern UINT bgmDwID5;
 
 extern UINT effectDwID;
 extern UINT effectDwID1;
+extern UINT effectDwID2;
+extern UINT effectDwID3;
 
 void PlayingBgm(int type);
 

@@ -16,8 +16,6 @@ public:
 	bool isBattle;
 	bool isGiratina; // 기라티나 배틀인지 아닌지
 	Pokemon* pokemonList[6];
-	//vector<Pokemon*> pokemonList;
-	
 	Bag* bag;
 private:
 	int walkCnt;
@@ -38,4 +36,5 @@ public:
 	bool IsPokemonEmpty();
 	bool IsPokemonFull();
 	int EmptyPokemonIndex();
+	void PrintPokemon();
 };

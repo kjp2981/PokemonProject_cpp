@@ -64,6 +64,10 @@ IDR_MP36                MP3                     "Sound\\Pokemon Platinum - Recov
 
 IDR_MP37                MP3                     "Sound\\Pokemon Platinum - Ending.mp3"
 
+IDR_MP38                MP3                     "Sound\\Pokemon_Cries_-_487_Giratina.mp3"
+
+IDR_MP39                MP3                     "Sound\\Pokemon Platinum - Victory Against Wild Pokemon.mp3"
+
 #endif    // 한국어(대한민국) resources
 /////////////////////////////////////////////////////////////////////////////
 

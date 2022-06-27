@@ -821,7 +821,6 @@ void Battle::EnemyAttack()
 		cout << wildPokemon->skiiList[randomSkill]->name << "을 사용했다.";
 		player->FirstPokemon()->Damage(wildPokemon->skiiList[randomSkill]->damage, wildPokemon->skiiList[randomSkill]->type, wildPokemon->skiiList[randomSkill]->type == wildPokemon->GetType());
 		if (player->FirstPokemon()->GetHP() <= 0) {
-			// 월래 있던 텍스트 지우기
 			Clear(4, 17, 30, 28);
 			Gotoxy(6, 19);
 			cout << player->FirstPokemon()->GetName() << "은(는)";
@@ -867,6 +866,7 @@ void Battle::EnemyAttack()
 				Sleep(1000);
 				::system("cls");
 				player->SetPlayerPos();
+				player->AllPokemonHeal();
 				map->PrintMap(map->map, &player->pos);
 				PlayingBgm(Lake);
 			}
@@ -953,7 +953,9 @@ void Battle::Input()
 					cout << player->FirstPokemon()->GetName() << "은(는)";
 					Gotoxy(6, 20);
 					cout << player->FirstPokemon()->skiiList[0]->name << "을 사용했다.";
-					wildPokemon->Damage(player->FirstPokemon()->skiiList[0]->damage, player->FirstPokemon()->skiiList[0]->type, player->FirstPokemon()->skiiList[0]->type == player->FirstPokemon()->GetType());
+					wildPokemon->Damage(player->FirstPokemon()->skiiList[0]->damage,
+						player->FirstPokemon()->skiiList[0]->type,
+						player->FirstPokemon()->skiiList[0]->type == player->FirstPokemon()->GetType());
 					if (wildPokemon->GetHP() <= 0) {
 						Clear(4, 17, 30, 28);
 						Gotoxy(6, 19);
@@ -961,15 +963,43 @@ void Battle::Input()
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
+						int random = Random();
+						// 아이템 드랍 로직
+						if (random < 35) {
+							switch (rand() % 2)
+							{
+							case 0: // 몬스터볼
+							{
+								int cnt = rand() % 5 + 1;
+								player->bag->AddItem(I_Monsterball, cnt);
+								Gotoxy(6, 21);
+								cout << "몬스터볼을 " << cnt << "개 얻었다.";
+							}
+							break;
+							case 1: // 상처약
+							{
+								int cnt = rand() % 3 + 1;
+								player->bag->AddItem(I_Medicine, cnt);
+								Gotoxy(6, 21);
+								cout << "상처약을 " << cnt << "개 얻었다.";
+							}
+							break;
+							default:
+								break;
+							}
+						}
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
 						wildPokemon = nullptr;
+						// 쓰러트린 포켓몬이 기라티나인지 확인 후 그에 맞는 씬 전환
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
+							PlayingBgm(Ending);
 							Gotoxy(0, 30);
 							system("pause");
+							PlayingBgm(Lake);
 							input = 0;
 							player->SetPlayerPos();
 							system("cls");
@@ -980,8 +1010,8 @@ void Battle::Input()
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
+							PlayingBgm(Lake);
 						}
-						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -1016,6 +1046,30 @@ void Battle::Input()
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
+						int random = Random();
+						if (random < 35) {
+							switch (rand() % 2)
+							{
+							case 0: // 몬스터볼
+							{
+								int cnt = rand() % 5 + 1;
+								player->bag->AddItem(I_Monsterball, cnt);
+								Gotoxy(6, 21);
+								cout << "몬스터볼을 " << cnt << "개 얻었다.";
+							}
+							break;
+							case 1: // 상처약
+							{
+								int cnt = rand() % 3 + 1;
+								player->bag->AddItem(I_Medicine, cnt);
+								Gotoxy(6, 21);
+								cout << "상처약을 " << cnt << "개 얻었다.";
+							}
+							break;
+							default:
+								break;
+							}
+						}
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
@@ -1023,8 +1077,10 @@ void Battle::Input()
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
+							PlayingBgm(Ending);
 							Gotoxy(0, 30);
 							system("pause");
+							PlayingBgm(Lake);
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
@@ -1034,8 +1090,8 @@ void Battle::Input()
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
+							PlayingBgm(Lake);
 						}
-						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -1070,6 +1126,30 @@ void Battle::Input()
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
+						int random = Random();
+						if (random < 35) {
+							switch (rand() % 2)
+							{
+							case 0: // 몬스터볼
+							{
+								int cnt = rand() % 5 + 1;
+								player->bag->AddItem(I_Monsterball, cnt);
+								Gotoxy(6, 21);
+								cout << "몬스터볼을 " << cnt << "개 얻었다.";
+							}
+							break;
+							case 1: // 상처약
+							{
+								int cnt = rand() % 3 + 1;
+								player->bag->AddItem(I_Medicine, cnt);
+								Gotoxy(6, 21);
+								cout << "상처약을 " << cnt << "개 얻었다.";
+							}
+							break;
+							default:
+								break;
+							}
+						}
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
@@ -1077,8 +1157,10 @@ void Battle::Input()
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
+							PlayingBgm(Ending);
 							Gotoxy(0, 30);
 							system("pause");
+							PlayingBgm(Lake);
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
@@ -1088,8 +1170,8 @@ void Battle::Input()
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
+							PlayingBgm(Lake);
 						}
-						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -1124,6 +1206,30 @@ void Battle::Input()
 						Gotoxy(6, 20);
 						cout << "쓰러졌다!";
 						player->bag->AddItem(I_Gold, 1000);
+						int random = Random();
+						if (random < 35) {
+							switch (rand() % 2)
+							{
+							case 0: // 몬스터볼
+							{
+								int cnt = rand() % 5 + 1;
+								player->bag->AddItem(I_Monsterball, cnt);
+								Gotoxy(6, 21);
+								cout << "몬스터볼을 " << cnt << "개 얻었다.";
+							}
+								break;
+							case 1: // 상처약
+							{
+								int cnt = rand() % 3 + 1;
+								player->bag->AddItem(I_Medicine, cnt);
+								Gotoxy(6, 21);
+								cout << "상처약을 " << cnt << "개 얻었다.";
+							}
+								break;
+							default:
+								break;
+							}
+						}
 						Sleep(1000);
 						player->isBattle = false;
 						delete wildPokemon;
@@ -1131,8 +1237,10 @@ void Battle::Input()
 						if (player->isGiratina == true) {
 							player->isGiratina = false;
 							PrintEndingTitle();
+							PlayingBgm(Ending);
 							Gotoxy(0, 30);
 							system("pause");
+							PlayingBgm(Lake);
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
@@ -1142,8 +1250,8 @@ void Battle::Input()
 							input = 0;
 							system("cls");
 							map->PrintMap(map->map, &player->pos);
+							PlayingBgm(Lake);
 						}
-						PlayingBgm(Lake);
 						break;
 					}
 				}
@@ -1275,6 +1383,7 @@ void Battle::Input()
 							// 엔딩 씬 출력
 							player->isGiratina = false;
 							PrintEndingTitle();
+							PlayingBgm(Ending);
 							Gotoxy(0, 30);
 							system("pause");
 							input = 0;

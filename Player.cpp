@@ -4,6 +4,9 @@
 #include"Map.h"
 #include"Random.h"
 #include "Console.h"
+#include "SoundManager.h"
+
+using namespace std;
 
 Player::Player() {
 	for (int i = 0; i < 6; i++)
@@ -17,7 +20,6 @@ Player::Player() {
 	pokemonList[3] = new Turtwig();
 	pokemonList[4] = new Pikachu();
 	pokemonList[5] = new Gible();*/
-	pokemonList[1] = new Giratina();
 	walkCnt = 0;
 	isBattle = false;
 	isGiratina = false;
@@ -26,7 +28,7 @@ Player::Player() {
 
 Player::~Player()
 {
-
+	
 }
 
 Pokemon* Player::FirstPokemon()
@@ -84,33 +86,12 @@ void Player::MovePlayer(Map mapClass)
 			walkCnt = 0;
 		if (mapClass.CheckGrass(mapClass.map, &pos) && walkCnt > 3) {
 			int random = Random();
-			if (random < 0) {
+			if (random < 40) {
 				walkCnt = 0;
 				isGiratina = false;
 				isBattle = true;
 				//system("cls");
 				Clear();
-			}
-			else {
-				random = Random();
-				if (random < 30) {
-					// TODO : 아이템 출현
-					random = Random();
-					if (random < 50) {
-						// 몬스터 볼
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "몬스터볼을 발견했다!";
-						bag->AddItem(I_Monsterball, 1);
-					}
-					else {
-						// 상처약
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "상처약을 발견했다!";
-						bag->AddItem(I_Medicine, 1);
-					}
-				}
 			}
 		}
 		else
@@ -132,27 +113,6 @@ void Player::MovePlayer(Map mapClass)
 				//system("cls");
 				Clear();
 			}
-			else {
-				random = Random();
-				if (random < 30) {
-					// TODO : 아이템 출현
-					random = Random();
-					if (random < 50) {
-						// 몬스터 볼
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "몬스터볼을 발견했다!";
-						bag->AddItem(I_Monsterball, 1);
-					}
-					else {
-						// 상처약
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "상처약을 발견했다!";
-						bag->AddItem(I_Medicine, 1);
-					}
-				}
-			}
 		}
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
@@ -173,27 +133,6 @@ void Player::MovePlayer(Map mapClass)
 				//system("cls");
 				Clear();
 			}
-			else {
-				random = Random();
-				if (random < 30) {
-					// TODO : 아이템 출현
-					random = Random();
-					if (random < 50) {
-						// 몬스터 볼
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "몬스터볼을 발견했다!";
-						bag->AddItem(I_Monsterball, 1);
-					}
-					else {
-						// 상처약
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "상처약을 발견했다!";
-						bag->AddItem(I_Medicine, 1);
-					}
-				}
-			}
 		}
 		else
 			mapClass.PrintMap(mapClass.map, &pos);
@@ -213,27 +152,6 @@ void Player::MovePlayer(Map mapClass)
 				isBattle = true;
 				//system("cls");
 				Clear();
-			}
-			else {
-				random = Random();
-				if (random < 30) {
-					// TODO : 아이템 출현
-					random = Random();
-					if (random < 50) {
-						// 몬스터 볼
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "몬스터볼을 발견했다!";
-						bag->AddItem(I_Monsterball, 1);
-					}
-					else {
-						// 상처약
-						mapClass.PrintMap(mapClass.map, &pos);
-						Gotoxy(26, 14);
-						cout << "상처약을 발견했다!";
-						bag->AddItem(I_Medicine, 1);
-					}
-				}
 			}
 		}
 		else
@@ -306,4 +224,106 @@ int Player::EmptyPokemonIndex()
 			return i;
 	}
 	return -1;
+}
+
+void Player::PrintPokemon()
+{
+	for (int i = 0; i < 6; i++) {
+		switch (i)
+		{
+		case 0:
+			if (pokemonList[i] != NULL) {
+				_setmode(_fileno(stdout), _O_U8TEXT);
+				Gotoxy(70, 1);
+				for (int v = 0; v < 7; v++) {
+					for (int h = 0; h < 14; h++) {
+						wcout << pokemonList[i]->frontImage[v][h];
+					}
+					Gotoxy(70, 2 + v);
+				}
+				_setmode(_fileno(stdout), _O_TEXT);
+				Gotoxy(70, 9);
+				cout << pokemonList[i]->GetName();
+			}
+			break;
+		case 1:
+			if (pokemonList[i] != NULL) {
+				_setmode(_fileno(stdout), _O_U8TEXT);
+				Gotoxy(100, 1);
+				for (int v = 0; v < 7; v++) {
+					for (int h = 0; h < 14; h++) {
+						wcout << pokemonList[i]->frontImage[v][h];
+					}
+					Gotoxy(100, 2 + v);
+				}
+				_setmode(_fileno(stdout), _O_TEXT);
+				Gotoxy(100, 9);
+				cout << pokemonList[i]->GetName();
+			}
+			break;
+		case 2:
+			if (pokemonList[i] != NULL) {
+				_setmode(_fileno(stdout), _O_U8TEXT);
+				Gotoxy(70, 11);
+				for (int v = 0; v < 7; v++) {
+					for (int h = 0; h < 14; h++) {
+						wcout << pokemonList[i]->frontImage[v][h];
+					}
+					Gotoxy(70, 12 + v);
+				}
+				_setmode(_fileno(stdout), _O_TEXT);
+				Gotoxy(70, 19);
+				cout << pokemonList[i]->GetName();
+			}
+			break;
+		case 3:
+			if (pokemonList[i] != NULL) {
+				_setmode(_fileno(stdout), _O_U8TEXT);
+				Gotoxy(100, 11);
+				for (int v = 0; v < 7; v++) {
+					for (int h = 0; h < 14; h++) {
+						wcout << pokemonList[i]->frontImage[v][h];
+					}
+					Gotoxy(100, 12 + v);
+				}
+				_setmode(_fileno(stdout), _O_TEXT);
+				Gotoxy(100, 19);
+				cout << pokemonList[i]->GetName();
+			}
+			break;
+		case 4:
+			if (pokemonList[i] != NULL) {
+				_setmode(_fileno(stdout), _O_U8TEXT);
+				Gotoxy(70, 21);
+				for (int v = 0; v < 7; v++) {
+					for (int h = 0; h < 14; h++) {
+						wcout << pokemonList[i]->frontImage[v][h];
+					}
+					Gotoxy(70, 22 + v);
+				}
+				_setmode(_fileno(stdout), _O_TEXT);
+				Gotoxy(70, 29);
+				cout << pokemonList[i]->GetName();
+			}
+			break;
+		case 5:
+			if (pokemonList[i] != NULL) {
+				_setmode(_fileno(stdout), _O_U8TEXT);
+				Gotoxy(100, 21);
+				for (int v = 0; v < 7; v++) {
+					for (int h = 0; h < 14; h++) {
+						wcout << pokemonList[i]->frontImage[v][h];
+					}
+					Gotoxy(100, 22 + v);
+				}
+				_setmode(_fileno(stdout), _O_TEXT);
+				Gotoxy(100, 29);
+				cout << pokemonList[i]->GetName();
+			}
+			break;
+		default:
+			break;
+		}
+	}
+	_setmode(_fileno(stdout), _O_TEXT);
 }

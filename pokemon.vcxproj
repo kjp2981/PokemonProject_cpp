@@ -179,7 +179,9 @@
     <Media Include="Sound\Pokemon Platinum - Lake.mp3" />
     <Media Include="Sound\Pokemon Platinum - Opening.mp3" />
     <Media Include="Sound\Pokemon Platinum - Recovery.mp3" />
+    <Media Include="Sound\Pokemon Platinum - Victory Against Wild Pokemon.mp3" />
     <Media Include="Sound\Pokemon Platinum - Wild Pokemon Battle.mp3" />
+    <Media Include="Sound\Pokemon_Cries_-_487_Giratina.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

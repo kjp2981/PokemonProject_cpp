@@ -9,17 +9,17 @@ using namespace std;
 int main() {
 	Init();
 	PrintTitleScreen();
-	//PlayingBgm(Opening);
+	PlayingBgm(Opening);
 
 	//system("pause");
 	_getch();
 	system("cls");
-	//PlayingBgm(Lake);
+	PlayingBgm(Lake);
 
 	Map map;
 	Player player;
 	map.SetMap();
-	map.map[0][15] = '5';
+	map.map[0][15] = '0';
 	map.PrintMap(map.map, &player.pos);
 	Battle battle(&player, &map);
 
@@ -31,7 +31,7 @@ int main() {
 		Gotoxy(0, 0);
 		if (player.isBattle == false) {
 			player.MovePlayer(map);
-			// 옆에 포켓몬 정보 띠우기
+			player.PrintPokemon();
 			if (GetAsyncKeyState(VK_SPACE) || GetAsyncKeyState(VK_RETURN)) {
 				if (map.map[player.pos.y][player.pos.x] == '4') {
 					player.AllPokemonHeal();
@@ -44,6 +44,7 @@ int main() {
 					// 1. 가라티나 포효
 					// 2. 기라티나 출현
 					Gotoxy(26, 14);
+					PlayingEffect(GiratinaCries);
 					cout << "크아아아!";
 					player.isGiratina = true;
 					player.isBattle = true;

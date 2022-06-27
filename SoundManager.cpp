@@ -15,6 +15,8 @@ MCI_PLAY_PARMS playBgm;
 
 MCI_OPEN_PARMS openEffect;
 MCI_OPEN_PARMS openEffect1;
+MCI_OPEN_PARMS openEffect2;
+MCI_OPEN_PARMS openEffect3;
 MCI_PLAY_PARMS playEffect;
 
 UINT bgmDwID;
@@ -26,6 +28,8 @@ UINT bgmDwID5;
 
 UINT effectDwID;
 UINT effectDwID1;
+UINT effectDwID2;
+UINT effectDwID3;
 
 void PlayingBgm(int type)
 {
@@ -80,10 +84,10 @@ void PlayingBgm(int type)
 		mciSendCommand(bgmDwID4, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
 		break;
 	case Ending:
-		openBgm5.lpstrElementName = L"Sound/Pokemon Platinum - Lake.mp3";
+		openBgm5.lpstrElementName = L"Sound/Pokemon Platinum - Ending.mp3";
 		openBgm5.lpstrDeviceType = L"mpegvideo";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openBgm5);
-		bgmDwID5 = openBgm4.wDeviceID;
+		bgmDwID5 = openBgm5.wDeviceID;
 		mciSendCommand(bgmDwID5, MCI_PLAY, MCI_DGV_PLAY_REPEAT, (DWORD)(LPVOID)&playBgm);
 		break;
 	default:
@@ -110,8 +114,23 @@ void PlayingEffect(int type)
 		openEffect1.lpstrElementName = L"Sound/Pokemon Platinum - Recovery.mp3";
 		openEffect1.lpstrDeviceType = L"mpegvideo";
 		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openEffect1);
-		effectDwID1 = openEffect.wDeviceID;
+		effectDwID1 = openEffect1.wDeviceID;
 		mciSendCommand(effectDwID1, MCI_PLAY, MCI_NOTIFY, (DWORD)(LPVOID)&playEffect);
+		break;
+	case GiratinaCries:
+		mciSendCommand(effectDwID2, MCI_SEEK, MCI_SEEK_TO_START, (DWORD)(LPVOID)&playEffect);
+		openEffect2.lpstrElementName = L"Sound/Pokemon_Cries_-_487_Giratina.mp3";
+		openEffect2.lpstrDeviceType = L"mpegvideo";
+		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openEffect2);
+		effectDwID2 = openEffect2.wDeviceID;
+		mciSendCommand(effectDwID2, MCI_PLAY, MCI_NOTIFY, (DWORD)(LPVOID)&playEffect);
+	case Victory:
+		mciSendCommand(effectDwID3, MCI_SEEK, MCI_SEEK_TO_START, (DWORD)(LPVOID)&playEffect);
+		openEffect3.lpstrElementName = L"Sound/Pokemon_Cries_-_487_Giratina.mp3";
+		openEffect3.lpstrDeviceType = L"mpegvideo";
+		mciSendCommand(0, MCI_OPEN, MCI_OPEN_ELEMENT | MCI_OPEN_TYPE, (DWORD)(LPVOID)&openEffect3);
+		effectDwID3 = openEffect3.wDeviceID;
+		mciSendCommand(effectDwID3, MCI_PLAY, MCI_NOTIFY, (DWORD)(LPVOID)&playEffect);
 		break;
 	default:
 		break;
