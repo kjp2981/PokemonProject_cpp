@@ -13,10 +13,10 @@ Player::Player() {
 		pokemonList[i] = NULL;
 
 	SetPlayerPos();
-	SetFirstPokemon();
-	/*pokemonList[0] = new Piplup();
+	//SetFirstPokemon();
+	pokemonList[0] = new Piplup();
 	pokemonList[1] = new Chimchar();
-	pokemonList[2] = new Giratina();
+	/*pokemonList[2] = new Giratina();
 	pokemonList[3] = new Turtwig();
 	pokemonList[4] = new Pikachu();
 	pokemonList[5] = new Gible();*/
@@ -165,19 +165,16 @@ void Player::SetPlayerPos() {
 }
 
 void Player::SetFirstPokemon() {
-	switch (rand() % 3 + 1)
-	{
-	case P_Chimchar:
+	int random = Random();
+
+	if (random < 33) {
 		pokemonList[0] = new Chimchar();
-		break;
-	case P_Turtwig:
+	}
+	else if (random < 66) {
 		pokemonList[0] = new Turtwig();
-		break;
-	case P_Piplup:
+	}
+	else {
 		pokemonList[0] = new Piplup();
-		break;
-	default:
-		break;
 	}
 }
 

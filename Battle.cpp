@@ -30,7 +30,7 @@ void Battle::Update() {
 	else {
 		// TODO : 적의 차례
 		//Clear(30, 16, 58, 28);
-		system("cls");
+		::system("cls");
 		PrintBattleScreen();
 		PrintPokemon();
 		PrintPokemonHp();
@@ -126,7 +126,7 @@ void Battle::PrintBattleStartAnim()
 
 void Battle::AllPrint()
 {
-	system("cls");
+	::system("cls");
 	PrintBattleScreen();
 	PrintPokemon();
 	PrintPokemonHp();
@@ -827,23 +827,8 @@ void Battle::EnemyAttack()
 			Gotoxy(6, 20);
 			cout << "쓰러졌다!";
 			Sleep(1000);
-			if (player->pokemonList[1] == NULL) {
-				delete wildPokemon;
-				wildPokemon = nullptr;
-				player->isBattle = false;
-				Clear(4, 17, 30, 28);
-				Gotoxy(6, 19);
-				cout << "포켓몬이 모두 쓰러졌다.";
-				Gotoxy(6, 20);
-				cout << "눈 앞이 깜깜해졌다.";
-				Sleep(1000);
-				::system("cls");
-				player->SetPlayerPos();
-				map->PrintMap(map->map, &player->pos);
-				PlayingBgm(Lake);
-			}
-			else if (player->pokemonList[1] != NULL) {
-				int pokemonIdx = 1;
+			if (player->pokemonList[1] != NULL) {
+				int pokemonIdx = -1;
 				for (int i = 1; i < 6; i++) {
 					if (player->pokemonList[i] != NULL) {
 						if (player->pokemonList[i]->GetHP() > 0) {
@@ -852,7 +837,24 @@ void Battle::EnemyAttack()
 						}
 					}
 				}
-				player->SwapPokemon(0, pokemonIdx); // 여기 수정
+				if (pokemonIdx != -1) { // 교체할 포켓몬이 있을 때
+					player->SwapPokemon(0, pokemonIdx);
+				}
+				else { // 교체할 포켓몬이 없을 때
+					delete wildPokemon;
+					wildPokemon = nullptr;
+					player->isBattle = false;
+					Clear(4, 17, 30, 28);
+					Gotoxy(6, 19);
+					cout << "포켓몬이 모두 쓰러졌다.";
+					Gotoxy(6, 20);
+					cout << "눈 앞이 깜깜해졌다.";
+					Sleep(1000);
+					::system("cls");
+					player->SetPlayerPos();
+					map->PrintMap(map->map, &player->pos);
+					PlayingBgm(Lake);
+				}
 			}
 			else {
 				delete wildPokemon;
@@ -930,7 +932,7 @@ void Battle::Input()
 				delete wildPokemon;
 				wildPokemon = nullptr;
 				Sleep(1000);
-				system("cls");
+				::system("cls");
 				map->PrintMap(map->map, &player->pos);
 				PlayingBgm(Lake);
 				break;
@@ -938,8 +940,6 @@ void Battle::Input()
 		}
 	}
 	else if (input == E_Skill) { // 스킬 리스트
-		// TODO : 스킬 사용(Damage주기)
-		//Sleep(100);
 		if ((GetAsyncKeyState(VK_SPACE) & 0x8000) || (GetAsyncKeyState(VK_RETURN) & 0x8000)) {
 			if (isInput) return;
 			switch (_pos.pos)
@@ -998,17 +998,17 @@ void Battle::Input()
 							PrintEndingTitle();
 							PlayingBgm(Ending);
 							Gotoxy(0, 30);
-							system("pause");
+							::system("pause");
 							PlayingBgm(Lake);
 							input = 0;
 							player->SetPlayerPos();
-							system("cls");
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 						}
 						else {
 							player->isGiratina = false;
 							input = 0;
-							system("cls");
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 							PlayingBgm(Lake);
 						}
@@ -1079,16 +1079,17 @@ void Battle::Input()
 							PrintEndingTitle();
 							PlayingBgm(Ending);
 							Gotoxy(0, 30);
-							system("pause");
+							::system("pause");
 							PlayingBgm(Lake);
 							input = 0;
-							system("cls");
+							player->SetPlayerPos();
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 						}
 						else {
 							player->isGiratina = false;
 							input = 0;
-							system("cls");
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 							PlayingBgm(Lake);
 						}
@@ -1159,16 +1160,17 @@ void Battle::Input()
 							PrintEndingTitle();
 							PlayingBgm(Ending);
 							Gotoxy(0, 30);
-							system("pause");
+							::system("pause");
 							PlayingBgm(Lake);
 							input = 0;
-							system("cls");
+							player->SetPlayerPos();
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 						}
 						else {
 							player->isGiratina = false;
 							input = 0;
-							system("cls");
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 							PlayingBgm(Lake);
 						}
@@ -1239,16 +1241,17 @@ void Battle::Input()
 							PrintEndingTitle();
 							PlayingBgm(Ending);
 							Gotoxy(0, 30);
-							system("pause");
+							::system("pause");
 							PlayingBgm(Lake);
 							input = 0;
-							system("cls");
+							player->SetPlayerPos();
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 						}
 						else {
 							player->isGiratina = false;
 							input = 0;
-							system("cls");
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 							PlayingBgm(Lake);
 						}
@@ -1385,14 +1388,15 @@ void Battle::Input()
 							PrintEndingTitle();
 							PlayingBgm(Ending);
 							Gotoxy(0, 30);
-							system("pause");
+							::system("pause");
 							input = 0;
-							system("cls");
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 						}
 						else {
+							PlayingBgm(Lake);
 							player->isGiratina = false;
-							system("cls");
+							::system("cls");
 							map->PrintMap(map->map, &player->pos);
 						}
 					}
@@ -1444,6 +1448,10 @@ void Battle::Input()
 					isTurn = !isTurn;
 					IgnoreInput();
 				}*/
+				Gotoxy(6, 22);
+				cout << "이미 배틀에 나아있는";
+				Gotoxy(6, 23);
+				cout << "포켓몬입니다.";
 				break;
 			case TWO:
 				if (player->pokemonList[TWO - 1]->GetHP() > 0) {
@@ -1452,6 +1460,12 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+				}
+				else {
+					Gotoxy(6, 22);
+					cout << "해당포켓몬의 HP가";
+					Gotoxy(6, 23);
+					cout << "0입니다.";
 				}
 				break;
 			case THREE:
@@ -1462,6 +1476,12 @@ void Battle::Input()
 					isTurn = !isTurn;
 					IgnoreInput();
 				}
+				else {
+					Gotoxy(6, 22);
+					cout << "해당포켓몬의 HP가";
+					Gotoxy(6, 23);
+					cout << "0입니다.";
+				}
 				break;
 			case FOUR:
 				if (player->pokemonList[FOUR - 1]->GetHP() > 0) {
@@ -1470,6 +1490,12 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+				}
+				else {
+					Gotoxy(6, 22);
+					cout << "해당포켓몬의 HP가";
+					Gotoxy(6, 23);
+					cout << "0입니다.";
 				}
 				break;
 			case FIVE:
@@ -1480,6 +1506,12 @@ void Battle::Input()
 					isTurn = !isTurn;
 					IgnoreInput();
 				}
+				else {
+					Gotoxy(6, 22);
+					cout << "해당포켓몬의 HP가";
+					Gotoxy(6, 23);
+					cout << "0입니다.";
+				}
 				break;
 			case SIX:
 				if (player->pokemonList[SIX - 1]->GetHP() > 0) {
@@ -1488,6 +1520,12 @@ void Battle::Input()
 					_pos.pos = ONE;
 					isTurn = !isTurn;
 					IgnoreInput();
+				}
+				else {
+					Gotoxy(6, 22);
+					cout << "해당포켓몬의 HP가";
+					Gotoxy(6, 23);
+					cout << "0입니다.";
 				}
 				break;
 			default:

@@ -1,8 +1,8 @@
-﻿  Player.cpp
-  main.cpp
+﻿  Battle.cpp
+D:\C++\PokemonProject_cpp\Battle.cpp(1331,18): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   코드를 생성하고 있습니다.
-  0 of 258 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 257 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   pokemon.vcxproj -> D:\C++\PokemonProject_cpp\Release\pokemon.exe
